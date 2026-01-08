@@ -18,6 +18,11 @@
       "name": "web-search-gemini",
       "source": "./plugins/web-search-gemini",
       "description": "Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。"
+    },
+    {
+      "name": "image-gen-gemini",
+      "source": "./plugins/image-gen-gemini",
+      "description": "Gemini CLI (Nano Banana Pro) を使用した AI 画像生成プラグイン"
     }
   ]
 }
