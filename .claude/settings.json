@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nagbullet プラグインの仕様策定とプロジェクトメモリ追加\n\n- プロジェクトルートに CLAUDE.md を作成（プラグイン/スキル仕様を含む）\n- agbullet プラグインの CLAUDE.md を作成\n- specs/ ディレクトリに仕様書を追加:\n  - コンセプト、機能一覧、AI設定、選択ルール\n  - レビューサイクル、コマンド、実行アーキテクチャ\n  - ダッシュボード、サブエージェントアーキテクチャ\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(git commit:*)",
+      "Bash(chmod:*)",
+      "Bash(git checkout:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/check-plugin-version.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/lint-marketplace-hook.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/lint-plugins-hook.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "plugin-generator",
+  "description": "Claude Code プラグインのスキャフォールディングとバリデーション",
+  "version": "1.0.3",
+  "author": {
+    "name": "Ryo Higasigawa"
+  },
+  "repository": "https://github.com/biwakonbu/cc-plugins",
+  "license": "MIT",
+  "keywords": ["scaffolding", "generator", "validation", "template"],
+  "commands": "./commands/",
+  "skills": "./skills/"
+}

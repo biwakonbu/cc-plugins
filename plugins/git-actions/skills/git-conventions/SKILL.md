@@ -1,0 +1,166 @@
+---
+name: git-conventions
+description: Git 操作の共通規則とベストプラクティス。安全規則、機密ファイル、禁止事項を定義。全ての Git 操作で自動適用される。
+allowed-tools: Bash, Read, Grep, Glob
+---
+
+# Git Conventions スキル
+
+## Instructions
+
+このスキルは Git 操作における共通の規則とベストプラクティスを提供します。
+`git-commit` や `git-push` スキルと組み合わせて自動適用されます。
+
+### 正しい git の使い方
+
+**重要**: すべての git コマンドは作業ディレクトリ（カレントディレクトリ）で直接実行する。
+
+```bash
+# ✅ 正しい使い方
+git status
+git diff
+git add src/app.ts
+git commit -m "message"
+git push
+
+# ❌ 禁止: git -C を使わない
+git -C /path/to/repo status
+git -C /Users/user/project diff
+```
+
+**理由**:
+- Claude Code は常にプロジェクトルートを作業ディレクトリとして動作する
+- `git -C` は冗長であり、パスの誤りによるリスクがある
+- シンプルで読みやすいコマンドを維持する
+
+### 安全規則
+
+#### 絶対禁止
+
+| 操作 | 理由 |
+|------|------|
+| **`git -C <path>` オプション** | **作業ディレクトリで直接実行すること。冗長で不要** |
+| git config の更新 | セキュリティリスク |
+| main/master への force push | 共同作業者への影響 |
+| `--no-verify` オプション | hook をスキップすべきでない |
+| `--no-gpg-sign` オプション | 署名をスキップすべきでない |
+| `git reset --hard` の無確認実行 | データ消失リスク |
+
+#### --amend の使用条件
+
+以下の**すべて**を満たす場合のみ使用可能:
+
+1. ユーザーが明示的に要求、または pre-commit hook がファイルを自動修正した場合
+2. HEAD コミットが現在の会話で作成された（`git log -1 --format='%an %ae'` で確認）
+3. コミットがリモートにプッシュされていない（`git status` で確認）
+
+**コミットが失敗または reject された場合は、絶対に --amend を使用しない。問題を修正して新しいコミットを作成する。**
+
+### 機密ファイル
+
+以下のファイルは**絶対にコミットしない**:
+
+```
+.env
+.env.*
+.env.local
+.env.*.local
+credentials.json
+secrets.*
+*.pem
+*.key
+*.p12
+config/local.*
+```
+
+検出した場合は**警告**を表示し、ユーザーに確認を求める。
+
+### ブランチ保護
+
+#### main/master ブランチ
+
+- 直接コミットは避ける（PR 経由を推奨）
+- 直接プッシュは明示的な確認が必要
+- force push は絶対禁止
+
+#### 他ブランチ
+
+- force push は確認後のみ実行
+- `--force-with-lease` の使用を推奨
+
+### コミットメッセージ形式
+
+HEREDOC 形式を使用:
+
+```bash
+git commit -m "$(cat <<'EOF'
+メッセージ本文
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+EOF
+)"
+```
+
+### 動詞の使い分け
+
+| 動詞 | 用途 |
+|------|------|
+| `add` | 完全に新しい機能 |
+| `update` | 既存機能の改善 |
+| `fix` | バグ修正 |
+| `refactor` | 機能変更なしのコード改善 |
+| `docs` | ドキュメントのみの変更 |
+| `test` | テストのみの変更 |
+| `chore` | ビルド、CI、依存関係の変更 |
+
+### 並列実行の推奨
+
+以下の読み取り系コマンドは**並列実行**で効率化:
+
+```bash
+# 並列実行可能
+git status
+git diff
+git diff --staged
+git log --oneline -5
+git branch -vv
+```
+
+## Examples
+
+### 安全な操作フロー
+
+```bash
+# 1. 状態確認（並列）
+git status & git diff & git log --oneline -3
+
+# 2. ステージング
+git add <files>
+
+# 3. コミット（HEREDOC形式）
+git commit -m "$(cat <<'EOF'
+...
+EOF
+)"
+
+# 4. プッシュ前確認
+git log @{u}..HEAD --oneline
+
+# 5. プッシュ
+git push
+```
+
+### 危険な操作の例（禁止）
+
+```bash
+# ❌ 禁止: hook スキップ
+git commit --no-verify
+
+# ❌ 禁止: main への force push
+git push --force origin main
+
+# ❌ 禁止: 無確認の hard reset
+git reset --hard HEAD~3
+```
