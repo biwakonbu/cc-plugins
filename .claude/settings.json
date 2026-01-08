@@ -18,6 +18,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/check-docs-update.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/check-plugin-version.sh"
           },
           {

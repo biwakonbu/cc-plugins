@@ -4,7 +4,7 @@ Claude Code 用の Git ワークフロー管理プラグイン。
 
 ## 概要
 
-commit と push 操作を Claude Code の規則に準拠した形で実行するためのプラグイン。
+commit、push、merge 操作を Claude Code の規則に準拠した形で実行するためのプラグイン。
 **スキルに全ての知識を集約**し、コマンドはスキルを参照する設計。
 
 ## ディレクトリ構造
@@ -14,7 +14,8 @@ git-actions/
 ├── .claude-plugin/
 │   └── plugin.json           # プラグインメタデータ
 ├── commands/
-│   └── commit-push.md        # コミット & プッシュコマンド
+│   ├── commit-push.md        # コミット & プッシュコマンド
+│   └── merge-to-main.md      # main へマージ & プッシュコマンド
 ├── hooks/
 │   ├── hooks.json            # フック定義
 │   ├── check-protected-branch.sh  # 保護ブランチチェック
@@ -22,6 +23,7 @@ git-actions/
 ├── skills/
 │   ├── commit/SKILL.md       # git-commit スキル
 │   ├── push/SKILL.md         # git-push スキル
+│   ├── merge/SKILL.md        # git-merge スキル
 │   └── git-conventions/SKILL.md  # 共通規則スキル
 └── CLAUDE.md
 ```
@@ -31,6 +33,7 @@ git-actions/
 | コマンド | 説明 | 参照スキル |
 |---------|------|-----------|
 | `/git-actions:commit-push` | コミット & プッシュ実行 | `git-commit`, `git-push` |
+| `/git-actions:merge-to-main` | main へマージ & プッシュ実行 | `git-merge` |
 
 ## スキル
 
@@ -38,6 +41,7 @@ git-actions/
 |----------|-------------|------|
 | `git-commit` | skills/commit/ | 状態確認、変更分析、メッセージ生成、実行 |
 | `git-push` | skills/push/ | 安全性チェック、プッシュ実行 |
+| `git-merge` | skills/merge/ | feature ブランチを main にマージ & プッシュ |
 | `git-conventions` | skills/git-conventions/ | 安全規則、機密ファイル、禁止事項 |
 
 ## アーキテクチャ
@@ -52,6 +56,13 @@ git-actions/
     │
     └─→ git-push スキル
           ├─→ 安全性チェック、プッシュ実行
+          └─→ git-conventions (共通規則)
+
+/git-actions:merge-to-main
+    │
+    └─→ git-merge スキル
+          ├─→ 事前確認（状態チェック、コンフリクト検出）
+          ├─→ main へチェックアウト、pull、マージ、プッシュ
           └─→ git-conventions (共通規則)
 ```
 
