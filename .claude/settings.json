@@ -18,6 +18,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/sync-plugin-docs.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/check-docs-update.sh"
           },
           {

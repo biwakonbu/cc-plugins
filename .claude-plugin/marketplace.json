@@ -22,7 +22,7 @@
     {
       "name": "image-gen-gemini",
       "source": "./plugins/image-gen-gemini",
-      "description": "Gemini CLI (Nano Banana Pro) を使用した AI 画像生成プラグイン"
+      "description": "Gemini CLI (Nano Banana Pro) を使用した AI 画像生成"
     }
   ]
 }
