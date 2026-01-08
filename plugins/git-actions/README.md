@@ -54,20 +54,6 @@ claude plugin install git-actions@cc-plugins
 |--------|------|
 | `check-protected-branch.sh` | main/develop での git 操作を検出し確認要求 |
 
-### 環境変数
-
-| 変数 | 説明 |
-|------|------|
-| `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` | main/develop ブランチへの直コミット・プッシュブロックを回避 |
-
-```bash
-# 一時的に回避
-GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1 claude
-
-# シェル設定に追加（永続）
-export GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1
-```
-
 ## アーキテクチャ
 
 ```

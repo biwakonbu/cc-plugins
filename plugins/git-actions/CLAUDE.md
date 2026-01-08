@@ -114,21 +114,6 @@ git -C /path/to/repo status
 | `check-protected-branch.sh` | PreToolUse (Bash) | main/develop での git commit/push を検出しブロック |
 | prompt フック | PreToolUse (Bash) | CONFIRM_REQUIRED 検出時にユーザーに確認を求める |
 
-### 環境変数
-
-| 変数 | 説明 |
-|------|------|
-| `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` | main/develop ブランチへの直コミット・プッシュブロックを回避 |
-
-使用例:
-```bash
-# 一時的に回避
-GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1 claude
-
-# シェル設定に追加（永続）
-export GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1
-```
-
 ### 効率性
 
 - 読み取り系コマンドの並列実行
