@@ -10,7 +10,7 @@ cc-plugins/
 │   └── marketplace.json  # マーケットプレイス設定
 └── plugins/              # プラグイン格納ディレクトリ
     ├── git-actions/        # Git ワークフロー管理 (v1.2.1)
-    ├── image-gen-gemini/   # Gemini 画像生成 (v1.0.0)
+    ├── image-gen-gemini/   # Gemini 画像生成 (v1.0.1)
     ├── plugin-generator/   # プラグイン生成・検証 (v1.0.3)
     └── web-search-gemini/  # Gemini Web 検索 (v1.0.1)
 ```
@@ -20,7 +20,7 @@ cc-plugins/
 | プラグイン | バージョン | 説明 |
 |-----------|-----------|------|
 | git-actions | 1.2.1 | Git commit and push workflow management for Claude Code |
-| image-gen-gemini | 1.0.0 | Gemini CLI (Nano Banana Pro) を使用した AI 画像生成 |
+| image-gen-gemini | 1.0.1 | Gemini CLI (Nano Banana Pro) を使用した AI 画像生成 |
 | plugin-generator | 1.0.3 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | web-search-gemini | 1.0.1 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 
