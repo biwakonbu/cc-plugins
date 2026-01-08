@@ -45,8 +45,6 @@ if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "develop" ]; then
     echo "フィーチャーブランチを作成してから作業してください。" >&2
     echo "" >&2
     echo "例: git checkout -b feature/your-feature-name" >&2
-    echo "" >&2
-    echo "💡 回避方法: GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1 を設定" >&2
     exit 2
 fi
 
