@@ -13,6 +13,11 @@
       "name": "plugin-generator",
       "source": "./plugins/plugin-generator",
       "description": "Claude Code プラグインのスキャフォールディングとバリデーション"
+    },
+    {
+      "name": "web-search-gemini",
+      "source": "./plugins/web-search-gemini",
+      "description": "Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。"
     }
   ]
 }
