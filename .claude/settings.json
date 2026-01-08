@@ -26,6 +26,10 @@
           },
           {
             "type": "command",
+            "command": ".claude/hooks/check-plugin-readme.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/check-plugin-version.sh"
           },
           {

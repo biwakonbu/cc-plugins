@@ -1,7 +1,7 @@
 {
   "name": "web-search-gemini",
   "description": "Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "Ryo Higasigawa"
   },
