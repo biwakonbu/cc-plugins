@@ -20,10 +20,24 @@ allowed-tools: Bash, Read, Grep, Glob
 
 ```bash
 git status              # 未追跡ファイルと変更状態
+git branch --show-current  # カレントブランチ
 git diff                # ステージされていない変更
 git diff --staged       # ステージ済みの変更
 git log --oneline -5    # 直近のコミットスタイル確認
 ```
+
+#### 1.5. 保護ブランチ確認（重要）
+
+カレントブランチが **main** または **develop** の場合、コミット実行前に必ず **AskUserQuestion ツール**を使用して確認を取る:
+
+- header: "保護ブランチ"
+- question: "main/develop ブランチへ直接コミットしようとしています。続行しますか？"
+- options:
+  - "はい、続行する": 環境変数 `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` を設定してコミット実行
+  - "いいえ、中止する": 処理を中止し、feature ブランチの作成を提案
+
+**確認が取れた場合のみ**、環境変数を設定してフックをバイパスする。
+確認なしでの実行は禁止。
 
 #### 2. 変更分析
 

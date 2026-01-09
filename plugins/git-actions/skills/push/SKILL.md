@@ -36,9 +36,21 @@ git log @{u}..HEAD --oneline 2>/dev/null || echo "No upstream"  # プッシュ�
 
 | ケース | 対応 |
 |--------|------|
-| main/master/develop への直接プッシュ | ユーザーに明示的な確認を求める |
-| force push が必要 | ユーザーに明示的な確認を求める |
+| main/master/develop への直接プッシュ | **AskUserQuestion ツール**で確認（確認後は `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` 設定で実行） |
+| force push が必要 | **AskUserQuestion ツール**で明示的な確認を取る |
 | コミットされていない変更がある | 先にコミットするか確認 |
+
+##### 保護ブランチへのプッシュ確認
+
+main/master/develop への直接プッシュを検出した場合、**AskUserQuestion ツール**で以下を確認:
+
+- header: "保護ブランチ"
+- question: "{branch} ブランチへ直接プッシュしようとしています。続行しますか？"
+- options:
+  - "はい、続行する": 環境変数 `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` を設定してプッシュ実行
+  - "いいえ、中止する": 処理を中止
+
+**確認が取れた場合のみ**、環境変数を設定してフックをバイパスする。
 
 #### 3. プッシュ実行
 
