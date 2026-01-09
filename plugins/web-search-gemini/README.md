@@ -41,13 +41,22 @@ export GEMINI_API_KEY=your_key  # API キー
 
 ## 使用例
 
+### コマンドでの検索
 ```bash
-# 明示的な検索
 /web-search-gemini:search TypeScript 5.0 の新機能
+```
 
-# 自動発動（会話内で）
+### スキルによる自動発動（会話内）
+```
 「React 19 について調べて」
 「最新の Node.js LTS バージョンを検索して」
+「AI 関連の最新ニュースを検索して」
+```
+
+### 複雑な調査（エージェント）
+```
+「React と Vue と Svelte を比較調査して」
+「2025年の JavaScript トレンドを分析して」
 ```
 
 ## 機能

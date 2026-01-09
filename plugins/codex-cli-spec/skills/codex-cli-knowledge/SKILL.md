@@ -62,11 +62,13 @@ bun install -g @openai/codex
 
 ### Codex 最適化モデル
 
-| モデル | 説明 | 推論レベル | コンテキスト |
-|--------|------|------------|--------------|
-| `gpt-5.1-codex-max` | フラッグシップ。深い推論と高速処理 | low, medium, high, xhigh | 272,000 トークン |
-| `gpt-5.1-codex` | 標準モデル。バランス重視 | low, medium, high | 272,000 トークン |
-| `gpt-5.1-codex-mini` | 軽量版。低コスト・高速 | medium, high | 272,000 トークン |
+**注意**: モデル名は頻繁に更新されます。最新のモデル一覧は `/model` コマンドで確認してください。
+
+| モデル（例） | 説明 | 推論レベル |
+|-------------|------|------------|
+| `gpt-5-codex` | 標準モデル（公式ドキュメント例） | low, medium, high |
+| `o4-mini` | 軽量・高速モデル | medium, high |
+| `gpt-5-codex-max` | フラッグシップ。深い推論 | low, medium, high, xhigh |
 
 ### 推論レベル（Reasoning Effort）
 
@@ -201,23 +203,37 @@ Codex CLI が内部で使用するツール一覧:
 
 Codex CLI の中核機能。操作の自動実行レベルを制御する。
 
-| モード | 自動で許可される操作 | 承認が必要な操作 |
-|--------|---------------------|-----------------|
-| **Suggest**（デフォルト） | ファイル読み取りのみ | 全ての書き込み、シェルコマンド |
-| **Auto Edit** | ファイルの読み取り・書き込み | 全てのシェルコマンド |
-| **Full Auto** | ファイル読み書き、シェルコマンド | なし（サンドボックス内） |
+### 承認ポリシー（--ask-for-approval）
+
+| フラグ値 | 説明 | 用途 |
+|----------|------|------|
+| `untrusted` | 全アクションで承認要求 | 最も安全、初心者向け |
+| `on-failure` | エラー発生時のみ承認要求 | バランス型 |
+| `on-request` | 不確実な場合のみ承認要求 | 自動化向け |
+| `never` | 承認なしで実行 | CI/CD、スクリプト向け |
+
+### ユーザーフレンドリーなモード名
+
+| モード名 | 対応フラグ | 動作 |
+|----------|-----------|------|
+| **Suggest**（デフォルト） | `--ask-for-approval untrusted` | 全ての書き込み・コマンドで承認 |
+| **Auto Edit** | 書き込み自動 + コマンド承認 | ファイル編集は自動、シェルは承認 |
+| **Full Auto** | `--full-auto` ショートカット | `on-request` + `workspace-write` |
 
 ### 承認モードの選択
 
 ```bash
-# デフォルト（Suggest）
+# デフォルト（untrusted）
 codex "タスク"
 
-# Auto Edit モード
-codex --approval-mode auto-edit "タスク"
+# 承認ポリシーを明示的に指定
+codex --ask-for-approval on-request "タスク"
+codex -a on-failure "タスク"
 
-# Full Auto モード（サンドボックス内で実行）
-codex --approval-mode full-auto "タスク"
+# Full Auto モード（ショートカット）
+codex --full-auto "タスク"
+# 上記は以下と同等:
+# codex --ask-for-approval on-request --sandbox workspace-write "タスク"
 ```
 
 ---
@@ -359,17 +375,50 @@ providers:
 | `codex -q "..."` | 非インタラクティブモード | `codex -q --json "explain utils.ts"` |
 | `codex completion <shell>` | シェル補完スクリプト出力 | `codex completion bash` |
 
+### サブコマンド
+
+| コマンド | 状態 | 用途 |
+|---------|------|------|
+| `codex` | Stable | インタラクティブターミナル UI |
+| `codex exec` | Stable | 非インタラクティブなスクリプト実行 |
+| `codex apply` | Stable | Codex Cloud の diff をローカルに適用 |
+| `codex login` | Stable | OAuth または API キーで認証 |
+| `codex mcp` | Experimental | MCP サーバーの管理 |
+
+#### exec サブコマンドのオプション
+
+| オプション | 説明 |
+|-----------|------|
+| `--json` | JSON イベントを改行区切りで出力 |
+| `--output-last-message, -o` | 最終レスポンスをファイルに書き込み |
+| `--skip-git-repo-check` | 非 Git ディレクトリでの実行を許可 |
+| `--output-schema` | JSON Schema でレスポンスを検証 |
+
 ### 主要フラグ
 
 | フラグ | 短縮形 | 説明 |
 |--------|--------|------|
 | `--model` | `-m` | 使用するモデルを指定 |
-| `--approval-mode` | `-a` | 承認モードを指定 |
+| `--ask-for-approval` | `-a` | 承認ポリシーを指定（untrusted/on-failure/on-request/never） |
+| `--sandbox` | `-s` | サンドボックスモード（read-only/workspace-write/danger-full-access） |
+| `--full-auto` | - | Full Auto モードのショートカット |
 | `--quiet` | `-q` | 静粛モード（CI 向け） |
-| `--notify` | - | デスクトップ通知を有効化 |
+| `--json` | - | JSON 形式で出力 |
 | `--provider` | - | AI プロバイダーを指定 |
 | `--no-project-doc` | - | AGENTS.md の読み込みを無効化 |
-| `--json` | - | JSON 形式で出力 |
+
+### 追加フラグ
+
+| フラグ | 短縮形 | 説明 |
+|--------|--------|------|
+| `--search` | - | Web 検索機能を有効化 |
+| `--oss` | - | ローカル OSS モデルを使用（Ollama 必須） |
+| `--image` | `-i` | 画像ファイルを添付（カンマ区切りまたは複数指定） |
+| `--profile` | `-p` | 設定プロファイルを読み込み（~/.codex/config.toml） |
+| `--cd` | `-C` | 作業ディレクトリを変更 |
+| `--config` | `-c` | 設定値をオーバーライド（key=value 形式） |
+| `--notify` | - | デスクトップ通知を有効化 |
+| `--yolo` | - | 全保護を無効化（危険、非推奨） |
 
 ---
 
