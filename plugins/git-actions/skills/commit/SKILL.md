@@ -26,9 +26,11 @@ git diff --staged       # ステージ済みの変更
 git log --oneline -5    # 直近のコミットスタイル確認
 ```
 
-#### 1.5. 保護ブランチ確認（重要）
+#### 1.5. 保護ブランチ確認（最重要 - 必ず先に実行）
 
-カレントブランチが **main** または **develop** の場合、コミット実行前に必ず **AskUserQuestion ツール**を使用して確認を取る:
+**git commit コマンドを実行する前に**、カレントブランチが **main** または **develop** かを確認する。
+
+main/develop の場合、**先に AskUserQuestion ツールで確認を取得し、承認された場合のみ** git commit を実行する:
 
 - header: "保護ブランチ"
 - question: "main/develop ブランチへ直接コミットしようとしています。続行しますか？"

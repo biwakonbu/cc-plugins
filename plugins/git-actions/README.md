@@ -49,15 +49,23 @@ claude plugin install git-actions@cc-plugins
 ### 安全機能
 
 - **機密ファイルの自動検出**: `.env`, `credentials.json` などをコミットから除外
-- **保護ブランチ警告**: main/develop でのコミット/プッシュ時に確認
+- **保護ブランチ確認**: main/develop でのコミット/プッシュ時に AskUserQuestion で確認を取得し、承認後に実行
 - **Force push 保護**: main/master/develop への force push を防止
 - **--amend 制限**: 厳格な使用条件でのみ許可
+
+### 保護ブランチの動作
+
+main/develop ブランチで commit/push を実行する場合:
+
+1. AskUserQuestion でユーザー確認を取得
+2. 「はい、続行する」選択時 → 環境変数を設定して実行を許可
+3. 「いいえ、中止する」選択時 → feature ブランチの作成を提案
 
 ### フック
 
 | フック | 動作 |
 |--------|------|
-| `check-protected-branch.sh` | main/develop での git 操作を検出し確認要求 |
+| `check-protected-branch.sh` | main/develop での git 操作を検出し、AskUserQuestion での確認を誘導 |
 
 ## アーキテクチャ
 

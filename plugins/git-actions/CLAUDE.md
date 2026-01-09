@@ -115,8 +115,7 @@ git -C /path/to/repo status
 
 | フック | トリガー | 動作 |
 |--------|---------|------|
-| `check-protected-branch.sh` | PreToolUse (Bash) | main/develop での git commit/push を検出しブロック（スキル層で AskUserQuestion により確認取得済みの場合、環境変数によりバイパス可能） |
-| prompt フック | PreToolUse (Bash) | CONFIRM_REQUIRED 検出時にユーザーに確認を求める |
+| `check-protected-branch.sh` | PreToolUse (Bash) | main/develop での git commit/push を検出しブロック。AskUserQuestion で確認取得後、環境変数 `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` を設定して再実行するよう誘導 |
 
 ### スキル層での確認フロー
 

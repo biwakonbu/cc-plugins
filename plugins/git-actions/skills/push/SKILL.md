@@ -40,9 +40,11 @@ git log @{u}..HEAD --oneline 2>/dev/null || echo "No upstream"  # プッシュ�
 | force push が必要 | **AskUserQuestion ツール**で明示的な確認を取る |
 | コミットされていない変更がある | 先にコミットするか確認 |
 
-##### 保護ブランチへのプッシュ確認
+##### 保護ブランチへのプッシュ確認（最重要 - 必ず先に実行）
 
-main/master/develop への直接プッシュを検出した場合、**AskUserQuestion ツール**で以下を確認:
+**git push コマンドを実行する前に**、main/master/develop への直接プッシュかを確認する。
+
+main/master/develop の場合、**先に AskUserQuestion ツールで確認を取得し、承認された場合のみ** git push を実行する:
 
 - header: "保護ブランチ"
 - question: "{branch} ブランチへ直接プッシュしようとしています。続行しますか？"

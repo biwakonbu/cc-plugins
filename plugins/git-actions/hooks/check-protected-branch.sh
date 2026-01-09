@@ -40,11 +40,14 @@ if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "develop" ]; then
         exit 0
     fi
 
-    # ブロックして警告メッセージを出力
-    echo "⚠️ Protected branch: $CURRENT_BRANCH ブランチへの直接 commit/push はブロックされました。" >&2
-    echo "フィーチャーブランチを作成してから作業してください。" >&2
+    # ブロックして、AskUserQuestion への誘導メッセージを出力
+    echo "⚠️ 保護ブランチ検出: $CURRENT_BRANCH ブランチへの直接 commit/push がブロックされました。" >&2
     echo "" >&2
-    echo "例: git checkout -b feature/your-feature-name" >&2
+    echo "続行するには:" >&2
+    echo "1. AskUserQuestion ツールでユーザー確認を取得" >&2
+    echo "2. 確認後、環境変数 GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1 を設定して再実行" >&2
+    echo "" >&2
+    echo "例: GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1 git commit -m \"message\"" >&2
     exit 2
 fi
 
