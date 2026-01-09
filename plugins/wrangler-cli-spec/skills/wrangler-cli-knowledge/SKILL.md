@@ -1,6 +1,6 @@
 ---
 name: wrangler-cli-knowledge
-description: Cloudflare Wrangler CLI の仕様と使い方に関する knowledge。Durable Objects, Queues, Hyperdrive, Service Bindings について回答。Use when user asks about Wrangler, Cloudflare Workers, Durable Objects, Queues, Hyperdrive, or Service Bindings.
+description: Cloudflare Wrangler CLI の仕様と使い方に関する knowledge。Durable Objects, Queues, Hyperdrive, Service Bindings, カスタムビルド設定 (Webpack/esbuild) について回答。Use when user asks about Wrangler, Cloudflare Workers, Durable Objects, Queues, Hyperdrive, Service Bindings, or custom build configurations.
 allowed-tools: []
 ---
 
@@ -95,6 +95,56 @@ wrangler deploy
 ```bash
 wrangler dev
 ```
+
+---
+
+## カスタムビルド (Custom Build)
+
+Wrangler はデフォルトで **esbuild** を使用して Worker をバンドルしますが、カスタムビルドコマンドを使用して Webpack やその他のツールを使用するように設定することも可能です。
+
+### 設定 (wrangler.toml)
+
+`[build]` セクションを使用してカスタムビルドを定義します。
+
+```toml
+[build]
+command = "npm run build"
+cwd = "."
+watch = ["./src"]
+
+[build.upload]
+main = "./dist/index.js"
+```
+
+### 主要なオプション
+
+*   **`command`**: ビルドを実行するためのコマンド。`wrangler dev` や `wrangler deploy` の実行前に呼び出されます。
+*   **`cwd`**: コマンドを実行するディレクトリ。
+*   **`watch`**: 変更を監視するディレクトリまたはファイルのリスト。
+*   **`upload.main`**: ビルド後に生成される、デプロイ対象のメインスクリプトのパス。
+
+### Webpack の使用
+
+Wrangler v2 以降、`type = "webpack"` はサポートされなくなりました。Webpack を使用する場合は、カスタムビルドコマンドとして設定します。
+
+1. `package.json` にビルドスクリプトを追加:
+   ```json
+   "scripts": {
+     "build": "webpack"
+   }
+   ```
+2. `wrangler.toml` に設定を追加:
+   ```toml
+   [build]
+   command = "npm run build"
+
+   [build.upload]
+   main = "./dist/worker.js" # Webpack の出力先に合わせる
+   ```
+
+### esbuild の詳細設定
+
+Wrangler のデフォルトの esbuild 挙動をカスタマイズしたい場合（例: プラグインの追加など）も、カスタムビルドスクリプトを作成して `command` から呼び出す手法が一般的です。
 
 ---
 

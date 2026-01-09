@@ -1,11 +1,11 @@
 {
   "name": "wrangler-cli-spec",
-  "description": "Cloudflare Wrangler CLI の仕様と使い方に関する知識を提供。Durable Objects, Queues, Hyperdrive, Service Bindings などについて回答。",
+  "description": "Cloudflare Wrangler CLI の仕様と使い方に関する知識を提供。Durable Objects, Queues, Hyperdrive, Service Bindings, カスタムビルド設定 (Webpack/esbuild) などについて回答。",
   "version": "0.1.0",
   "author": {
     "name": "cc-plugins"
   },
   "license": "MIT",
-  "keywords": ["cloudflare", "wrangler", "workers", "durable-objects", "queues", "hyperdrive"],
+  "keywords": ["cloudflare", "wrangler", "workers", "durable-objects", "queues", "hyperdrive", "webpack", "esbuild", "build-command"],
   "skills": "./skills/"
 }

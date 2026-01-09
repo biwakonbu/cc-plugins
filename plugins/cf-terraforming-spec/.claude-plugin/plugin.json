@@ -1,0 +1,11 @@
+{
+  "name": "cf-terraforming-spec",
+  "description": "Cloudflare cf-terraforming CLI の仕様と使い方に関する知識を提供。既存の Cloudflare リソースを Terraform にインポートする方法、HCL 設定の生成、インポートブロックの使用などについて回答。",
+  "version": "0.1.0",
+  "author": {
+    "name": "cc-plugins"
+  },
+  "license": "MIT",
+  "keywords": ["cloudflare", "terraform", "cf-terraforming", "infrastructure-as-code", "import", "hcl"],
+  "skills": "./skills/"
+}

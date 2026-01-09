@@ -6,7 +6,7 @@ Cloudflare Wrangler CLI の仕様と使い方に関する知識を提供する�
 
 | スキル | 説明 |
 |--------|------|
-| `wrangler-cli-knowledge` | Wrangler CLI, Durable Objects, Queues, Hyperdrive, Service Bindings に関する知識 |
+| `wrangler-cli-knowledge` | Wrangler CLI, Durable Objects, Queues, Hyperdrive, Service Bindings, カスタムビルド設定（Webpack/esbuild）に関する知識 |
 
 ## 使用方法
 
