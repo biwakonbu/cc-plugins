@@ -32,16 +32,20 @@ Claude Code プラグインのスキャフォールディングとバリデー�
 
 | エージェント | 説明 |
 |-------------|------|
-| `command-creator` | command 作成専用。`command-spec` スキルを使用 |
-| `skill-creator` | skill 作成専用。`skill-spec` スキルを使用 |
-| `agent-creator` | agent 作成専用。`agent-spec` スキルを使用 |
+| `command-creator` | command の作成・メンテナンス。`command-spec` スキルを使用 |
+| `skill-creator` | skill の作成・メンテナンス。`skill-spec` スキルを使用 |
+| `agent-creator` | agent の作成・メンテナンス。`agent-spec` スキルを使用 |
+
+**自動起動**: 各エージェントは description に `Use when creating, updating, modifying, or maintaining ...` を含むため、ユーザーの要求にマッチした場合に自動的に呼び出されます。
+
+**更新モード**: 既存コンポーネントが存在する場合、差分適用方式で更新します（他の設定を維持しつつ要求部分のみ変更）。
 
 ## ディレクトリ構造
 
 ```
 plugin-generator/
 ├── .claude-plugin/
-│   └── plugin.json               # プラグインメタデータ (v1.1.1)
+│   └── plugin.json               # プラグインメタデータ (v1.2.0)
 ├── CLAUDE.md                     # このファイル
 ├── commands/
 │   ├── create.md                 # 新規プラグイン生成
@@ -84,7 +88,7 @@ plugin-generator/
 各コンポーネントタイプ（command, skill, agent）に対して:
 
 1. **仕様スキル** (`*-spec`): 正しい形式の知識を提供
-2. **作成エージェント** (`*-creator`): 仕様スキルを使用してファイル生成
+2. **作成・メンテナンスエージェント** (`*-creator`): 仕様スキルを使用してファイル生成・更新
 3. **作成コマンド** (`create-*`): ユーザーインターフェース
 
 この分離により:

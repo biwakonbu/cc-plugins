@@ -83,7 +83,7 @@ echo ""
 
 # --- Test 1: 正常系 - プラグイン生成 ---
 echo "Test 1: 正常系 - プラグイン生成"
-CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT" "$GENERATE_SCRIPT" "$TEST_PLUGIN_NAME" > /dev/null 2>&1
+CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT" CLAUDE_PROJECT_DIR="$MARKETPLACE_ROOT" "$GENERATE_SCRIPT" "$TEST_PLUGIN_NAME" > /dev/null 2>&1
 EXIT_CODE=$?
 
 assert_exit_code 0 $EXIT_CODE "終了コード 0"
@@ -111,7 +111,7 @@ echo ""
 
 # --- Test 2: エラー系 - 重複プラグイン ---
 echo "Test 2: エラー系 - 重複プラグイン"
-CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT" "$GENERATE_SCRIPT" "$TEST_PLUGIN_NAME" > /dev/null 2>&1
+CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT" CLAUDE_PROJECT_DIR="$MARKETPLACE_ROOT" "$GENERATE_SCRIPT" "$TEST_PLUGIN_NAME" > /dev/null 2>&1
 EXIT_CODE=$?
 
 assert_exit_code 1 $EXIT_CODE "終了コード 1（重複エラー）"
@@ -120,7 +120,7 @@ echo ""
 
 # --- Test 3: エラー系 - 不正な名前（大文字） ---
 echo "Test 3: エラー系 - 不正な名前（大文字）"
-CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT" "$GENERATE_SCRIPT" "InvalidName" > /dev/null 2>&1
+CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT" CLAUDE_PROJECT_DIR="$MARKETPLACE_ROOT" "$GENERATE_SCRIPT" "InvalidName" > /dev/null 2>&1
 EXIT_CODE=$?
 
 assert_exit_code 1 $EXIT_CODE "終了コード 1（不正な名前）"
@@ -129,7 +129,7 @@ echo ""
 
 # --- Test 4: エラー系 - 引数なし ---
 echo "Test 4: エラー系 - 引数なし"
-CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT" "$GENERATE_SCRIPT" > /dev/null 2>&1
+CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT" CLAUDE_PROJECT_DIR="$MARKETPLACE_ROOT" "$GENERATE_SCRIPT" > /dev/null 2>&1
 EXIT_CODE=$?
 
 assert_exit_code 1 $EXIT_CODE "終了コード 1（引数なし）"
