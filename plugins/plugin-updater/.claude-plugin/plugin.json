@@ -1,7 +1,7 @@
 {
   "name": "plugin-updater",
   "description": "マーケットプレイスとインストール済みプラグインを一括更新",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Ryo Higasigawa"
   },
