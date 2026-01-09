@@ -38,6 +38,11 @@
       "name": "cursor-cli-spec",
       "source": "./plugins/cursor-cli-spec",
       "description": "Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン"
+    },
+    {
+      "name": "wrangler-cli-spec",
+      "source": "./plugins/wrangler-cli-spec",
+      "description": "Cloudflare Wrangler CLI の仕様と使い方に関する知識プラグイン"
     }
   ]
 }
