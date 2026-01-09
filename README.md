@@ -17,7 +17,6 @@ claude plugin install plugin-generator@cc-plugins
 | プラグイン | バージョン | 説明 |
 |-----------|-----------|------|
 | [git-actions](./plugins/git-actions/) | 1.2.5 | Git commit and push workflow management for Claude Code |
-| [image-gen-gemini](./plugins/image-gen-gemini/) | 1.0.2 | Gemini CLI (Nano Banana Pro) を使用した AI 画像生成 |
 | [plugin-generator](./plugins/plugin-generator/) | 1.2.0 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | [web-search-gemini](./plugins/web-search-gemini/) | 1.0.2 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 
