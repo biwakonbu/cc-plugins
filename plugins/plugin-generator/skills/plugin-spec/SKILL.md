@@ -1,17 +1,37 @@
 ---
 name: plugin-spec
-description: Claude Code プラグインの仕様知識。commands, skills, agents, hooks の正しい形式と実装パターンを提供。プラグインコンポーネントの作成・検証時に使用。Use when creating or validating plugin components, understanding plugin structure, or implementing commands/skills/agents/hooks.
+description: Claude Code プラグインの全仕様知識を統合。plugin.json、commands、skills、agents、hooks の概要と個別スキルへの参照を提供。Use when understanding plugin structure, creating plugins, or validating plugin components.
 allowed-tools: Read, Grep, Glob
 ---
 
-# Plugin Spec スキル
+# Plugin Spec スキル（統合版）
 
-Claude Code プラグインの仕様知識を提供する。
+Claude Code プラグインの全仕様知識を統合して提供する。
+詳細な仕様は個別スキルを参照。
 
 ## Instructions
 
 このスキルはプラグインの各コンポーネント（commands, skills, agents, hooks）の
-正しい形式と実装パターンについての知識を提供します。
+概要を提供し、詳細は個別スキルに委譲します。
+
+**重要**: 実装前に必ず公式ドキュメント（英語版）を確認し、最新の仕様に従ってください。
+
+## 公式ドキュメント
+
+- [Plugins](https://code.claude.com/docs/en/plugins)
+- [Plugins Reference](https://code.claude.com/docs/en/plugins-reference)
+
+---
+
+## 個別仕様スキル
+
+| スキル | 説明 | 詳細コマンド |
+|--------|------|------------|
+| `command-spec` | command の仕様知識 | `/plugin-generator:create-command` |
+| `skill-spec` | skill の仕様知識 | `/plugin-generator:create-skill` |
+| `agent-spec` | agent の仕様知識 | `/plugin-generator:create-agent` |
+
+各コンポーネントの詳細な仕様は上記スキルを参照してください。
 
 ---
 
@@ -55,293 +75,62 @@ Claude Code プラグインの仕様知識を提供する。
   "license": "MIT",
   "keywords": ["keyword1", "keyword2"],
   "commands": "./commands/",
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "agents": "./agents/"
 }
 ```
 
 ---
 
-## Commands 仕様
+## コンポーネント概要
+
+### Commands
 
 スラッシュコマンドを定義する Markdown ファイル。
 
-### ファイル配置
+- **配置**: `commands/{command-name}.md`
+- **必須**: フロントマターに `description`
+- **オプション**: `model`（フルモデル ID）、`allowed-tools`
+- **詳細**: `command-spec` スキルを参照
 
-```
-commands/{command-name}.md
-```
+### Skills
 
-### フロントマター（必須）
+Claude が自動適用する知識・手順を定義する Markdown ファイル。
 
-```yaml
----
-description: コマンドの説明（必須）
----
-```
+- **配置**: `skills/{skill-name}/SKILL.md`
+- **必須**: フロントマターに `name`, `description`
+- **オプション**: `allowed-tools`
+- **注意**: `model` 指定は使用不可
+- **詳細**: `skill-spec` スキルを参照
 
-### 変数
-
-| 変数 | 説明 |
-|------|------|
-| `$ARGUMENTS` | 引数全体 |
-| `$1`, `$2`, ... | 個別引数（位置パラメータ） |
-
-### 例
-
-```markdown
----
-description: ファイルを検索する
----
-
-# Search
-
-指定されたパターンでファイルを検索します。
-
-引数: $ARGUMENTS
-
-1. パターンを解析
-2. Glob で検索を実行
-3. 結果を報告
-```
-
-### コマンド呼び出し
-
-```
-/plugin-name:command-name [arguments]
-```
-
----
-
-## Skills 仕様
-
-Claude が自動的に適用する知識・手順を定義する Markdown ファイル。
-
-### ファイル配置
-
-```
-skills/{skill-name}/SKILL.md
-```
-
-### フロントマター（必須）
-
-```yaml
----
-name: skill-name           # 必須: kebab-case（最大64文字）
-description: 説明           # 必須: いつ使うか明記（最大1024文字）
-allowed-tools: Read, Grep  # オプション: 使用可能ツール制限
-model: claude-sonnet-4-... # オプション: 使用モデル
----
-```
-
-### description のベストプラクティス
-
-**良い例**:
-```yaml
-description: Extract text from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs.
-```
-
-- 具体的なアクション名を含める
-- ユーザーが使う用語を含める
-- いつ使うかを明記
-
-**悪い例**:
-```yaml
-description: Helps with documents
-```
-
-### 構造
-
-```markdown
----
-name: my-skill
-description: 説明。Use when ...
-allowed-tools: Read, Grep, Glob
----
-
-# スキル名
-
-## Instructions
-
-ステップバイステップの指示
-
-## Examples
-
-具体的な使用例
-```
-
-### 呼び出しフロー
-
-1. Discovery: 起動時に name と description のみロード
-2. Activation: ユーザー要求が description にマッチ → 確認
-3. Execution: 承認後、完全な SKILL.md をロードして実行
-
----
-
-## Agents 仕様
+### Agents
 
 サブエージェントを定義する Markdown ファイル。
 
-### ファイル配置
+- **配置**: `agents/{agent-name}.md`
+- **必須**: フロントマターに `name`, `description`
+- **オプション**: `tools`, `model`（短縮名）, `skills`
+- **詳細**: `agent-spec` スキルを参照
 
-```
-agents/{agent-name}.md
-agents/{category}/{agent-name}.md  # サブディレクトリ可
-```
-
-### フロントマター（必須）
-
-```yaml
----
-name: agent-name
-description: いつ呼ばれるかの説明
-tools: Read, Glob, Grep, Bash  # 省略時は全ツール継承
-model: sonnet | opus | haiku | inherit
-permissionMode: default
-skills: skill1, skill2         # スキルは明示的に指定
----
-```
-
-### tools フィールド
-
-- 省略: 親の全ツール + MCP ツールを継承
-- 指定: 制限（例: `Read, Glob, Grep`）
-
-### model フィールド
-
-| 値 | 説明 |
-|----|------|
-| `sonnet` | 推論重視 |
-| `haiku` | 高速（Explore 向け） |
-| `opus` | 最高性能 |
-| `inherit` | 親から継承 |
-
-### 例
-
-```markdown
----
-name: code-reviewer
-description: コードレビューを担当。コード品質、セキュリティ、パフォーマンスを評価。
-tools: Read, Glob, Grep
-model: sonnet
-skills: security-check
----
-
-# Code Reviewer エージェント
-
-あなたはコードレビューを担当するサブエージェントです。
-
-## 役割
-
-1. コードを読み込む
-2. 品質・セキュリティ・パフォーマンスを評価
-3. 改善点を報告
-
-## 出力フォーマット
-
-レビュー結果を構造化して報告してください。
-```
-
----
-
-## Hooks 仕様
+### Hooks
 
 イベント発生時に自動実行されるシェルコマンドを定義。
 
-### ファイル配置
+- **配置**: `hooks/hooks.json`
+- **イベント**: PreToolUse, PostToolUse, SessionStart, SessionEnd など
+- **タイプ**: command, prompt
 
-```
-hooks/hooks.json
-```
+---
 
-### 基本構造
+## model 指定の違い
 
-```json
-{
-  "hooks": {
-    "EventName": [
-      {
-        "matcher": "ToolPattern",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "your-command.sh",
-            "timeout": 60
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+| コンポーネント | model 指定 | 形式 |
+|--------------|-----------|------|
+| commands | 可能 | フルモデル ID（`claude-haiku-4-5-20251001`） |
+| skills | **不可** | - |
+| agents | 可能 | 短縮名（`haiku`, `opus`, `inherit`） |
 
-### イベント一覧
-
-| イベント | トリガー | マッチャー |
-|---------|---------|-----------|
-| `PreToolUse` | ツール実行前 | ○ |
-| `PostToolUse` | ツール実行成功後 | ○ |
-| `PostToolUseFailure` | ツール実行失敗後 | ○ |
-| `UserPromptSubmit` | プロンプト送信時 | × |
-| `SessionStart` | セッション開始時 | × |
-| `SessionEnd` | セッション終了時 | × |
-| `Stop` | Claude 停止時 | × |
-
-### マッチャーパターン
-
-| パターン | 説明 |
-|---------|------|
-| `"Write"` | 完全一致 |
-| `"Edit\|Write"` | パイプ（OR） |
-| `"*"` | ワイルドカード |
-
-### フックタイプ
-
-```json
-// command: シェルコマンド実行
-{ "type": "command", "command": "script.sh" }
-
-// prompt: LLM 評価
-{ "type": "prompt", "prompt": "チェック内容" }
-```
-
-### 環境変数
-
-| 変数 | 説明 |
-|------|------|
-| `$CLAUDE_PROJECT_DIR` | プロジェクトルート |
-| `$CLAUDE_WORKING_DIR` | 作業ディレクトリ |
-| `$CLAUDE_FILE_PATHS` | 操作対象ファイル |
-| `$CLAUDE_TOOL_NAME` | 実行ツール名 |
-| `$CLAUDE_COMMAND` | 実行コマンド（Bash 時） |
-| `${CLAUDE_PLUGIN_ROOT}` | プラグインディレクトリ |
-
-### 終了コード
-
-| コード | 意味 |
-|--------|------|
-| 0 | 成功 |
-| 2 | ブロッキングエラー（アクション防止） |
-| 他 | 非ブロッキング（処理継続） |
-
-### 例
-
-```json
-{
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/format.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+**注意**: Sonnet は現在の Claude Code では推奨されません。
 
 ---
 
@@ -367,20 +156,34 @@ hooks/hooks.json
 | plugin.json | `description` 推奨 |
 | プラグインルート | `CLAUDE.md` 推奨 |
 
+---
+
 ## Examples
 
-### コマンド作成の相談
+### コンポーネント作成
 
 ```
 Q: 新しいコマンドを作りたい
-A: commands/{name}.md を作成し、フロントマターに description を必ず含めてください。
-   $ARGUMENTS で引数を受け取れます。
+A: `/plugin-generator:create-command {name}` を実行するか、
+   `command-spec` スキルを参照してください。
+
+Q: 新しいスキルを作りたい
+A: `/plugin-generator:create-skill {name}` を実行するか、
+   `skill-spec` スキルを参照してください。
+
+Q: 新しいエージェントを作りたい
+A: `/plugin-generator:create-agent {name}` を実行するか、
+   `agent-spec` スキルを参照してください。
 ```
 
-### スキル作成の相談
+### プラグイン構造の相談
 
 ```
-Q: スキルの description はどう書けばいい？
-A: 具体的なアクション名と「Use when ...」でいつ使うかを明記してください。
-   例: "Extract data from CSV files. Use when user mentions CSV or spreadsheet data."
+Q: プラグインの構造を教えて
+A: 基本構造は以下の通りです:
+   - .claude-plugin/plugin.json（必須）
+   - commands/（スラッシュコマンド）
+   - skills/（自動適用スキル）
+   - agents/（サブエージェント）
+   - hooks/（イベントフック）
 ```

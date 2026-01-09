@@ -13,6 +13,7 @@ claude plugin install git-actions@cc-plugins
 | コマンド | 説明 |
 |---------|------|
 | `/git-actions:commit-push` | コミット & プッシュを一括実行 |
+| `/git-actions:merge-to-main` | カレントブランチを main にマージしてプッシュ |
 
 ## スキル
 
@@ -20,6 +21,7 @@ claude plugin install git-actions@cc-plugins
 |--------|------|
 | `git-commit` | コミットワークフロー（状態確認、変更分析、メッセージ生成、実行） |
 | `git-push` | プッシュワークフロー（安全性チェック、プッシュ実行） |
+| `git-merge` | マージワークフロー（feature ブランチを main にマージ） |
 | `git-conventions` | 共通規則（安全規則、機密ファイル、禁止事項） |
 
 ## 使用例
@@ -27,6 +29,9 @@ claude plugin install git-actions@cc-plugins
 ```bash
 # コミット & プッシュ
 /git-actions:commit-push
+
+# main へマージ
+/git-actions:merge-to-main
 ```
 
 ## 機能

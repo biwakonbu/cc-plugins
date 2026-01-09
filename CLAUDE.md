@@ -9,19 +9,19 @@ cc-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json  # マーケットプレイス設定
 └── plugins/              # プラグイン格納ディレクトリ
-    ├── git-actions/        # Git ワークフロー管理 (v1.2.1)
-    ├── image-gen-gemini/   # Gemini 画像生成 (v1.0.1)
-    ├── plugin-generator/   # プラグイン生成・検証 (v1.0.3)
-    └── web-search-gemini/  # Gemini Web 検索 (v1.0.1)
+    ├── git-actions/        # Git ワークフロー管理 (v1.2.4)
+    ├── image-gen-gemini/   # Gemini 画像生成 (v1.0.2)
+    ├── plugin-generator/   # プラグイン生成・検証 (v1.1.0)
+    └── web-search-gemini/  # Gemini Web 検索 (v1.0.2)
 ```
 
 ## 収録プラグイン
 
 | プラグイン | バージョン | 説明 |
 |-----------|-----------|------|
-| git-actions | 1.2.3 | Git commit and push workflow management for Claude Code |
+| git-actions | 1.2.4 | Git commit and push workflow management for Claude Code |
 | image-gen-gemini | 1.0.2 | Gemini CLI (Nano Banana Pro) を使用した AI 画像生成 |
-| plugin-generator | 1.0.4 | Claude Code プラグインのスキャフォールディングとバリデーション |
+| plugin-generator | 1.1.0 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | web-search-gemini | 1.0.2 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 
 ## 開発言語
@@ -107,7 +107,7 @@ cc-plugins/
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*)
 argument-hint: [message]
 description: Git コミットを作成する
-model: claude-3-5-haiku-20241022
+model: claude-haiku-4-5-20251001
 disable-model-invocation: false
 ---
 
@@ -129,7 +129,7 @@ $ARGUMENTS
 | `allowed-tools` | String | 使用可能ツールを制限 | `Bash(git add:*), Read, Write` |
 | `argument-hint` | String | 引数のヒント | `[message]` or `[pr-number] [priority]` |
 | `description` | String | コマンドの説明 | `Git コミットを作成` |
-| `model` | String | 使用モデル指定 | `claude-3-5-haiku-20241022` |
+| `model` | String | 使用モデル指定 | `claude-haiku-4-5-20251001` |
 | `disable-model-invocation` | Boolean | `true` で無効化 | `true` / `false` |
 
 ### 引数の取得
@@ -194,7 +194,7 @@ Claude がプログラム的にスラッシュコマンドを実行できるツ�
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git diff:*), Read
 argument-hint: [commit message]
 description: 変更をステージングしてコミット
-model: claude-3-5-sonnet-20241022
+model: claude-haiku-4-5-20251001
 ---
 
 # Git Commit
@@ -223,7 +223,7 @@ $ARGUMENTS
 name: agent-name
 description: いつ呼ばれるかの説明
 tools: Read, Glob, Grep, Bash     # 省略時は全ツール継承
-model: sonnet                      # sonnet | opus | haiku | inherit
+model: haiku                       # haiku | opus | inherit
 permissionMode: default
 skills: skill1, skill2
 ---
@@ -240,10 +240,11 @@ skills: skill1, skill2
 
 ### model フィールド
 
-- `sonnet`: 推論重視
-- `haiku`: 高速（Explore 向け）
-- `opus`: 最高性能
+- `haiku`: 高速・定型タスク向け（推奨）
+- `opus`: 最高性能・複雑なタスク向け
 - `inherit`: 親から継承
+
+**注意**: `sonnet` は現在の Claude Code では推奨されません。
 
 ## スキル定義（skills/{name}/SKILL.md）
 
@@ -291,7 +292,6 @@ my-skill/
 name: skill-name                    # 必須: 小文字、数字、ハイフンのみ（最大64文字）
 description: スキルの説明            # 必須: いつ使うか明記（最大1024文字）
 allowed-tools: Read, Grep, Glob     # オプション: 使用可能ツール制限
-model: claude-sonnet-4-20250514     # オプション: 使用モデル
 ---
 
 # スキル名
