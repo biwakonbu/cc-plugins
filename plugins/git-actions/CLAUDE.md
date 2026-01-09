@@ -42,7 +42,7 @@ git-actions/
 | `git-commit` | skills/commit/ | 状態確認、変更分析、メッセージ生成、実行 |
 | `git-push` | skills/push/ | 安全性チェック、プッシュ実行 |
 | `git-merge` | skills/merge/ | feature ブランチを main にマージ & プッシュ |
-| `git-conventions` | skills/git-conventions/ | 安全規則、機密ファイル、禁止事項 |
+| `git-conventions` | skills/git-conventions/ | 安全規則、機密ファイルチェック、禁止事項 |
 
 ## アーキテクチャ
 
@@ -102,7 +102,9 @@ git -C /path/to/repo status
 
 - **`git -C` オプション使用禁止**（作業ディレクトリで直接実行）
 - 機密ファイルの自動検出と警告
-- **main/develop ブランチでの commit/push はフックでブロック**
+- **ブランチ保護は hooks で実装** - main/develop ブランチでの commit/push をフックでブロック
+  - 環境変数 `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` で正当にバイパス可能（merge 操作用）
+  - スキルは制御に干渉しない（hooks に委譲）
 - main/master/develop への force push は絶対禁止
 - force push の明示的確認
 - --amend の厳格な使用条件
