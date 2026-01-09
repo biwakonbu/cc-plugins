@@ -75,7 +75,7 @@ gemini --yolo "検索クエリ"
 ### インストール方法
 
 ```bash
-npm install -g @anthropic-ai/gemini-cli
+npm install -g @google/gemini-cli
 ```
 
 または

@@ -22,7 +22,7 @@ cc-plugins/
 | gemini-cli-spec | 1.0.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | git-actions | 1.2.5 | Git commit and push workflow management for Claude Code |
 | plugin-generator | 1.2.0 | Claude Code プラグインのスキャフォールディングとバリデーション |
-| web-search-gemini | 1.0.2 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
+| web-search-gemini | 1.0.3 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 
 ## 開発言語
 

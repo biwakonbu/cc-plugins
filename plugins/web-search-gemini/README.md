@@ -26,7 +26,6 @@ export GEMINI_API_KEY=your_key  # API キー
 | コマンド | 説明 |
 |---------|------|
 | `/web-search-gemini:search` | 明示的に Web 検索を実行 |
-| `/web-search-gemini:web-search` | Web 検索を実行（エイリアス） |
 
 ## スキル
 
