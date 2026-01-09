@@ -28,6 +28,11 @@
       "name": "web-search-gemini",
       "source": "./plugins/web-search-gemini",
       "description": "Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。"
+    },
+    {
+      "name": "plugin-updater",
+      "source": "./plugins/plugin-updater",
+      "description": "マーケットプレイスとインストール済みプラグインを一括更新"
     }
   ]
 }

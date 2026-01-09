@@ -1,0 +1,12 @@
+{
+  "name": "plugin-updater",
+  "description": "マーケットプレイスとインストール済みプラグインを一括更新",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ryo Higasigawa"
+  },
+  "repository": "https://github.com/biwakonbu/cc-plugins",
+  "license": "MIT",
+  "keywords": ["update", "marketplace", "plugins", "maintenance"],
+  "commands": "./commands/"
+}
