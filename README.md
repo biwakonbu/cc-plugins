@@ -16,10 +16,11 @@ claude plugin install plugin-generator@cc-plugins
 
 | プラグイン | バージョン | 説明 |
 |-----------|-----------|------|
+| [codex-cli-spec](./plugins/codex-cli-spec/) | 1.1.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | [gemini-cli-spec](./plugins/gemini-cli-spec/) | 1.0.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | [git-actions](./plugins/git-actions/) | 1.2.5 | Git commit and push workflow management for Claude Code |
 | [plugin-generator](./plugins/plugin-generator/) | 1.2.0 | Claude Code プラグインのスキャフォールディングとバリデーション |
-| [web-search-gemini](./plugins/web-search-gemini/) | 1.0.2 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
+| [web-search-gemini](./plugins/web-search-gemini/) | 1.0.4 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 
 ## ライセンス
 

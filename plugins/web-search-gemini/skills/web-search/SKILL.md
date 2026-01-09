@@ -28,16 +28,19 @@ Gemini CLI の `google_web_search` ツールを活用した Web 検索機能を�
 ### 2. Gemini CLI で検索実行
 
 ```bash
-gemini --yolo "{検索クエリ}"
+gemini --yolo "Use the google_web_search tool to search for: {検索クエリ}. You MUST perform a web search and return results with sources."
 ```
 
 **フラグ説明**:
 - `--yolo`: ツール実行の許可プロンプトをスキップ（自動実行）
 
+**重要**: 「Use the google_web_search tool to search for:」という指示を必ず含める。
+これにより Gemini が確実に Web 検索を実行する。
+
 **動作**:
-1. Gemini が検索の必要性を自動判断
-2. `google_web_search` ツールで Google 検索を実行
-3. 検索結果を要約して返却
+1. Gemini が google_web_search ツールを使用
+2. Google 検索を実行
+3. 検索結果を要約してソース付きで返却
 
 ### 3. 結果のフォーマット
 
@@ -74,7 +77,7 @@ Gemini の応答を以下の形式で報告:
 
 **実行**:
 ```bash
-gemini --yolo "Next.js 15 new features official documentation"
+gemini --yolo "Use the google_web_search tool to search for: Next.js 15 new features official documentation. You MUST perform a web search and return results with sources."
 ```
 
 **結果報告**:
@@ -100,7 +103,7 @@ Next.js 15 では、Turbopack がデフォルトの開発サーバーとして�
 
 **実行**:
 ```bash
-gemini --yolo "Cannot read property map of undefined React fix solution"
+gemini --yolo "Use the google_web_search tool to search for: Cannot read property map of undefined React fix solution. You MUST perform a web search and return results with sources."
 ```
 
 ### 最新ニュース
@@ -109,7 +112,7 @@ gemini --yolo "Cannot read property map of undefined React fix solution"
 
 **実行**:
 ```bash
-gemini --yolo "AI artificial intelligence latest news today"
+gemini --yolo "Use the google_web_search tool to search for: AI artificial intelligence latest news today. You MUST perform a web search and return results with sources."
 ```
 
 ## 注意事項

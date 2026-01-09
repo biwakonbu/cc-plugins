@@ -54,18 +54,21 @@ web-search-gemini/
 ### 基本コマンド
 
 ```bash
-# 通常の検索（許可プロンプトあり）
-gemini "検索クエリ"
+# Web 検索を確実に実行（推奨）
+gemini --yolo "Use the google_web_search tool to search for: {検索クエリ}. You MUST perform a web search."
 
-# 許可プロンプトをスキップ（推奨）
-gemini --yolo "検索クエリ"
+# 自分の知識で答える（古い形式）
+gemini "検索クエリ"
 ```
 
 ### Web 検索の動作
 
-1. Gemini が自動的に Web 検索の必要性を判断
-2. 必要な場合、`google_web_search` ツールを実行
+1. Gemini に明示的に `google_web_search` ツール使用を指示
+2. Google Web Search を実行
 3. 検索結果を要約し、ソース付きで返却
+
+**重要**: プロンプトに「Use the google_web_search tool to search for:」を含める。
+これにより Gemini が確実に Web 検索を実行する。
 
 ## 前提条件
 
