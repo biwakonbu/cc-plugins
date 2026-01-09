@@ -9,16 +9,18 @@ cc-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json  # マーケットプレイス設定
 └── plugins/              # プラグイン格納ディレクトリ
+    ├── codex-cli-spec/     # Codex CLI 仕様知識 (v1.0.0)
+    ├── gemini-cli-spec/    # Gemini CLI 仕様知識 (v1.0.0)
     ├── git-actions/        # Git ワークフロー管理 (v1.2.5)
     ├── plugin-generator/   # プラグイン生成・検証 (v1.2.0)
-    ├── web-search-gemini/  # Gemini Web 検索 (v1.0.2)
-    └── gemini-cli-spec/    # Gemini CLI 仕様知識 (v1.0.0)
+    └── web-search-gemini/  # Gemini Web 検索 (v1.0.3)
 ```
 
 ## 収録プラグイン
 
 | プラグイン | バージョン | 説明 |
 |-----------|-----------|------|
+| codex-cli-spec | 1.0.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | gemini-cli-spec | 1.0.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | git-actions | 1.2.5 | Git commit and push workflow management for Claude Code |
 | plugin-generator | 1.2.0 | Claude Code プラグインのスキャフォールディングとバリデーション |
