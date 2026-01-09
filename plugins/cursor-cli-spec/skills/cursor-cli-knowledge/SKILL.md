@@ -92,16 +92,44 @@ git config --global core.editor "cursor --wait"
 | `cursor-agent ls` | セッション一覧を表示 |
 | `cursor-agent resume [chatId]` | セッションを再開 |
 | `cursor-agent mcp list` | MCP サーバーとツールを確認 |
+| `cursor-agent create-chat` | 新規チャットを作成（ID を返す） |
+| `cursor-agent install-shell-integration` | ~/.zshrc にシェル統合をインストール |
+| `cursor-agent uninstall-shell-integration` | シェル統合を削除 |
+| `cursor-agent agent [prompt...]` | エージェントモードを開始 |
+
+### 利用可能なモデル
+
+`-m` / `--model` オプションで指定可能:
+
+| モデル | 説明 |
+|--------|------|
+| `gpt-5` | OpenAI GPT-5 |
+| `sonnet-4` | Claude Sonnet 4 |
+| `sonnet-4-thinking` | Claude Sonnet 4 with Extended Thinking |
+
+例:
+```bash
+cursor-agent -m gpt-5 "タスク説明"
+cursor-agent -m sonnet-4 "別のプロンプト"
+cursor-agent -m sonnet-4-thinking "複雑な推論タスク"
+```
 
 ### オプション
 
 | オプション | 説明 |
 |-----------|------|
 | `-p`, `--print` | 応答を標準出力に表示（スクリプト用） |
-| `-m`, `--model <model>` | AI モデルを指定 |
+| `-m`, `--model <model>` | AI モデルを指定（gpt-5, sonnet-4, sonnet-4-thinking） |
 | `-f`, `--force` | 確認なしでコマンド実行 |
 | `--output-format <format>` | 出力形式: `text`, `json`, `stream-json` |
 | `-a`, `--api-key <key>` | API キーを直接指定 |
+| `-H`, `--header <header>` | カスタムヘッダーを追加（複数回使用可） |
+| `--stream-partial-output` | 部分出力をストリーミング |
+| `-c`, `--cloud` | クラウドモード（Composer picker 起動） |
+| `--sandbox <mode>` | サンドボックスモード: `enabled`, `disabled` |
+| `--approve-mcps` | MCP サーバーを自動承認（--print モード用） |
+| `--browser` | ブラウザ自動化サポートを有効化 |
+| `--workspace <path>` | ワークスペースディレクトリを指定 |
 
 ### インタラクティブモード内コマンド
 
@@ -192,10 +220,49 @@ Model Context Protocol (MCP) を使用して外部ツールと連携。
 - Google 検索
 - GitHub 連携
 
-### CLI で MCP 確認
+### CLI コマンド
 
 ```bash
-cursor-agent mcp list
+cursor-agent mcp list                      # 接続済み MCP サーバーとツールを表示
+cursor-agent mcp login <identifier>        # MCP サーバーを認証
+cursor-agent mcp list-tools <identifier>   # 特定のサーバーが提供するツール一覧表示
+cursor-agent mcp disable <identifier>      # MCP サーバーを無効化
+```
+
+### スクリプト実行時の MCP 承認
+
+非対話モード（`--print`）で MCP サーバーを自動的に承認する場合:
+
+```bash
+cursor-agent --print --approve-mcps "MCP ツールを使用するタスク"
+```
+
+---
+
+## 環境変数
+
+### cursor-agent が使用する環境変数
+
+| 環境変数 | 説明 | 例 |
+|---------|------|-----|
+| `CURSOR_API_KEY` | Cursor API キーを指定（`--api-key` オプションの代わりに使用） | `export CURSOR_API_KEY=your-key` |
+| `NO_OPEN_BROWSER` | 値が `true` または `1` の場合、ブラウザの自動起動を無効化 | `export NO_OPEN_BROWSER=1` |
+
+### 使用例
+
+```bash
+# API キーを環境変数で指定
+export CURSOR_API_KEY=sk-xxxxx
+cursor-agent "タスク実行"
+
+# ブラウザ自動起動を無効化
+export NO_OPEN_BROWSER=1
+cursor-agent
+
+# 両方を指定
+export CURSOR_API_KEY=sk-xxxxx
+export NO_OPEN_BROWSER=1
+cursor-agent -m gpt-5 "タスク説明"
 ```
 
 ---
