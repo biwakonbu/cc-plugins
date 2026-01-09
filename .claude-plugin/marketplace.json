@@ -33,6 +33,11 @@
       "name": "plugin-updater",
       "source": "./plugins/plugin-updater",
       "description": "マーケットプレイスとインストール済みプラグインを一括更新"
+    },
+    {
+      "name": "cursor-cli-spec",
+      "source": "./plugins/cursor-cli-spec",
+      "description": "Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン"
     }
   ]
 }
