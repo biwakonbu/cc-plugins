@@ -11,7 +11,7 @@ cc-plugins/
 └── plugins/              # プラグイン格納ディレクトリ
     ├── git-actions/        # Git ワークフロー管理 (v1.2.4)
     ├── image-gen-gemini/   # Gemini 画像生成 (v1.0.2)
-    ├── plugin-generator/   # プラグイン生成・検証 (v1.1.0)
+    ├── plugin-generator/   # プラグイン生成・検証 (v1.1.1)
     └── web-search-gemini/  # Gemini Web 検索 (v1.0.2)
 ```
 
@@ -21,7 +21,7 @@ cc-plugins/
 |-----------|-----------|------|
 | git-actions | 1.2.4 | Git commit and push workflow management for Claude Code |
 | image-gen-gemini | 1.0.2 | Gemini CLI (Nano Banana Pro) を使用した AI 画像生成 |
-| plugin-generator | 1.1.0 | Claude Code プラグインのスキャフォールディングとバリデーション |
+| plugin-generator | 1.1.1 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | web-search-gemini | 1.0.2 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 
 ## 開発言語
