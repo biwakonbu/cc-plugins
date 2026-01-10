@@ -11,6 +11,4 @@ model: claude-haiku-4-5-20251001
 
 引数が指定されている場合は、コミットメッセージのヒントとして使用してください。
 
-**注意**: main/develop ブランチでの commit/push は、スキルの指示に従い AskUserQuestion で確認を取得してから実行してください。
-
 引数: $ARGUMENTS

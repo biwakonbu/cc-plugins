@@ -30,7 +30,7 @@ cc-plugins/
 | codex-cli-spec | 1.2.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | cursor-cli-spec | 1.1.1 | Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | gemini-cli-spec | 1.0.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
-| git-actions | 1.2.7 | Git commit and push workflow management for Claude Code |
+| git-actions | 1.2.8 | Git commit and push workflow management for Claude Code |
 | memory-optimizer | 1.0.0 | Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン |
 | plugin-generator | 1.2.1 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | plugin-updater | 1.0.1 | マーケットプレイスとインストール済みプラグインを一括更新 |

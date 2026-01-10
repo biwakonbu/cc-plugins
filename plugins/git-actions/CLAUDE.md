@@ -17,9 +17,7 @@ git-actions/
 │   ├── commit-push.md        # コミット & プッシュコマンド
 │   └── merge-to-main.md      # main へマージ & プッシュコマンド
 ├── hooks/
-│   ├── hooks.json            # フック定義
-│   ├── check-protected-branch.sh  # 保護ブランチチェック
-│   └── confirm-protected-branch.md  # 確認プロンプト
+│   └── hooks.json            # フック定義（現在は空）
 ├── skills/
 │   ├── commit/SKILL.md       # git-commit スキル
 │   ├── push/SKILL.md         # git-push スキル
@@ -102,30 +100,9 @@ git -C /path/to/repo status
 
 - **`git -C` オプション使用禁止**（作業ディレクトリで直接実行）
 - 機密ファイルの自動検出と警告
-- **ブランチ保護は二層設計** - フック層 + スキル層での二重確認
-  - フック層：`check-protected-branch.sh` で main/develop での commit/push をブロック
-  - スキル層：main/develop での操作時に AskUserQuestion で確認を取得
-  - 確認が取れた場合のみ、環境変数 `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` を設定してフックをバイパス
-  - 正当な用途（merge 操作、ユーザー確認済みコミット）のみ実行可能
 - main/master/develop への force push は絶対禁止
 - force push の明示的確認
 - --amend の厳格な使用条件
-
-### フック
-
-| フック | トリガー | 動作 |
-|--------|---------|------|
-| `check-protected-branch.sh` | PreToolUse (Bash) | main/develop での git commit/push を検出しブロック。AskUserQuestion で確認取得後、環境変数 `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` を設定して再実行するよう誘導 |
-
-### スキル層での確認フロー
-
-各スキルは main/develop ブランチでの操作を検出時に、**必ず AskUserQuestion で確認を取得**:
-
-- `git-commit`: コミット実行前に確認（セクション 1.5）
-- `git-push`: 保護ブランチへのプッシュ検出時に確認（セクション 2「保護ブランチへのプッシュ確認」）
-- `git-merge`: マージ実行前に確認（セクション 2.5）
-
-確認が「はい」の場合のみ、環境変数 `GIT_ACTIONS_ALLOW_PROTECTED_BRANCH=1` を設定してフックをバイパス。
 
 ### 効率性
 
