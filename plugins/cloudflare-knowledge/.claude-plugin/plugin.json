@@ -1,7 +1,7 @@
 {
   "name": "cloudflare-knowledge",
   "description": "Cloudflare のサービス、Wrangler CLI、Workers/Pages 開発、Terraform 管理、セキュリティ機能に関する包括的な知識プラグイン",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Ryo Higasigawa"
   },

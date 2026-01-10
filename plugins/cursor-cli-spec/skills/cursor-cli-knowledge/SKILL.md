@@ -1,13 +1,6 @@
 ---
 name: cursor-cli-knowledge
-description: |
-  Cursor IDE および cursor-agent CLI の仕様と使い方に関する知識を提供。
-  エディタ CLI、ターミナルエージェント、モデル選択、@ シンボル、
-  MCP サーバー連携、Composer、設定方法について回答。
-  Use when user asks about Cursor, cursor command, cursor-agent,
-  terminal agent, @ symbols, model selection, MCP servers,
-  Composer, or Cursor settings. Also use when user says
-  Cursor について, cursor の使い方, cursor-agent, ターミナルエージェント.
+description: Cursor IDE および cursor-agent CLI の仕様と使い方に関する知識を提供。エディタ CLI、ターミナルエージェント、モデル選択、@ シンボル、MCP サーバー連携、Composer、設定方法について回答。Use when user asks about Cursor, cursor command, cursor-agent, terminal agent, @ symbols, model selection, MCP servers, Composer, or Cursor settings. Also use when user says Cursor について, cursor の使い方, cursor-agent, ターミナルエージェント.
 ---
 
 # Cursor CLI 仕様知識

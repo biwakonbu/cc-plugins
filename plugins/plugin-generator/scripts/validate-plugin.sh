@@ -5,6 +5,7 @@
 # 検証項目:
 # - plugin.json の必須フィールド
 # - 各コンポーネントのフロントマター
+# - description の複数行チェック（パースエラー防止）
 # - パス整合性
 # - JSON 構文
 
@@ -44,6 +45,57 @@ success() {
 
 info() {
     echo "   $1"
+}
+
+# description 複数行チェック関数
+# YAML の description フィールドが複数行になっていないかを検証
+# 複数行の description は Claude Code のパーサーでエラーになる可能性がある
+check_description_multiline() {
+    local file="$1"
+    local component_name="$2"
+
+    # フロントマターの範囲を特定（最初の --- から次の --- まで）
+    local in_frontmatter=0
+    local frontmatter_end=0
+    local line_num=0
+    local desc_line=0
+    local desc_started=0
+
+    while IFS= read -r line; do
+        line_num=$((line_num + 1))
+
+        if [[ $line_num -eq 1 && "$line" == "---" ]]; then
+            in_frontmatter=1
+            continue
+        fi
+
+        if [[ $in_frontmatter -eq 1 && "$line" == "---" ]]; then
+            frontmatter_end=$line_num
+            break
+        fi
+
+        if [[ $in_frontmatter -eq 1 ]]; then
+            # description: で始まる行を検出
+            if [[ "$line" =~ ^description: ]]; then
+                desc_line=$line_num
+                desc_started=1
+                # description: | や description: > の場合は明示的なマルチライン
+                if [[ "$line" =~ ^description:\ *\|  ]] || [[ "$line" =~ ^description:\ *\> ]]; then
+                    error "$component_name: description に YAML マルチライン記法（| または >）を使用しています。単一行に変更してください"
+                    return 1
+                fi
+            elif [[ $desc_started -eq 1 ]]; then
+                # description の次の行が別のフィールドか --- でない場合、複数行の可能性
+                if [[ ! "$line" =~ ^[a-zA-Z_-]+: ]] && [[ "$line" != "---" ]] && [[ -n "$line" ]]; then
+                    error "$component_name: description が複数行になっています（行 $desc_line-$line_num）。単一行に変更してください"
+                    return 1
+                fi
+                desc_started=0
+            fi
+        fi
+    done < "$file"
+
+    return 0
 }
 
 # ヘルプ表示
@@ -211,6 +263,8 @@ if [[ -d "$COMMANDS_DIR" ]]; then
                 # description フィールドチェック
                 if grep -q '^description:' "$cmd_file"; then
                     success "commands/$filename: description OK"
+                    # description 複数行チェック
+                    check_description_multiline "$cmd_file" "commands/$filename"
                 else
                     error "commands/$filename: 'description' フィールドがありません"
                 fi
@@ -253,6 +307,8 @@ if [[ -d "$SKILLS_DIR" ]]; then
                         error "skills/$skill_name/SKILL.md: 'description' フィールドがありません"
                     else
                         success "skills/$skill_name/SKILL.md: name, description OK"
+                        # description 複数行チェック
+                        check_description_multiline "$skill_file" "skills/$skill_name/SKILL.md"
                     fi
 
                     # allowed-tools チェック（推奨）
@@ -295,6 +351,8 @@ if [[ -d "$AGENTS_DIR" ]]; then
                 error "agents/$rel_path: 'description' フィールドがありません"
             else
                 success "agents/$rel_path: name, description OK"
+                # description 複数行チェック
+                check_description_multiline "$agent_file" "agents/$rel_path"
             fi
 
             # tools チェック（推奨）

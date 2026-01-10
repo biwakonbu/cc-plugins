@@ -1,11 +1,6 @@
 ---
 name: storage-services
-description: Cloudflare ストレージサービスの完全ガイド。KV、R2、D1、Durable Objects、
-Queues、Hyperdrive の使い方、設定、ベストプラクティスを提供。
-Use when user asks about KV, R2, D1, Durable Objects, Queues, Hyperdrive,
-storage, database, or data persistence on Cloudflare.
-Also use when user says KV ストア, R2 バケット, D1 データベース, Durable Objects,
-キュー, ストレージ.
+description: Cloudflare ストレージサービスの完全ガイド。KV、R2、D1、Durable Objects、Queues、Hyperdrive の使い方、設定、ベストプラクティスを提供。Use when user asks about KV, R2, D1, Durable Objects, Queues, Hyperdrive, storage, database, or data persistence on Cloudflare. Also use when user says KV ストア, R2 バケット, D1 データベース, Durable Objects, キュー, ストレージ.
 ---
 
 # Cloudflare Storage Services
