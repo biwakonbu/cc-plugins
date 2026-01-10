@@ -20,8 +20,9 @@ memory-optimizer/
 │   └── best-practices/SKILL.md      # ベストプラクティス集
 ├── commands/
 │   ├── audit.md                     # メモリ監査コマンド
+│   ├── check-file.md                # ファイルの rules マッチング確認
 │   └── optimize.md                  # 最適化提案コマンド
-└── agents/
+└── agents/                          # 自動発見（plugin.json での指定は非推奨）
     └── memory-advisor.md            # メモリ最適化アドバイザー
 ```
 
