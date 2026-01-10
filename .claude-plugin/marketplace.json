@@ -5,6 +5,11 @@
   },
   "plugins": [
     {
+      "name": "claude-code-spec",
+      "source": "./plugins/claude-code-spec",
+      "description": "Claude Code CLI の仕様と使い方を完璧に理解するための知識プラグイン"
+    },
+    {
       "name": "codex-cli-spec",
       "source": "./plugins/codex-cli-spec",
       "description": "OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン"
@@ -53,6 +58,11 @@
       "name": "cloudflare-knowledge",
       "source": "./plugins/cloudflare-knowledge",
       "description": "Cloudflare のサービス、Wrangler CLI、Workers/Pages 開発、Terraform 管理、セキュリティ機能に関する包括的な知識プラグイン"
+    },
+    {
+      "name": "memory-optimizer",
+      "source": "./plugins/memory-optimizer",
+      "description": "Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン"
     }
   ]
 }

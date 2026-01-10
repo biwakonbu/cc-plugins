@@ -9,6 +9,7 @@ cc-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json  # マーケットプレイス設定
 └── plugins/              # プラグイン格納ディレクトリ
+    ├── claude-code-spec/   # Claude Code CLI 仕様知識 (v1.0.0)
     ├── cloudflare-knowledge/ # Cloudflare 包括的知識 (v1.0.1)
     ├── codex-cli-spec/     # Codex CLI 仕様知識 (v1.2.0)
     ├── cursor-cli-spec/    # Cursor CLI 仕様知識 (v1.1.1)
@@ -22,6 +23,7 @@ cc-plugins/
 
 | プラグイン | バージョン | 説明 |
 |-----------|-----------|------|
+| claude-code-spec | 1.0.0 | Claude Code CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | cf-terraforming-spec | 0.1.0 | Cloudflare cf-terraforming CLI の仕様と使い方に関する知識を提供。既存の Cloudflare リソースを Terraform にインポートする方法、HCL 設定の生成、インポートブロックの使用などについて回答。 |
 | cloudflare-knowledge | 1.0.1 | Cloudflare のサービス、Wrangler CLI、Workers/Pages 開発、Terraform 管理、セキュリティ機能に関する包括的な知識プラグイン |
 | codex-cli-spec | 1.2.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
