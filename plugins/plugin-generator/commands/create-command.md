@@ -29,4 +29,18 @@ argument-hint: [command-name]
 4. `commands/{command-name}.md` を作成
 5. 次のステップを案内
 
+## ユーザー確認ガイドライン
+
+以下の場面では **AskUserQuestion ツール**を使用してユーザーに確認を求める。
+
+### 必須確認
+
+- 同名ファイルが既に存在する場合（上書き/別名/キャンセル）
+
+### 推奨確認
+
+- 名前が引数で未指定の場合
+- 追加先プラグインが複数候補ある場合の選択
+- 作成する内容の概要確認（description, allowed-tools 等）
+
 引数: $ARGUMENTS
