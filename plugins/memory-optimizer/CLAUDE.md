@@ -35,19 +35,21 @@ memory-optimizer/
 | migration-guide | CLAUDE.md → rules 移行 | 「分離したい」「移行したい」 |
 | memory-audit | メモリ監査・最適化 | 「監査」「チェック」「分析」 |
 | best-practices | ベストプラクティス | 「ベストプラクティス」「推奨」 |
+| **file-path-matcher** | **ファイルパスの rules マッチング判定（v1.1.0）** | **「該当する rules」「マッチング」** |
 
 ## コマンド一覧
 
 | コマンド | 説明 |
 |---------|------|
-| `/memory-optimizer:audit` | 現在のメモリ構成を分析・レポート |
+| `/memory-optimizer:audit` | 現在のメモリ構成を分析・レポート（paths カバレッジ分析を追加） |
 | `/memory-optimizer:optimize` | 具体的な最適化提案を生成 |
+| **`/memory-optimizer:check-file`** | **指定ファイルに該当する rules を即座に確認（v1.1.0）** |
 
 ## エージェント
 
 | エージェント | 説明 |
 |-------------|------|
-| memory-advisor | 複雑なメモリ最適化相談に対応するアドバイザー |
+| memory-advisor | 複雑なメモリ最適化相談に対応するアドバイザー（file-path-matcher スキルを統合） |
 
 ## 設計方針
 

@@ -12,7 +12,7 @@ cc-plugins/
     ├── claude-code-spec/   # Claude Code CLI 仕様知識 (v1.0.0)
     ├── cloudflare-knowledge/ # Cloudflare 包括的知識 (v1.0.1)
     ├── codex-cli-spec/     # Codex CLI 仕様知識 (v1.2.0)
-    ├── memory-optimizer/   # メモリ管理最適化 (v1.0.0)
+    ├── memory-optimizer/   # メモリ管理最適化 (v1.1.0)
     ├── cursor-cli-spec/    # Cursor CLI 仕様知識 (v1.1.1)
     ├── gemini-cli-spec/    # Gemini CLI 仕様知識 (v1.0.0)
     ├── git-actions/        # Git ワークフロー管理 (v1.2.5)
@@ -31,7 +31,7 @@ cc-plugins/
 | cursor-cli-spec | 1.1.1 | Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | gemini-cli-spec | 1.0.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | git-actions | 1.2.8 | Git commit and push workflow management for Claude Code |
-| memory-optimizer | 1.0.0 | Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン |
+| memory-optimizer | 1.1.0 | Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン。ファイルパスの rules マッチング判定機能を追加。 |
 | plugin-generator | 1.2.1 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | plugin-updater | 1.0.1 | マーケットプレイスとインストール済みプラグインを一括更新 |
 | web-search-gemini | 1.0.5 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
