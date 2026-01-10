@@ -32,6 +32,7 @@ allowed-tools: Bash, Read, Glob, Grep
 | `.claude-plugin/plugin.json` | 存在必須 |
 | plugin.json `name` | フィールド必須 |
 | 参照パス | commands, skills, agents, hooks の参照先が存在 |
+| hooks 重複 | `hooks: "./hooks/hooks.json"` は自動ロードされるため指定不可 |
 | `commands/*.md` | フロントマターに `description` 必須 |
 | `skills/*/SKILL.md` | フロントマターに `name`, `description` 必須 |
 | `agents/*.md` | フロントマターに `name`, `description` 必須 |
