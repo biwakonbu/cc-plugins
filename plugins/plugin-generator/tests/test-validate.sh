@@ -191,6 +191,142 @@ assert_output_contains "$OUTPUT" "自動ロード" "hooks 重複エラー検知"
 
 echo ""
 
+# --- Test 12: エラー系 - スキルの description 複数行（暗黙的）---
+echo "Test 12: エラー系 - スキルの description 複数行（暗黙的 continuation）"
+mkdir -p "$TEST_DIR/multiline-desc/.claude-plugin"
+mkdir -p "$TEST_DIR/multiline-desc/skills/test"
+echo '{"name": "test-plugin", "version": "1.0.0", "skills": "./skills/"}' > "$TEST_DIR/multiline-desc/.claude-plugin/plugin.json"
+cat > "$TEST_DIR/multiline-desc/skills/test/SKILL.md" << 'EOF'
+---
+name: test-skill
+description: This is a long description that spans
+multiple lines without proper YAML syntax.
+Use when user asks about testing.
+---
+
+# Test Skill
+EOF
+OUTPUT=$("$VALIDATE_SCRIPT" "$TEST_DIR/multiline-desc" 2>&1)
+EXIT_CODE=$?
+
+assert_exit_code 1 $EXIT_CODE "終了コード 1"
+assert_output_contains "$OUTPUT" "複数行" "description 複数行エラー検知"
+
+echo ""
+
+# --- Test 13: エラー系 - スキルの description 複数行（| 記法）---
+echo "Test 13: エラー系 - スキルの description 複数行（| 記法）"
+mkdir -p "$TEST_DIR/pipe-desc/.claude-plugin"
+mkdir -p "$TEST_DIR/pipe-desc/skills/test"
+echo '{"name": "test-plugin", "version": "1.0.0", "skills": "./skills/"}' > "$TEST_DIR/pipe-desc/.claude-plugin/plugin.json"
+cat > "$TEST_DIR/pipe-desc/skills/test/SKILL.md" << 'EOF'
+---
+name: test-skill
+description: |
+  This is a multiline description
+  using YAML pipe syntax.
+---
+
+# Test Skill
+EOF
+OUTPUT=$("$VALIDATE_SCRIPT" "$TEST_DIR/pipe-desc" 2>&1)
+EXIT_CODE=$?
+
+assert_exit_code 1 $EXIT_CODE "終了コード 1"
+assert_output_contains "$OUTPUT" "マルチライン記法" "description | 記法エラー検知"
+
+echo ""
+
+# --- Test 14: エラー系 - スキルの description 複数行（> 記法）---
+echo "Test 14: エラー系 - スキルの description 複数行（> 記法）"
+mkdir -p "$TEST_DIR/folded-desc/.claude-plugin"
+mkdir -p "$TEST_DIR/folded-desc/skills/test"
+echo '{"name": "test-plugin", "version": "1.0.0", "skills": "./skills/"}' > "$TEST_DIR/folded-desc/.claude-plugin/plugin.json"
+cat > "$TEST_DIR/folded-desc/skills/test/SKILL.md" << 'EOF'
+---
+name: test-skill
+description: >
+  This is a multiline description
+  using YAML folded syntax.
+---
+
+# Test Skill
+EOF
+OUTPUT=$("$VALIDATE_SCRIPT" "$TEST_DIR/folded-desc" 2>&1)
+EXIT_CODE=$?
+
+assert_exit_code 1 $EXIT_CODE "終了コード 1"
+assert_output_contains "$OUTPUT" "マルチライン記法" "description > 記法エラー検知"
+
+echo ""
+
+# --- Test 15: 正常系 - スキルの description 単一行（長い）---
+echo "Test 15: 正常系 - スキルの description 単一行（長い）"
+mkdir -p "$TEST_DIR/single-line-desc/.claude-plugin"
+mkdir -p "$TEST_DIR/single-line-desc/skills/test"
+echo '{"name": "test-plugin", "version": "1.0.0", "skills": "./skills/"}' > "$TEST_DIR/single-line-desc/.claude-plugin/plugin.json"
+cat > "$TEST_DIR/single-line-desc/skills/test/SKILL.md" << 'EOF'
+---
+name: test-skill
+description: This is a long single-line description that contains multiple sentences. Use when user asks about testing or validation. Also use when user says テスト, 検証, バリデーション.
+allowed-tools: Read, Glob
+---
+
+# Test Skill
+EOF
+OUTPUT=$("$VALIDATE_SCRIPT" "$TEST_DIR/single-line-desc" 2>&1)
+EXIT_CODE=$?
+
+assert_exit_code 0 $EXIT_CODE "終了コード 0"
+assert_output_contains "$OUTPUT" "PASSED" "単一行 description 正常"
+
+echo ""
+
+# --- Test 16: エラー系 - コマンドの description 複数行 ---
+echo "Test 16: エラー系 - コマンドの description 複数行"
+mkdir -p "$TEST_DIR/cmd-multiline/.claude-plugin"
+mkdir -p "$TEST_DIR/cmd-multiline/commands"
+echo '{"name": "test-plugin", "version": "1.0.0", "commands": "./commands/"}' > "$TEST_DIR/cmd-multiline/.claude-plugin/plugin.json"
+cat > "$TEST_DIR/cmd-multiline/commands/test.md" << 'EOF'
+---
+description: This command does something
+that spans multiple lines.
+allowed-tools: Read
+---
+
+# Test Command
+EOF
+OUTPUT=$("$VALIDATE_SCRIPT" "$TEST_DIR/cmd-multiline" 2>&1)
+EXIT_CODE=$?
+
+assert_exit_code 1 $EXIT_CODE "終了コード 1"
+assert_output_contains "$OUTPUT" "複数行" "コマンド description 複数行エラー検知"
+
+echo ""
+
+# --- Test 17: エラー系 - エージェントの description 複数行 ---
+echo "Test 17: エラー系 - エージェントの description 複数行"
+mkdir -p "$TEST_DIR/agent-multiline/.claude-plugin"
+mkdir -p "$TEST_DIR/agent-multiline/agents"
+echo '{"name": "test-plugin", "version": "1.0.0", "agents": "./agents/"}' > "$TEST_DIR/agent-multiline/.claude-plugin/plugin.json"
+cat > "$TEST_DIR/agent-multiline/agents/test.md" << 'EOF'
+---
+name: test-agent
+description: This agent does something
+that spans multiple lines.
+tools: Read, Glob
+---
+
+# Test Agent
+EOF
+OUTPUT=$("$VALIDATE_SCRIPT" "$TEST_DIR/agent-multiline" 2>&1)
+EXIT_CODE=$?
+
+assert_exit_code 1 $EXIT_CODE "終了コード 1"
+assert_output_contains "$OUTPUT" "複数行" "エージェント description 複数行エラー検知"
+
+echo ""
+
 # 結果
 if [[ $ERRORS -gt 0 ]]; then
     echo "Errors: $ERRORS"

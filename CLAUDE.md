@@ -9,9 +9,9 @@ cc-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json  # マーケットプレイス設定
 └── plugins/              # プラグイン格納ディレクトリ
-    ├── cloudflare-knowledge/ # Cloudflare 包括的知識 (v1.0.0)
+    ├── cloudflare-knowledge/ # Cloudflare 包括的知識 (v1.0.1)
     ├── codex-cli-spec/     # Codex CLI 仕様知識 (v1.2.0)
-    ├── cursor-cli-spec/    # Cursor CLI 仕様知識 (v1.1.0)
+    ├── cursor-cli-spec/    # Cursor CLI 仕様知識 (v1.1.1)
     ├── gemini-cli-spec/    # Gemini CLI 仕様知識 (v1.0.0)
     ├── git-actions/        # Git ワークフロー管理 (v1.2.5)
     ├── plugin-generator/   # プラグイン生成・検証 (v1.2.0)
@@ -23,12 +23,12 @@ cc-plugins/
 | プラグイン | バージョン | 説明 |
 |-----------|-----------|------|
 | cf-terraforming-spec | 0.1.0 | Cloudflare cf-terraforming CLI の仕様と使い方に関する知識を提供。既存の Cloudflare リソースを Terraform にインポートする方法、HCL 設定の生成、インポートブロックの使用などについて回答。 |
-| cloudflare-knowledge | 1.0.0 | Cloudflare のサービス、Wrangler CLI、Workers/Pages 開発、Terraform 管理、セキュリティ機能に関する包括的な知識プラグイン |
+| cloudflare-knowledge | 1.0.1 | Cloudflare のサービス、Wrangler CLI、Workers/Pages 開発、Terraform 管理、セキュリティ機能に関する包括的な知識プラグイン |
 | codex-cli-spec | 1.2.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
-| cursor-cli-spec | 1.1.0 | Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン |
+| cursor-cli-spec | 1.1.1 | Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | gemini-cli-spec | 1.0.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | git-actions | 1.2.7 | Git commit and push workflow management for Claude Code |
-| plugin-generator | 1.2.0 | Claude Code プラグインのスキャフォールディングとバリデーション |
+| plugin-generator | 1.2.1 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | plugin-updater | 1.0.1 | マーケットプレイスとインストール済みプラグインを一括更新 |
 | web-search-gemini | 1.0.5 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 | wrangler-cli-spec | 0.1.0 | Cloudflare Wrangler CLI の仕様と使い方に関する知識を提供。Durable Objects, Queues, Hyperdrive, Service Bindings, カスタムビルド設定 (Webpack/esbuild) などについて回答。 |

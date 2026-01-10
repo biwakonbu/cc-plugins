@@ -1,10 +1,6 @@
 ---
 name: security-features
-description: Cloudflare セキュリティ機能の完全ガイド。Zero Trust、WAF、DDoS Protection、
-Bot Management、SSL/TLS、Turnstile の設定と使い方を提供。
-Use when user asks about Zero Trust, WAF, DDoS, Bot Management,
-SSL, TLS, Turnstile, Access, Gateway, or security configuration.
-Also use when user says セキュリティ, ゼロトラスト, WAF, DDoS, ボット対策, SSL, Turnstile.
+description: Cloudflare セキュリティ機能の完全ガイド。Zero Trust、WAF、DDoS Protection、Bot Management、SSL/TLS、Turnstile の設定と使い方を提供。Use when user asks about Zero Trust, WAF, DDoS, Bot Management, SSL, TLS, Turnstile, Access, Gateway, or security configuration. Also use when user says セキュリティ, ゼロトラスト, WAF, DDoS, ボット対策, SSL, Turnstile.
 ---
 
 # Cloudflare Security Features

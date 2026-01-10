@@ -1,10 +1,6 @@
 ---
 name: cloudflare-overview
-description: Cloudflare サービス全体の概要と各機能へのナビゲーションを提供。
-サービス一覧、料金プラン、用語集、アーキテクチャ概要について回答。
-Use when user asks about Cloudflare overview, service list, pricing,
-what is Cloudflare, or general Cloudflare questions.
-Also use when user says Cloudflare とは, サービス一覧, 料金, 概要.
+description: Cloudflare サービス全体の概要と各機能へのナビゲーションを提供。サービス一覧、料金プラン、用語集、アーキテクチャ概要について回答。Use when user asks about Cloudflare overview, service list, pricing, what is Cloudflare, or general Cloudflare questions. Also use when user says Cloudflare とは, サービス一覧, 料金, 概要.
 ---
 
 # Cloudflare Overview
