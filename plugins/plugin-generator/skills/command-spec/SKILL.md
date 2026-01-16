@@ -153,24 +153,21 @@ allowed-tools: Read, Glob, Grep
 
 ### 動的コンテキスト埋め込み
 
-```markdown
----
-description: Git コミットを作成する
-model: claude-haiku-4-5-20251001
----
+**構文:**
+- Bash コマンド実行: `!` + バッククォートで囲んだコマンド（例: `!` + `` `git status` ``）
+- ファイル参照: `@/path/to/file`
 
-# Git Commit
+**重要**: `!`プレフィックス記法はスラッシュコマンド（commands/*.md）でのみ有効です。スキルファイル（SKILL.md）では使用できません。
 
+**使用例**（コマンドファイル内での記述）:
+```
 現在の状態:
-- Status: !`git status`
-- Diff: !`git diff HEAD`
+- Status: !` + `git status` + `
+- Diff: !` + `git diff HEAD` + `
 
 コミットメッセージ: $ARGUMENTS
 ```
-
-**構文:**
-- `!`バッククォート`command`バッククォート: Bash コマンド実行結果を埋め込み
-- `@/path/to/file`: ファイル内容を埋め込み
+※ 上記のバッククォートを連結してください（例: `!` と `git status` を連結 → 感嘆符+バッククォート+コマンド+バッククォート）
 
 ---
 

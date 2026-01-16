@@ -121,6 +121,9 @@ PR #$1 をレビュー（優先度: $2、担当: $3）
 ### 動的コンテキスト埋め込み
 
 **Bash コマンド実行（`!` プレフィックス）:**
+
+**注意**: この記法はスラッシュコマンド（commands/*.md）でのみ有効です。スキルファイル（SKILL.md）では使用できません。スキルファイル内に記載するとパースされ「Bash command permission check failed」エラーが発生します。
+
 ```markdown
 ## コンテキスト
 - 現在の git status: !`git status`
