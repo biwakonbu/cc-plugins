@@ -21,9 +21,9 @@ Claude Code プラグインのスキャフォールディングとバリデー�
 
 | スキル | 説明 |
 |--------|------|
-| `plugin-spec` | 全仕様の統合。plugin.json と各コンポーネントの概要を提供 |
-| `command-spec` | command の詳細仕様（フロントマター、変数、model 指定） |
-| `skill-spec` | skill の詳細仕様（ディレクトリ構造、description ベストプラクティス） |
+| `plugin-spec` | 全仕様の統合。plugin.json と各コンポーネント（v2.1.0+ context フィールド対応）の概要を提供 |
+| `command-spec` | command の詳細仕様（フロントマター、変数、model 指定、context フィールド） |
+| `skill-spec` | skill の詳細仕様（ディレクトリ構造、description ベストプラクティス、フォークコンテキスト対応） |
 | `agent-spec` | agent の詳細仕様（tools, model, skills フィールド） |
 | `scaffolding` | スキャフォールディングの知識と生成フロー |
 | `validation` | プラグイン構造の検証 |
@@ -45,7 +45,7 @@ Claude Code プラグインのスキャフォールディングとバリデー�
 ```
 plugin-generator/
 ├── .claude-plugin/
-│   └── plugin.json               # プラグインメタデータ (v1.2.0)
+│   └── plugin.json               # プラグインメタデータ (v1.2.4)
 ├── CLAUDE.md                     # このファイル
 ├── commands/
 │   ├── create.md                 # 新規プラグイン生成
@@ -157,6 +157,16 @@ plugin-generator/
 - テンプレートの追加・変更・削除
 - plugin.json の変更（バージョン含む）
 - 設計方針や動作の変更
+
+### v1.2.4 の更新（Claude Code v2.1.0+ 対応）
+
+スキルの `context` フィールドに関する以下の情報を追加:
+
+- `skill-spec` に context, agent, user-invocable, hooks フィールドのドキュメント追加
+- フォークコンテキスト（`context: fork`）のセクション追加
+- v2.1.3+ の user-invocable オプション追加
+- `plugin-spec` に Skills セクションの context 対応を記載
+- `.claude/rules/plugin-development.md` にスキル定義の context フィールド説明追加
 
 ### README.md の役割
 

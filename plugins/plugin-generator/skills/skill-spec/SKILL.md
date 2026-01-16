@@ -58,6 +58,9 @@ description: 説明           # 必須: いつ使うか明記（最大1024文字
 name: skill-name
 description: 説明
 allowed-tools: Read, Grep, Glob
+context: fork                     # v2.1.0+
+agent: custom-agent               # v2.1.0+
+user-invocable: true              # v2.1.3+
 ---
 ```
 
@@ -66,6 +69,10 @@ allowed-tools: Read, Grep, Glob
 | `name` | String | スキル識別子（必須） |
 | `description` | String | いつ使うかを含む説明（必須） |
 | `allowed-tools` | String | 使用可能ツールを制限 |
+| `context` | String | `fork` でサブエージェントとして実行（v2.1.0+） |
+| `agent` | String | 実行エージェント指定（v2.1.0+） |
+| `user-invocable` | Boolean | スラッシュメニュー表示制御（v2.1.3+） |
+| `hooks` | Object | スキル固有フック（v2.1.0+） |
 
 **重要**: skills では `model` 指定は使用できません。モデル指定が必要な場合は agents を使用してください。
 
@@ -126,6 +133,43 @@ allowed-tools: Read, Grep, Glob
 1. **Discovery**: 起動時に name と description のみロード
 2. **Activation**: ユーザー要求が description にマッチ → 確認プロンプト
 3. **Execution**: 承認後、完全な SKILL.md をロードして実行
+
+---
+
+## フォークコンテキスト（v2.1.0+）
+
+`context: fork` を指定すると、スキルが独立したサブエージェントとして実行されます。
+
+### 利点
+
+- メイン会話のコンテキストを汚染しない
+- トークン消費を抑制
+- 複雑なスキルの干渉を防止
+
+### agent フィールドとの組み合わせ
+
+```yaml
+---
+name: web-research
+description: Web 検索を実行。Use when user needs web research.
+context: fork
+agent: researcher  # ビルトイン: Explore, Plan / カスタム: .claude/agents/ のエージェント
+---
+```
+
+### 使用ケース
+
+| ケース | context 設定 |
+|--------|-------------|
+| 単純な知識提供 | 省略（メインコンテキスト） |
+| 複雑な調査・分析 | `fork` |
+| 独立した検索・レポート生成 | `fork` + `agent` 指定 |
+| セキュリティレビュー | `fork` + `allowed-tools` 制限 |
+
+### user-invocable オプション（v2.1.3+）
+
+- `user-invocable: true`（デフォルト）: スラッシュコマンドメニューに表示
+- `user-invocable: false`: メニューから非表示（自動トリガーのみ）
 
 ---
 
@@ -195,6 +239,33 @@ allowed-tools: Read, Grep, Glob
 - `GET /users` - ユーザー一覧
 - `GET /users/{id}` - ユーザー詳細
 - `POST /users` - ユーザー作成
+```
+
+### フォークコンテキストを使ったスキル
+
+```markdown
+---
+name: comprehensive-research
+description: 複数情報源から包括的調査を実施。Use when user needs deep analysis or multi-source research.
+context: fork
+agent: Explore
+allowed-tools: Read, Bash, WebFetch, Grep
+---
+
+# Comprehensive Research スキル
+
+## Instructions
+
+1. 対象トピックの概要を把握
+2. 複数の情報源から調査
+3. 結果を統合して分析
+4. 簡潔なレポートを作成
+
+## Examples
+
+### 技術調査
+
+「React と Vue の比較調査」→ 公式ドキュメント、ベンチマーク、エコシステムを調査
 ```
 
 ---

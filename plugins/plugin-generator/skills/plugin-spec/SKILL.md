@@ -99,8 +99,9 @@ Claude が自動適用する知識・手順を定義する Markdown ファイル
 
 - **配置**: `skills/{skill-name}/SKILL.md`
 - **必須**: フロントマターに `name`, `description`
-- **オプション**: `allowed-tools`
+- **オプション**: `allowed-tools`, `context`, `agent`, `user-invocable`, `hooks`
 - **注意**: `model` 指定は使用不可
+- **v2.1.0+**: `context: fork` でサブエージェントとして実行可能
 - **詳細**: `skill-spec` スキルを参照
 
 ### Agents
