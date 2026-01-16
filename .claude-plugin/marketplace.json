@@ -63,6 +63,11 @@
       "name": "memory-optimizer",
       "source": "./plugins/memory-optimizer",
       "description": "Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン"
+    },
+    {
+      "name": "agent-browser-spec",
+      "source": "./plugins/agent-browser-spec",
+      "description": "agent-browser CLI の仕様と使い方に関する知識を提供。ヘッドレスブラウザ自動化、スナップショット、セレクター、セッション管理、ネットワーク制御について回答。"
     }
   ]
 }

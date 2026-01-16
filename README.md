@@ -16,6 +16,7 @@ claude plugin install plugin-generator@cc-plugins
 
 | プラグイン | バージョン | 説明 |
 |-----------|-----------|------|
+| [agent-browser-spec](./plugins/agent-browser-spec/) | 1.0.0 | agent-browser CLI の仕様と使い方に関する知識を提供。ヘッドレスブラウザ自動化、スナップショット、セレクター、セッション管理、ネットワーク制御について回答。 |
 | [cf-terraforming-spec](./plugins/cf-terraforming-spec/) | 0.2.0 | Cloudflare cf-terraforming CLI の仕様と使い方に関する知識を提供。既存の Cloudflare リソースを Terraform にインポートする方法、HCL 設定の生成、インポートブロックの使用などについて回答。 |
 | [claude-code-spec](./plugins/claude-code-spec/) | 1.1.1 | Claude Code CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | [cloudflare-knowledge](./plugins/cloudflare-knowledge/) | 1.1.0 | Cloudflare のサービス、Wrangler CLI、Workers/Pages 開発、Terraform 管理、セキュリティ機能に関する包括的な知識プラグイン |
