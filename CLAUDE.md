@@ -53,3 +53,35 @@ cc-plugins/
 
 プラグイン開発の詳細仕様は `.claude/rules/plugin-development.md` を参照。
 `plugins/**` パスで作業時に自動ロードされる。
+
+## context フィールド最適化（v2.1.0+ 対応完了）
+
+Claude Code v2.1.0+ で導入された `context: fork` フィールドを全プラグインのスキルに適用し、トークン消費最適化とメインコンテキスト保護を完了。
+
+### 適用内容
+
+**知識提供スキル 19 個**: `context: fork` で独立サブエージェント化
+- メインコンテキスト汚染防止（特に claude-code-knowledge 1049 行対応）
+- トークン消費最適化
+- 複雑なスキル干渉防止
+
+**参照スキル 6 個**: `context: fork` + `user-invocable: false` で非表示参照スキル化
+- スラッシュメニューから非表示（UI 簡潔化）
+- 他スキルから自動参照可能（機能損失なし）
+- git-conventions, migration-guide, plugin-spec, command-spec, skill-spec, agent-spec
+
+### バージョン更新内容
+
+10 プラグインのバージョンを semantic versioning で更新（コミット: c3d8a55）:
+- cf-terraforming-spec: 0.1.0 → 0.2.0
+- claude-code-spec: 1.0.0 → 1.1.0
+- cloudflare-knowledge: 1.0.1 → 1.1.0
+- codex-cli-spec: 1.2.0 → 1.3.0
+- cursor-cli-spec: 1.1.1 → 1.2.0
+- gemini-cli-spec: 1.0.0 → 1.1.0
+- git-actions: 1.2.8 → 1.3.0
+- memory-optimizer: 1.1.2 → 1.2.0
+- plugin-generator: 1.2.4 → 1.3.0
+- wrangler-cli-spec: 0.1.0 → 0.2.0
+
+各プラグインの CLAUDE.md には v**.*.* セクションで context フィールド対応を記載。
