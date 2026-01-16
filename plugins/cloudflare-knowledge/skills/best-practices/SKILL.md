@@ -1,6 +1,7 @@
 ---
 name: best-practices
 description: Cloudflare 開発・運用のベストプラクティス集。プロジェクト構成、CI/CD、セキュリティ、パフォーマンス最適化、コスト管理、トラブルシューティングを提供。Use when user asks about project structure, CI/CD, GitHub Actions, performance optimization, cost management, troubleshooting, or debugging. Also use when user says ベストプラクティス, 最適化, トラブルシューティング, CI/CD, デバッグ.
+context: fork
 ---
 
 # Cloudflare ベストプラクティス

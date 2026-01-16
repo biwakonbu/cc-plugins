@@ -27,6 +27,12 @@ cursor-cli-spec/
 - **自動発動**: description のキーワードで発動
 - **公式準拠**: docs.cursor.com の情報をベース
 
+## スキル設定（v1.2.0 以降）
+
+### context: fork の追加
+`cursor-cli-knowledge` スキルに `context: fork` を設定し、サブエージェント化。
+メインコンテキスト保護とトークン消費最適化を実現。
+
 ## 自動発動トリガー
 
 以下のキーワードでスキルが発動:

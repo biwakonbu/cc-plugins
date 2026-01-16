@@ -1,6 +1,7 @@
 ---
 name: workers-ai
 description: Cloudflare Workers AI の完全ガイド。利用可能モデル（LLM、画像、音声、埋め込み）、Vectorize、AI Gateway の使い方と設定を提供。Use when user asks about Workers AI, AI models, Vectorize, AI Gateway, LLM, image generation, speech recognition, embeddings, or RAG. Also use when user says Workers AI, AI モデル, ベクトル検索, 埋め込み, RAG.
+context: fork
 ---
 
 # Cloudflare Workers AI

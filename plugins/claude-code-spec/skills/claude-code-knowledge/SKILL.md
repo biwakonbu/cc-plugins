@@ -1,6 +1,7 @@
 ---
 name: claude-code-knowledge
 description: Claude Code CLI の仕様と使い方に関する知識を提供。プラグイン開発、スキル、スラッシュコマンド、サブエージェント、フック、LSP、MCP、権限設定、セッション管理について回答。Use when user asks about Claude Code, plugins, skills, slash commands, subagents, hooks, LSP, MCP, permissions, sessions, or plan mode. Also use when user says Claude Code について, プラグイン開発, スキル定義, フック設定, 権限設定.
+context: fork
 ---
 
 # Claude Code Knowledge

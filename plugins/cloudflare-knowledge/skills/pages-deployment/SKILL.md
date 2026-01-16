@@ -1,6 +1,7 @@
 ---
 name: pages-deployment
 description: Cloudflare Pages のデプロイメントガイド。Pages Functions、フレームワーク対応（Next.js, Nuxt, Astro, SvelteKit, Remix, Hono）、ビルド設定、プレビュー環境について提供。Use when user asks about Pages deployment, Pages Functions, framework support, Next.js, Nuxt, Astro, SvelteKit, Remix, or Hono on Cloudflare. Also use when user says Pages デプロイ, フレームワーク, SSR, 静的サイト.
+context: fork
 ---
 
 # Cloudflare Pages Deployment

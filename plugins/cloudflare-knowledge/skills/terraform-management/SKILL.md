@@ -1,6 +1,7 @@
 ---
 name: terraform-management
 description: Terraform/Pulumi を使用した Cloudflare インフラ管理ガイド。Provider 設定、リソース定義、cf-terraforming、Wrangler との使い分けを提供。Use when user asks about Terraform, Pulumi, infrastructure as code, cloudflare provider, cf-terraforming, or IaC management. Also use when user says Terraform, テラフォーム, インフラ管理, IaC, Pulumi.
+context: fork
 ---
 
 # Terraform / Pulumi による Cloudflare 管理

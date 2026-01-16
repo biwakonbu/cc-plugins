@@ -1,6 +1,8 @@
 ---
 name: agent-spec
 description: Claude Code プラグインの agent 仕様知識。サブエージェントの正しい形式、フロントマター、tools/model/skills フィールドを提供。Use when creating, updating, or maintaining agents, understanding agent structure, or implementing subagents. Also use when user says エージェント, サブエージェント, agents.
+context: fork
+user-invocable: false
 allowed-tools: Read, Grep, Glob
 ---
 

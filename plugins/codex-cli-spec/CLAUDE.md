@@ -58,7 +58,13 @@ codex-cli-spec/
 npm install -g @openai/codex
 ```
 
-## 最新の変更（v1.2.0）
+## 最新の変更（v1.3.0）
+
+### context: fork の追加
+`codex-cli-knowledge` スキルに `context: fork` を設定。
+大規模な知識コンテンツがサブエージェント化され、メインコンテキストを保護。
+
+## 変更履歴（v1.2.0）
 
 ### SKILL.md の更新内容
 

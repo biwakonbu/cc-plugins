@@ -1,6 +1,7 @@
 ---
 name: memory-overview
 description: Claude Code のメモリシステム全体の概要とナビゲーション。CLAUDE.md、rules フォルダ、imports 機能の関係性と使い分けを提供。Use when user asks about memory system, what is memory, memory overview, or how memory works. Also use when user says メモリとは, メモリ管理, メモリシステム, 概要.
+context: fork
 ---
 
 # Memory Overview スキル

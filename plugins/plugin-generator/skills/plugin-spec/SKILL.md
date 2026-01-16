@@ -1,6 +1,8 @@
 ---
 name: plugin-spec
 description: Claude Code プラグインの全仕様知識を統合。plugin.json、commands、skills、agents、hooks の概要と個別スキルへの参照を提供。Use when understanding plugin structure, creating plugins, or validating plugin components.
+context: fork
+user-invocable: false
 allowed-tools: Read, Grep, Glob
 ---
 

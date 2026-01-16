@@ -1,6 +1,7 @@
 ---
 name: wrangler-cli
 description: Wrangler CLI の完全ガイド。コマンド一覧、設定ファイル、環境管理、ローカル開発について提供。wrangler dev, deploy, kv, r2, d1, pages, secret などのコマンド使用法。Use when user asks about wrangler commands, wrangler.toml configuration, local development, deployment, or CLI operations. Also use when user says wrangler コマンド, wrangler 設定, デプロイ方法, ローカル開発.
+context: fork
 ---
 
 # Wrangler CLI

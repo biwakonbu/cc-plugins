@@ -1,6 +1,7 @@
 ---
 name: codex-cli-knowledge
 description: OpenAI Codex CLI の仕様と使い方に関する知識を提供。モデル選択、推論レベル、承認モード、サンドボックス、組み込みツール、スラッシュコマンド、設定方法について回答。Use when user asks about Codex CLI, codex command, approval mode, sandbox, AGENTS.md, codex configuration, /model, /review, /compact, apply_patch, or reasoning level. Also use when user says Codex CLI について, codex の使い方, 承認モード, 推論レベル.
+context: fork
 ---
 
 # Codex CLI Knowledge

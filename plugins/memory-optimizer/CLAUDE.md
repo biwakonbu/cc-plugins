@@ -54,6 +54,16 @@ memory-optimizer/
 
 ## 設計方針
 
+### context: fork の活用（v1.2.0）
+
+**知識提供スキル（4つ）**:
+- `memory-overview`, `claude-md-guide`, `rules-guide`, `best-practices`
+- `context: fork` でサブエージェント化
+
+**参照スキル（1つ）**:
+- `migration-guide`: `context: fork` + `user-invocable: false`
+- スラッシュメニューから非表示だが、他スキルから参照可能
+
 ### スキル設計
 
 - 各スキルは独立した知識領域を担当

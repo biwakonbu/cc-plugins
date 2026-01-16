@@ -64,6 +64,14 @@ git-actions/
           └─→ git-conventions (共通規則)
 ```
 
+## v1.3.0 の変更
+
+### git-conventions スキルの非表示化
+`git-conventions` スキルに `context: fork` + `user-invocable: false` を設定。
+- 共通規則として他のスキル（git-commit, git-push, git-merge）に自動参照
+- スラッシュメニューから非表示で、UI がすっきり
+- ユーザーが直接呼び出す必要はない
+
 ## 設計方針
 
 ### スキル中心設計

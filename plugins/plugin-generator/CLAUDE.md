@@ -83,6 +83,14 @@ plugin-generator/
 
 ## 設計方針
 
+### context: fork + user-invocable: false の活用（v1.3.0）
+
+**仕様スキル（4つ）**:
+- `plugin-spec`, `command-spec`, `skill-spec`, `agent-spec`
+- `context: fork` + `user-invocable: false` で実装
+- スラッシュメニューから非表示（直接呼び出し不要）
+- 他のスキル・エージェントから自動参照可能
+
 ### コンポーネント分離アーキテクチャ
 
 各コンポーネントタイプ（command, skill, agent）に対して:

@@ -1,6 +1,8 @@
 ---
 name: command-spec
 description: Claude Code プラグインの command 仕様知識。スラッシュコマンドの正しい形式、フロントマター、変数、model 指定を提供。Use when creating, updating, or maintaining commands, understanding command structure, or implementing slash commands. Also use when user says コマンド, スラッシュコマンド, commands.
+context: fork
+user-invocable: false
 allowed-tools: Read, Grep, Glob
 ---
 

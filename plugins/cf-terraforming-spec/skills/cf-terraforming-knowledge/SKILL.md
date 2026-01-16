@@ -1,6 +1,7 @@
 ---
 name: cf-terraforming-knowledge
 description: Cloudflare cf-terraforming CLI の仕様と使い方に関する knowledge。既存リソースのインポート、HCL 生成、Terraform 連携について回答。Use when user asks about cf-terraforming, importing Cloudflare resources to Terraform, or generating HCL from existing Cloudflare setup.
+context: fork
 allowed-tools: []
 ---
 

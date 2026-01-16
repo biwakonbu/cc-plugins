@@ -1,6 +1,7 @@
 ---
 name: wrangler-cli-knowledge
 description: Cloudflare Wrangler CLI の仕様と使い方に関する knowledge。Durable Objects, Queues, Hyperdrive, Service Bindings, カスタムビルド設定 (Webpack/esbuild) について回答。Use when user asks about Wrangler, Cloudflare Workers, Durable Objects, Queues, Hyperdrive, Service Bindings, or custom build configurations.
+context: fork
 allowed-tools: []
 ---
 

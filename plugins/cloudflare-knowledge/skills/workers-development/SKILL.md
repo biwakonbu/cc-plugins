@@ -1,6 +1,7 @@
 ---
 name: workers-development
 description: Cloudflare Workers の開発ガイド。アーキテクチャ、TypeScript/JavaScript 開発、バインディング、Service Bindings、Cron Triggers、Workers Assets について提供。Use when user asks about Workers development, edge functions, bindings, service bindings, cron triggers, or Workers runtime. Also use when user says Workers 開発, エッジ関数, バインディング, サービス連携.
+context: fork
 ---
 
 # Cloudflare Workers Development

@@ -1,6 +1,8 @@
 ---
 name: skill-spec
 description: Claude Code プラグインの skill 仕様知識。スキルの正しい形式、フロントマター、description のベストプラクティスを提供。Use when creating, updating, or maintaining skills, understanding skill structure, or implementing SKILL.md files. Also use when user says スキル, SKILL.md, skills.
+context: fork
+user-invocable: false
 allowed-tools: Read, Grep, Glob
 ---
 

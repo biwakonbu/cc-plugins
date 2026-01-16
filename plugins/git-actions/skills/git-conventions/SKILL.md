@@ -1,6 +1,8 @@
 ---
 name: git-conventions
 description: Git 操作の共通規則とベストプラクティス。安全規則、機密ファイル、禁止事項を定義。全ての Git 操作で自動適用される。
+context: fork
+user-invocable: false
 allowed-tools: Bash, Read, Grep, Glob
 ---
 
