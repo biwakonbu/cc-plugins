@@ -27,7 +27,7 @@ cc-plugins/
 | gemini-cli-spec | 1.1.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | git-actions | 1.3.0 | Git commit and push workflow management for Claude Code |
 | memory-optimizer | 1.2.0 | Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン |
-| plugin-generator | 1.3.1 | Claude Code プラグインのスキャフォールディングとバリデーション |
+| plugin-generator | 1.3.2 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | plugin-updater | 1.0.2 | マーケットプレイスとインストール済みプラグインを一括更新 |
 | web-search-gemini | 1.0.5 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 | wrangler-cli-spec | 0.2.0 | Cloudflare Wrangler CLI の仕様と使い方に関する知識を提供。Durable Objects, Queues, Hyperdrive, Service Bindings, カスタムビルド設定 (Webpack/esbuild) などについて回答。 |

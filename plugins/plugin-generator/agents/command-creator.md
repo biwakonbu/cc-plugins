@@ -2,7 +2,7 @@
 name: command-creator
 description: Claude Code プラグインの command を作成・メンテナンスする専用エージェント。新規スラッシュコマンドの追加、既存コマンドの更新・修正を担当。Use when creating, updating, modifying, or maintaining commands. Also use when user says コマンド作成, コマンド更新, コマンド修正.
 tools: Read, Glob, Grep, Bash, Write, Edit
-model: haiku
+model: inherit
 skills: command-spec
 ---
 

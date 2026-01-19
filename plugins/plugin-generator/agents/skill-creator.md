@@ -2,7 +2,7 @@
 name: skill-creator
 description: Claude Code プラグインの skill を作成・メンテナンスする専用エージェント。新規スキルの追加、既存スキルの更新・修正を担当。Use when creating, updating, modifying, or maintaining skills. Also use when user says スキル作成, スキル更新, スキル修正.
 tools: Read, Glob, Grep, Bash, Write, Edit
-model: haiku
+model: inherit
 skills: skill-spec
 ---
 

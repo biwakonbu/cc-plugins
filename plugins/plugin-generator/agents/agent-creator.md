@@ -2,7 +2,7 @@
 name: agent-creator
 description: Claude Code プラグインの agent を作成・メンテナンスする専用エージェント。新規サブエージェントの追加、既存エージェントの更新・修正を担当。Use when creating, updating, modifying, or maintaining agents. Also use when user says エージェント作成, エージェント更新, エージェント修正.
 tools: Read, Glob, Grep, Bash, Write, Edit
-model: haiku
+model: inherit
 skills: agent-spec
 ---
 
@@ -62,7 +62,7 @@ mkdir -p agents
 name: {agent-name}
 description: {エージェントの説明}。{いつ呼ばれるか}。
 tools: Read, Glob, Grep, Bash
-model: haiku
+model: inherit
 ---
 
 # {エージェント名} エージェント

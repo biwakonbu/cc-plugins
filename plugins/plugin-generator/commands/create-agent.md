@@ -1,6 +1,5 @@
 ---
 description: 既存プラグインに新しい agent を追加する
-model: claude-haiku-4-5-20251001
 argument-hint: [agent-name]
 ---
 
