@@ -45,7 +45,7 @@ Claude Code プラグインのスキャフォールディングとバリデー�
 ```
 plugin-generator/
 ├── .claude-plugin/
-│   └── plugin.json               # プラグインメタデータ (v1.3.3)
+│   └── plugin.json               # プラグインメタデータ (v1.3.4)
 ├── CLAUDE.md                     # このファイル
 ├── commands/
 │   ├── create.md                 # 新規プラグイン生成
@@ -165,6 +165,17 @@ plugin-generator/
 - テンプレートの追加・変更・削除
 - plugin.json の変更（バージョン含む）
 - 設計方針や動作の変更
+
+### v1.3.4 の変更（2026-01-19）
+
+**作成エージェントに model 指定ルールを追加**:
+- agents/agent-creator.md: 「model 指定のルール」セクションを追加
+- agents/command-creator.md: 「model 指定のルール」セクションを追加
+
+**ルール内容:**
+- デフォルトは inherit/省略（ユーザーのモデルを継承）
+- ユーザーが明示的にモデルを指定した場合のみ、そのモデルを設定
+- 「高速で」「軽量で」→ haiku、「高精度で」「複雑なタスク向け」→ opus
 
 ### v1.3.3 の変更（2026-01-19）
 
