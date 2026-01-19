@@ -60,7 +60,6 @@ mkdir -p commands
 ```markdown
 ---
 description: {コマンドの説明}
-model: claude-haiku-4-5-20251001
 ---
 
 # {コマンド名}

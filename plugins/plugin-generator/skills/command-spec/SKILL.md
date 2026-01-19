@@ -67,11 +67,14 @@ disable-model-invocation: false
 
 ## model フィールド
 
-commands ではフルモデル ID を指定：
+commands では model フィールドの省略を推奨（ユーザーの使用モデルがそのまま使われる）。
+
+特定のモデルを指定する場合はフルモデル ID を使用：
 
 | モデル | ID | 用途 |
 |--------|-----|------|
-| Haiku 4.5 | `claude-haiku-4-5-20251001` | 高速・定型タスク向け（推奨） |
+| (省略) | - | ユーザーのモデルを継承（推奨） |
+| Haiku 4.5 | `claude-haiku-4-5-20251001` | 高速・定型タスク向け |
 | Opus 4.5 | `claude-opus-4-5-20251101` | 高精度・複雑なタスク向け |
 
 **注意**: Sonnet は現在の Claude Code では推奨されません。
@@ -131,12 +134,11 @@ description: ファイルを検索する
 3. 結果を報告
 ```
 
-### model 指定付きコマンド
+### ツール制限付きコマンド
 
 ```markdown
 ---
 description: コードをレビューする
-model: claude-haiku-4-5-20251001
 allowed-tools: Read, Glob, Grep
 ---
 
@@ -192,7 +194,7 @@ A: commands/{name}.md を作成し、フロントマターに description を必
 ### model 指定の相談
 
 ```
-Q: コマンドで使うモデルを軽量にしたい
-A: フロントマターに model: claude-haiku-4-5-20251001 を追加してください。
-   定型タスクには Haiku 4.5 が推奨です。
+Q: コマンドで使うモデルを指定したい
+A: 通常は model フィールドを省略することを推奨します（ユーザーのモデルを継承）。
+   特定のモデルが必要な場合のみ model: claude-haiku-4-5-20251001 などを指定してください。
 ```

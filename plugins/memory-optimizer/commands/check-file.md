@@ -2,7 +2,6 @@
 allowed-tools: Read, Glob, Grep, Bash
 argument-hint: <filepath>
 description: 指定されたファイルパスがどの .claude/rules/ に該当するかを即座に確認
-model: claude-haiku-4-5-20251001
 ---
 
 # Check File Rules Coverage

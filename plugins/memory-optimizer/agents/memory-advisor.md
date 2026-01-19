@@ -2,7 +2,7 @@
 name: memory-advisor
 description: メモリ最適化の総合アドバイザー。CLAUDE.md、rules フォルダ、imports の設計・最適化について相談に乗る。Use when user needs comprehensive advice on memory optimization, wants to discuss memory structure, or needs help designing memory configuration. Also use when user says メモリ相談, 設計相談, 最適化相談, アドバイスが欲しい.
 tools: Read, Glob, Grep, Bash(wc:*), Bash(ls:*)
-model: haiku
+model: inherit
 skills: memory-overview, claude-md-guide, rules-guide, migration-guide, memory-audit, best-practices, file-path-matcher
 ---
 

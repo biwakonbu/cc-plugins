@@ -45,7 +45,7 @@ Claude Code プラグインのスキャフォールディングとバリデー�
 ```
 plugin-generator/
 ├── .claude-plugin/
-│   └── plugin.json               # プラグインメタデータ (v1.3.2)
+│   └── plugin.json               # プラグインメタデータ (v1.3.3)
 ├── CLAUDE.md                     # このファイル
 ├── commands/
 │   ├── create.md                 # 新規プラグイン生成
@@ -165,6 +165,19 @@ plugin-generator/
 - テンプレートの追加・変更・削除
 - plugin.json の変更（バージョン含む）
 - 設計方針や動作の変更
+
+### v1.3.3 の変更（2026-01-19）
+
+**仕様書のデフォルト推奨を inherit に変更**:
+- skills/agent-spec/SKILL.md: model フィールドのデフォルト推奨を `inherit` に変更
+- skills/command-spec/SKILL.md: model フィールドの省略を推奨に変更
+- templates/agent.md.tmpl: `model: haiku` → `model: inherit`
+- agents/command-creator.md 内のテンプレート例から model 行削除
+
+**理由:**
+ユーザーが選択したモデルを継承することで、より柔軟な動作を実現。
+仕様書とテンプレートを更新し、今後作成されるコンポーネントも
+デフォルトで inherit を使用するよう統一。
 
 ### v1.3.2 の変更（2026-01-19）
 

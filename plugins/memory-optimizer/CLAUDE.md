@@ -78,7 +78,17 @@ memory-optimizer/
 ### エージェント設計
 
 - 複数スキルを組み合わせた総合的なアドバイス
-- haiku モデルで高速応答
+- モデルは inherit（親モデル継承）で柔軟な対応
+
+## v1.2.1 の変更
+
+**モデル指定の変更**:
+- agents/memory-advisor.md: `model: haiku` → `model: inherit`
+- commands/check-file.md: 明示的な `model` 指定を削除
+
+**理由:**
+ユーザーが Claude Code で使用しているモデルをそのまま継承することで、
+ユーザーの意図に沿った動作を実現。
 
 ## 情報ソース
 

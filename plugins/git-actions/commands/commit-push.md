@@ -1,6 +1,5 @@
 ---
 description: 変更をコミットし、リモートリポジトリにプッシュする
-model: claude-haiku-4-5-20251001
 ---
 
 # Git Commit & Push

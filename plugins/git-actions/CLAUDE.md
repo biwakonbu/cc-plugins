@@ -64,6 +64,16 @@ git-actions/
           └─→ git-conventions (共通規則)
 ```
 
+## v1.3.1 の変更
+
+**コマンドの model 指定削除**:
+- commands/commit-push.md: 明示的な `model` 指定を削除
+- commands/merge-to-main.md: 明示的な `model` 指定を削除
+
+**理由:**
+ユーザーが Claude Code で使用しているモデルをそのまま継承することで、
+ユーザーの意図に沿った動作を実現。
+
 ## v1.3.0 の変更
 
 ### git-conventions スキルの非表示化
