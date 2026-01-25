@@ -25,10 +25,11 @@ cc-plugins/
 | codex-cli-spec | 1.3.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | cursor-cli-spec | 1.2.0 | Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | gemini-cli-spec | 1.1.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
-| git-actions | 1.3.0 | Git commit and push workflow management for Claude Code |
-| memory-optimizer | 1.2.0 | Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン |
-| plugin-generator | 1.3.2 | Claude Code プラグインのスキャフォールディングとバリデーション |
-| plugin-updater | 1.0.2 | マーケットプレイスとインストール済みプラグインを一括更新 |
+| git-actions | 1.3.1 | Git commit and push workflow management for Claude Code |
+| memory-optimizer | 1.2.1 | Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン |
+| nano-banana-image | 1.0.0 | Gemini Nano Banana Pro (gemini-3-pro-image-preview) を活用した画像生成プラグイン。テキストから画像生成、解像度・アスペクト比指定、参照画像を使った編集に対応。 |
+| plugin-generator | 1.3.4 | Claude Code プラグインのスキャフォールディングとバリデーション |
+| plugin-updater | 1.0.3 | マーケットプレイスとインストール済みプラグインを一括更新 |
 | web-search-gemini | 1.0.5 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
 | wrangler-cli-spec | 0.2.0 | Cloudflare Wrangler CLI の仕様と使い方に関する知識を提供。Durable Objects, Queues, Hyperdrive, Service Bindings, カスタムビルド設定 (Webpack/esbuild) などについて回答。 |
 
