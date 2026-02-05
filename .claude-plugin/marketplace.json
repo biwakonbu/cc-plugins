@@ -78,6 +78,11 @@
       "name": "web-search-codex",
       "source": "./plugins/web-search-codex",
       "description": "Codex CLI 内で Gemini CLI を活用した Web 検索を実行。--full-auto モードで自動検索対応。"
+    },
+    {
+      "name": "web-search-unified",
+      "source": "./plugins/web-search-unified",
+      "description": "Gemini、Codex、WebSearch を並列実行し結果を統合する高精度 Web 検索"
     }
   ]
 }

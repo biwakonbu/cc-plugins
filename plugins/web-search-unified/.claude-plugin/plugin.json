@@ -1,0 +1,10 @@
+{
+  "name": "web-search-unified",
+  "description": "Gemini、Codex、WebSearch を並列実行し結果を統合する高精度 Web 検索",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ryo Higashigawa"
+  },
+  "license": "MIT",
+  "keywords": ["web-search", "unified", "parallel", "gemini", "codex"]
+}
