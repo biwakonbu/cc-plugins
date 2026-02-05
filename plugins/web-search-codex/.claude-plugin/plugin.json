@@ -1,0 +1,12 @@
+{
+  "name": "web-search-codex",
+  "description": "Codex CLI 内で Gemini CLI を活用した Web 検索を実行。--full-auto モードで自動検索対応。",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ryo Higasigawa"
+  },
+  "license": "MIT",
+  "keywords": ["web-search", "codex", "gemini", "research", "調査"],
+  "commands": "./commands/",
+  "skills": "./skills/"
+}
