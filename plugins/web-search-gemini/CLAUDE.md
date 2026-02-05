@@ -18,6 +18,10 @@ web-search-gemini/
 │   └── search.md             # 明示的検索コマンド
 ├── agents/
 │   └── gemini-researcher.md  # 複雑調査用エージェント
+├── hooks/
+│   └── hooks.json            # WebSearch 誘導フック
+├── scripts/
+│   └── redirect-to-gemini.sh # WebSearch → Gemini 誘導スクリプト
 └── skills/
     └── web-search/
         └── SKILL.md          # Web 検索スキル
@@ -30,6 +34,7 @@ web-search-gemini/
 | スキル | `web-search` | 自動発動する Web 検索（「調べて」「検索して」） |
 | エージェント | `gemini-researcher` | 複雑な調査タスク（比較、分析、レポート） |
 | コマンド | `/web-search-gemini:search` | 明示的な検索実行 |
+| フック | `PreToolUse(WebSearch)` | WebSearch → Gemini search への誘導 |
 
 ## アーキテクチャ
 
@@ -44,10 +49,32 @@ web-search-gemini/
     │     └─→ /web-search-gemini:search
     │           └─→ web-search スキル参照
     │
-    └─→ 複雑な調査タスク
-          └─→ Task ツール → gemini-researcher エージェント
-                └─→ 複数検索 + 分析 + レポート
+    ├─→ 複雑な調査タスク
+    │     └─→ Task ツール → gemini-researcher エージェント
+    │           └─→ 複数検索 + 分析 + レポート
+    │
+    └─→ WebSearch ツール呼び出し
+          └─→ PreToolUse フック
+                ├─→ Gemini CLI あり → ブロック + 誘導メッセージ
+                └─→ Gemini CLI なし → WebSearch 許可（フォールバック）
 ```
+
+## WebSearch 誘導フック（v1.1.0+）
+
+Claude Code の `WebSearch` ツールが呼ばれた際に、Gemini CLI が利用可能な場合は `web-search` スキルの使用を誘導する。
+
+### 動作原理
+
+1. `PreToolUse` フックで `WebSearch` をインターセプト
+2. `scripts/redirect-to-gemini.sh` が Gemini CLI の存在をチェック
+3. 存在する場合: `decision: block` でブロックし、誘導メッセージを表示
+4. 存在しない場合: `exit 0` で WebSearch をそのまま実行（フォールバック）
+
+### 利点
+
+- Gemini CLI の `google_web_search` ツールによる効率的な Web 検索
+- Claude Code 組み込みの WebSearch より詳細な検索結果
+- Gemini CLI がない環境でも WebSearch で動作可能
 
 ## Gemini CLI の使い方
 

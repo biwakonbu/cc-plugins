@@ -86,10 +86,29 @@ export GEMINI_API_KEY=your_key  # API キー
     ├─→ 明示的な検索
     │     └─→ /web-search-gemini:search
     │
-    └─→ 複雑な調査タスク
-          └─→ gemini-researcher エージェント
-                └─→ 複数検索 + 分析 + レポート
+    ├─→ 複雑な調査タスク
+    │     └─→ gemini-researcher エージェント
+    │           └─→ 複数検索 + 分析 + レポート
+    │
+    └─→ WebSearch ツール呼び出し
+          └─→ Gemini 誘導フック
+                ├─→ Gemini あり → ブロック + 誘導
+                └─→ Gemini なし → WebSearch 実行
 ```
+
+## WebSearch 誘導フック
+
+Claude Code の `WebSearch` ツールが呼ばれた際に、Gemini CLI が利用可能な場合は自動的に `web-search` スキルの使用を誘導します。
+
+### 動作
+
+- **Gemini CLI インストール済み**: WebSearch をブロックし、Gemini search への誘導メッセージを表示
+- **Gemini CLI 未インストール**: WebSearch をそのまま実行（フォールバック）
+
+### 利点
+
+- Gemini CLI の `google_web_search` ツールによる詳細な検索結果
+- 環境に応じた自動フォールバック
 
 ## 注意事項
 
