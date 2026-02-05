@@ -30,9 +30,9 @@ cc-plugins/
 | nano-banana-image | 1.0.0 | Gemini Nano Banana Pro (gemini-3-pro-image-preview) を活用した画像生成プラグイン。テキストから画像生成、解像度・アスペクト比指定、参照画像を使った編集に対応。 |
 | plugin-generator | 1.3.4 | Claude Code プラグインのスキャフォールディングとバリデーション |
 | plugin-updater | 1.0.3 | マーケットプレイスとインストール済みプラグインを一括更新 |
-| web-search-codex | 1.0.0 | Codex CLI 内で Gemini CLI を活用した Web 検索を実行。--full-auto モードで自動検索対応。 |
-| web-search-gemini | 1.1.0 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
-| web-search-unified | 1.0.0 | Gemini、Codex、WebSearch を並列実行し結果を統合する高精度 Web 検索 |
+| web-search-codex | 1.1.0 | Codex CLI 内で Gemini CLI を活用した Web 検索を実行。--full-auto モードで自動検索対応。 |
+| web-search-gemini | 1.2.0 | Gemini CLI を活用した Web 検索プラグイン。技術調査、汎用リサーチ、最新情報取得に対応。 |
+| web-search-unified | 1.1.0 | Gemini、Codex、WebSearch を並列実行し結果を統合する高精度 Web 検索 |
 | wrangler-cli-spec | 0.2.0 | Cloudflare Wrangler CLI の仕様と使い方に関する知識を提供。Durable Objects, Queues, Hyperdrive, Service Bindings, カスタムビルド設定 (Webpack/esbuild) などについて回答。 |
 
 ## 開発言語

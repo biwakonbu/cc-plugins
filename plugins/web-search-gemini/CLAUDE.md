@@ -2,6 +2,22 @@
 
 Gemini CLI の `google_web_search` ツールを活用した Web 検索プラグイン。
 
+## バージョン履歴
+
+### v1.2.0
+- 情報鮮度フィルタリング機能追加
+- ドメイン別鮮度基準（AI/LLM は 6ヶ月、フロントエンドは 1年等）
+- AI モデル旧世代情報の自動破棄（GPT-3.5以前、Claude 2以前等）
+- 出力フォーマットに鮮度マーク（✓/⚠参考/古い情報）付与
+- agents/gemini-researcher.md に詳細版フィルタリング追加
+
+### v1.1.0
+- WebSearch 誘導フック追加
+- `context: fork` 対応
+
+### v1.0.0
+- 初期リリース
+
 ## 概要
 
 Claude Code から Gemini CLI を呼び出し、Google Search によるリアルタイム Web 検索を実行する。
