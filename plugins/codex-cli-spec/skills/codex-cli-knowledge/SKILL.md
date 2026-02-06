@@ -65,10 +65,7 @@ bun install -g @openai/codex
 
 | モデル | 用途 | 推論レベル |
 |--------|------|------------|
-| `gpt-5.2` | 汎用タスク | low, medium, high |
-| `gpt-5.2-codex` | コーディング専用（デフォルト） | low, medium, high |
-| `gpt-5.2-codex-mini` | 軽量・高速コーディング | medium, high |
-| `gpt-5.2-codex-max` | フラッグシップ、深い推論 | low, medium, high, xhigh |
+| `gpt-5.3-codex` | コーディング専用（デフォルト） | low, medium, high, xhigh |
 
 ### 推論レベル（Reasoning Effort）
 
@@ -79,17 +76,16 @@ bun install -g @openai/codex
 | `low` | 高速応答、軽い推論 | 簡単な質問、フォーマット |
 | `medium` | 速度と推論深度のバランス（デフォルト） | 通常のコーディングタスク |
 | `high` | 複雑な問題に対する深い推論 | 設計、方針検討、評価、デバッグ |
-| `xhigh` | 最も深い推論（codex-max のみ） | 最高の思考が必要な場合 |
+| `xhigh` | 最も深い推論 | 最高の思考が必要な場合 |
 
 ### モデル選択のベストプラクティス
 
 | ユースケース | 推奨モデル | 推論レベル |
 |-------------|-----------|------------|
-| 通常のコーディング | `gpt-5.2-codex` | medium |
-| 設計・方針検討・評価 | `gpt-5.2-codex` または `gpt-5.2-codex-max` | high |
-| 最高の思考が必要な場合 | `gpt-5.2-codex-max` | xhigh |
-| 簡単な修正・フォーマット | `gpt-5.2-codex-mini` | medium |
-| 汎用タスク（非コーディング） | `gpt-5.2` | medium / high |
+| 通常のコーディング | `gpt-5.3-codex` | medium |
+| 設計・方針検討・評価 | `gpt-5.3-codex` | high |
+| 最高の思考が必要な場合 | `gpt-5.3-codex` | xhigh |
+| 簡単な修正・フォーマット | `gpt-5.3-codex` | low |
 
 ### サポートされるプロバイダー
 
@@ -111,7 +107,7 @@ Codex CLI は OpenAI Chat Completions API 互換の複数のプロバイダー�
 
 ```bash
 # コマンドラインで指定
-codex --model gpt-5.2-codex-max "タスクを実行"
+codex --model gpt-5.3-codex "タスクを実行"
 
 # インタラクティブモードで変更
 /model
@@ -324,7 +320,7 @@ export CODEX_DISABLE_PROJECT_DOC=1
 
 | パラメータ | 型 | デフォルト | 説明 |
 |-----------|-----|-----------|------|
-| `model` | string | `gpt-5.2-codex` | 使用するモデル |
+| `model` | string | `gpt-5.3-codex` | 使用するモデル |
 | `approvalMode` | string | `suggest` | 承認モード |
 | `fullAutoErrorMode` | string | `ask-user` | Full Auto 時のエラー処理 |
 | `notify` | boolean | `true` | デスクトップ通知 |
@@ -332,7 +328,7 @@ export CODEX_DISABLE_PROJECT_DOC=1
 ### 設定例（YAML）
 
 ```yaml
-model: gpt-5.2-codex
+model: gpt-5.3-codex
 approvalMode: suggest
 fullAutoErrorMode: ask-user
 notify: true
@@ -341,7 +337,7 @@ notify: true
 ### カスタムプロバイダー設定
 
 ```yaml
-model: gpt-5.2-codex
+model: gpt-5.3-codex
 provider: openai
 providers:
   openai:
@@ -442,7 +438,7 @@ Codex CLI は Git 操作において安全性を重視:
 ### Q: モデルを変更するには？
 
 ```bash
-codex --model gpt-5.2-codex-max "タスク"
+codex --model gpt-5.3-codex "タスク"
 ```
 
 または `/model` コマンドで選択。

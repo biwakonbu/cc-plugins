@@ -201,9 +201,9 @@ cat commands/{command-name}.md
 |------|----------|
 | モデル指定なし | model 行を省略（デフォルト） |
 | ユーザーが「haiku で」と指定 | `model: claude-haiku-4-5-20251001` |
-| ユーザーが「opus で」と指定 | `model: claude-opus-4-5-20251101` |
+| ユーザーが「opus で」と指定 | `model: claude-opus-4-6` |
 | ユーザーが「高速で」「軽量で」と指定 | `model: claude-haiku-4-5-20251001` |
-| ユーザーが「高精度で」「複雑なタスク向け」と指定 | `model: claude-opus-4-5-20251101` |
+| ユーザーが「高精度で」「複雑なタスク向け」と指定 | `model: claude-opus-4-6` |
 
 **判断基準:**
 - 明示的なモデル名指定 → そのモデルを設定（フル ID で）

@@ -58,7 +58,20 @@ codex-cli-spec/
 npm install -g @openai/codex
 ```
 
-## 最新の変更（v1.3.0）
+## 最新の変更（v1.4.0）
+
+### モデル情報を GPT-5.3-Codex に更新
+
+**SKILL.md の更新内容:**
+- デフォルトモデルを `gpt-5.3-codex` に変更
+- 旧モデル（`gpt-5.2`、`gpt-5.1-codex-mini`、`gpt-5.1-codex-max`）を削除
+- モデルテーブルを `gpt-5.3-codex` のみに整理
+- ベストプラクティス、設定例、FAQ のモデル参照を一括更新
+
+**README.md の更新内容:**
+- デフォルトモデル表記を `gpt-5.3-codex` に変更
+
+## 変更履歴（v1.3.0）
 
 ### context: fork の追加
 `codex-cli-knowledge` スキルに `context: fork` を設定。
@@ -68,7 +81,7 @@ npm install -g @openai/codex
 
 ### SKILL.md の更新内容
 
-**デフォルトモデルを GPT-5.2 に更新**:
+**デフォルトモデルを GPT-5.2 に更新（v1.4.0 で GPT-5.3 に移行済み）**:
 - `gpt-5.2-codex` をデフォルトモデルに設定
 - `gpt-5.2` を汎用タスク用モデルとして追加
 - モデル体系を整理（codex / codex-mini / codex-max）

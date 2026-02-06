@@ -95,6 +95,14 @@ npm install -g @anthropic/claude-code
 - マイナー（x.1.0）: 新機能追加、情報更新
 - メジャー（1.0.0）: 大幅な構造変更
 
+## v1.2.0 の変更
+
+### Opus 4.6 対応
+
+**モデル情報の更新:**
+- Claude の最新モデル Opus 4.6（`claude-opus-4-6`）のリリースに対応
+- プラグインバージョンをマイナー更新
+
 ## v1.1.1 の変更（2026-01-17）
 
 ### claude-code-knowledge SKILL.md の更新

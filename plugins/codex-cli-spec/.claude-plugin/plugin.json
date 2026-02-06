@@ -1,7 +1,7 @@
 {
   "name": "codex-cli-spec",
   "description": "OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": {
     "name": "Ryo Higasigawa"
   },
