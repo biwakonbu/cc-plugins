@@ -24,7 +24,7 @@ claude plugin install plugin-generator@cc-plugins
 | [cursor-cli-spec](./plugins/cursor-cli-spec/) | 1.2.0 | Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | [gemini-cli-spec](./plugins/gemini-cli-spec/) | 1.1.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | [git-actions](./plugins/git-actions/) | 1.3.1 | Git commit and push workflow management for Claude Code |
-| [gogcli-spec](./plugins/gogcli-spec/) | 1.0.0 | GOG.com CLI クライアント (gogcli) の仕様と使い方を完璧に理解するための知識プラグイン |
+| [gogcli-spec](./plugins/gogcli-spec/) | 2.0.0 | Google Suite CLI (gogcli/gog) の仕様と使い方を完璧に理解するための知識プラグイン。Gmail、Calendar、Drive、Contacts、Tasks、Sheets、Docs、Chat、Classroom 等の操作について回答。 |
 | [memory-optimizer](./plugins/memory-optimizer/) | 1.2.1 | Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン |
 | [nano-banana-image](./plugins/nano-banana-image/) | 1.0.0 | Gemini Nano Banana Pro (gemini-3-pro-image-preview) を活用した画像生成プラグイン。テキストから画像生成、解像度・アスペクト比指定、参照画像を使った編集に対応。 |
 | [plugin-generator](./plugins/plugin-generator/) | 1.4.0 | Claude Code プラグインのスキャフォールディングとバリデーション |

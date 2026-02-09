@@ -87,7 +87,7 @@
     {
       "name": "gogcli-spec",
       "source": "./plugins/gogcli-spec",
-      "description": "GOG.com CLI クライアント (gogcli) の仕様と使い方を完璧に理解するための知識プラグイン"
+      "description": "Google Suite CLI (gogcli/gog) の仕様と使い方を完璧に理解するための知識プラグイン。Gmail、Calendar、Drive、Contacts、Tasks、Sheets、Docs、Chat、Classroom 等の操作について回答。"
     }
   ]
 }

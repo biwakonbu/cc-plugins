@@ -1,0 +1,11 @@
+{
+  "name": "gogcli-spec",
+  "description": "Google Suite CLI (gogcli/gog) の仕様と使い方を完璧に理解するための知識プラグイン。Gmail、Calendar、Drive、Contacts、Tasks、Sheets、Docs、Chat、Classroom 等の操作について回答。",
+  "version": "2.0.0",
+  "author": {
+    "name": "Ryo Higasigawa"
+  },
+  "license": "MIT",
+  "keywords": ["gogcli", "gog", "google", "gmail", "calendar", "drive", "contacts", "tasks", "sheets", "docs", "slides", "chat", "classroom", "cli", "specification", "knowledge"],
+  "skills": "./skills/"
+}
