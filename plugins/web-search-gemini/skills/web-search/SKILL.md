@@ -28,7 +28,7 @@ Gemini CLI の `google_web_search` ツールを活用した Web 検索機能を�
 ### 2. Gemini CLI で検索実行
 
 ```bash
-gemini --yolo "Use the google_web_search tool to search for: {検索クエリ}. You MUST perform a web search and return results with sources."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: {検索クエリ}. You MUST perform a web search and return results with sources."
 ```
 
 **フラグ説明**:
@@ -77,7 +77,7 @@ Gemini の応答を以下の形式で報告:
 
 **実行**:
 ```bash
-gemini --yolo "Use the google_web_search tool to search for: Next.js 15 new features official documentation. You MUST perform a web search and return results with sources."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: Next.js 15 new features official documentation. You MUST perform a web search and return results with sources."
 ```
 
 **結果報告**:
@@ -103,7 +103,7 @@ Next.js 15 では、Turbopack がデフォルトの開発サーバーとして�
 
 **実行**:
 ```bash
-gemini --yolo "Use the google_web_search tool to search for: Cannot read property map of undefined React fix solution. You MUST perform a web search and return results with sources."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: Cannot read property map of undefined React fix solution. You MUST perform a web search and return results with sources."
 ```
 
 ### 最新ニュース
@@ -112,7 +112,7 @@ gemini --yolo "Use the google_web_search tool to search for: Cannot read propert
 
 **実行**:
 ```bash
-gemini --yolo "Use the google_web_search tool to search for: AI artificial intelligence latest news today. You MUST perform a web search and return results with sources."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: AI artificial intelligence latest news today. You MUST perform a web search and return results with sources."
 ```
 
 ## 情報鮮度フィルタリング

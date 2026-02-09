@@ -4,6 +4,10 @@ Gemini CLI の `google_web_search` ツールを活用した Web 検索プラグ�
 
 ## バージョン履歴
 
+### v1.3.0
+- Gemini CLI のモデルを `gemini-3-flash-preview` に明示的に固定
+- 全ての `gemini --yolo` 呼び出しに `--model gemini-3-flash-preview` を追加
+
 ### v1.2.0
 - 情報鮮度フィルタリング機能追加
 - ドメイン別鮮度基準（AI/LLM は 6ヶ月、フロントエンドは 1年等）
@@ -59,7 +63,7 @@ web-search-gemini/
     │
     ├─→ 単純な検索「〜を調べて」
     │     └─→ web-search スキル（自動発動）
-    │           └─→ gemini --yolo "{query}"
+    │           └─→ gemini --model gemini-3-flash-preview --yolo "{query}"
     │
     ├─→ 明示的な検索
     │     └─→ /web-search-gemini:search
@@ -98,7 +102,7 @@ Claude Code の `WebSearch` ツールが呼ばれた際に、Gemini CLI が利�
 
 ```bash
 # Web 検索を確実に実行（推奨）
-gemini --yolo "Use the google_web_search tool to search for: {検索クエリ}. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: {検索クエリ}. You MUST perform a web search."
 
 # 自分の知識で答える（古い形式）
 gemini "検索クエリ"

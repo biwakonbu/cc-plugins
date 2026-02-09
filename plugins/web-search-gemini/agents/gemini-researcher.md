@@ -45,10 +45,10 @@ skills: web-search
 
 **検索例**:
 ```bash
-gemini --yolo "Use the google_web_search tool to search for: React vs Vue vs Svelte comparison 2025. You MUST perform a web search."
-gemini --yolo "Use the google_web_search tool to search for: React performance benchmark. You MUST perform a web search."
-gemini --yolo "Use the google_web_search tool to search for: Vue 3 features advantages. You MUST perform a web search."
-gemini --yolo "Use the google_web_search tool to search for: Svelte pros cons developer experience. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: React vs Vue vs Svelte comparison 2025. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: React performance benchmark. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: Vue 3 features advantages. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: Svelte pros cons developer experience. You MUST perform a web search."
 ```
 
 ### トレンド調査
@@ -205,10 +205,10 @@ gemini --yolo "Use the google_web_search tool to search for: Svelte pros cons de
 
 **検索実行**:
 ```bash
-gemini --yolo "Use the google_web_search tool to search for: React Vue Svelte comparison 2025 features. You MUST perform a web search."
-gemini --yolo "Use the google_web_search tool to search for: React Vue Svelte performance benchmark. You MUST perform a web search."
-gemini --yolo "Use the google_web_search tool to search for: React Vue Svelte developer experience learning curve. You MUST perform a web search."
-gemini --yolo "Use the google_web_search tool to search for: React Vue Svelte ecosystem community support. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: React Vue Svelte comparison 2025 features. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: React Vue Svelte performance benchmark. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: React Vue Svelte developer experience learning curve. You MUST perform a web search."
+gemini --model gemini-3-flash-preview --yolo "Use the google_web_search tool to search for: React Vue Svelte ecosystem community support. You MUST perform a web search."
 ```
 
 **出力**: 構造化された比較レポート

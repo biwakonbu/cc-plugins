@@ -83,6 +83,11 @@
       "name": "web-search-unified",
       "source": "./plugins/web-search-unified",
       "description": "Gemini、Codex、WebSearch を並列実行し結果を統合する高精度 Web 検索"
+    },
+    {
+      "name": "gogcli-spec",
+      "source": "./plugins/gogcli-spec",
+      "description": "GOG.com CLI クライアント (gogcli) の仕様と使い方を完璧に理解するための知識プラグイン"
     }
   ]
 }
