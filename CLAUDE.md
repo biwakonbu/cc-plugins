@@ -25,7 +25,7 @@ cc-plugins/
 | codex-cli-spec | 1.4.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | cursor-cli-spec | 1.2.0 | Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | gemini-cli-spec | 1.1.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |
-| git-actions | 1.3.1 | Git commit and push workflow management for Claude Code |
+| git-actions | 1.5.0 | Git commit and push workflow management for Claude Code |
 | gogcli-spec | 2.0.0 | Google Suite CLI (gogcli/gog) の仕様と使い方を完璧に理解するための知識プラグイン。Gmail、Calendar、Drive、Contacts、Tasks、Sheets、Docs、Chat、Classroom 等の操作について回答。 |
 | memory-optimizer | 1.2.1 | Claude Code のメモリ管理（CLAUDE.md、rules、imports）を最適化するための知識とワークフローを提供するプラグイン |
 | nano-banana-image | 1.0.0 | Gemini Nano Banana Pro (gemini-3-pro-image-preview) を活用した画像生成プラグイン。テキストから画像生成、解像度・アスペクト比指定、参照画像を使った編集に対応。 |

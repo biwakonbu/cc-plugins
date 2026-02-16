@@ -15,13 +15,15 @@ git-actions/
 │   └── plugin.json           # プラグインメタデータ
 ├── commands/
 │   ├── commit-push.md        # コミット & プッシュコマンド
-│   └── merge-to-main.md      # main へマージ & プッシュコマンド
+│   ├── merge-to-main.md      # main へマージ & プッシュコマンド
+│   └── resolve-conflicts.md  # コンフリクト解消コマンド
 ├── hooks/
 │   └── hooks.json            # フック定義（現在は空）
 ├── skills/
 │   ├── commit/SKILL.md       # git-commit スキル
 │   ├── push/SKILL.md         # git-push スキル
 │   ├── merge/SKILL.md        # git-merge スキル
+│   ├── resolve-conflicts/SKILL.md  # git-resolve-conflicts スキル
 │   └── git-conventions/SKILL.md  # 共通規則スキル
 └── CLAUDE.md
 ```
@@ -32,6 +34,7 @@ git-actions/
 |---------|------|-----------|
 | `/git-actions:commit-push` | コミット & プッシュ実行 | `git-commit`, `git-push` |
 | `/git-actions:merge-to-main` | main へマージ & プッシュ実行 | `git-merge` |
+| `/git-actions:resolve-conflicts` | コンフリクト解消支援 | `git-resolve-conflicts` |
 
 ## スキル
 
@@ -40,6 +43,7 @@ git-actions/
 | `git-commit` | skills/commit/ | 状態確認、変更分析、メッセージ生成、実行 |
 | `git-push` | skills/push/ | 安全性チェック、プッシュ実行 |
 | `git-merge` | skills/merge/ | feature ブランチを main にマージ & プッシュ |
+| `git-resolve-conflicts` | skills/resolve-conflicts/ | コンフリクト分析、解消案生成、ユーザー承認後適用 |
 | `git-conventions` | skills/git-conventions/ | 安全規則、機密ファイルチェック、禁止事項 |
 
 ## アーキテクチャ
@@ -61,8 +65,44 @@ git-actions/
     └─→ git-merge スキル
           ├─→ 事前確認（状態チェック、コンフリクト検出）
           ├─→ main へチェックアウト、pull、マージ、プッシュ
+          ├─→ コンフリクト時: git-resolve-conflicts スキルに委譲
+          └─→ git-conventions (共通規則)
+
+/git-actions:resolve-conflicts
+    │
+    └─→ git-resolve-conflicts スキル
+          ├─→ コンフリクト検出・分析
+          ├─→ 解消案生成・ユーザー確認
+          ├─→ 適用・結果報告
           └─→ git-conventions (共通規則)
 ```
+
+## v1.5.0 の変更
+
+### resolve-conflicts スキル Step 3 強化（履歴ベース分析）
+- `context: fork` は意図的に未設定（設計判断）
+  - ファイル書き換え（Edit）を伴うアクションスキルのためメインコンテキストで実行が必要
+  - merge スキルからの委譲時にコンテキスト断絶を防止
+  - AskUserQuestion によるユーザー承認フローを正常に動作させるため
+- Step 3 を履歴ベースのコンフリクト分析に全面書き換え
+  - 3a: `git merge-base` でブランチ分岐点を特定
+  - 3b: 両ブランチの変更履歴を `git log` で並列取得
+  - 3c: 時系列・変更種類・意図・依存関係の4観点で分析
+  - 3d: Read でコンフリクトマーカーを解析
+  - 3e: パターン別解消戦略（追加vs追加、修正vs修正 等）を決定
+- Step 5 の要判断グループに解消案提示フォーマットを追加
+  - 変更履歴の概要（分岐点、両ブランチのコミット一覧）
+  - コンフリクト箇所の詳細（行番号、パターン分類）
+  - 判断根拠（時系列と内容に基づく解消理由）
+- Examples セクションを履歴ベース分析フローに更新
+
+## v1.4.0 の変更
+
+### コンフリクト解消スキルの追加
+- 新スキル: `git-resolve-conflicts` - コンフリクトを分析し解消案を提示
+- 新コマンド: `/git-actions:resolve-conflicts` - コンフリクト解消の直接実行
+- `git-merge` スキルのセクション4を新スキルへの委譲に変更
+- ハイブリッド方式: AI が解消案を自動生成、適用はユーザー承認必須
 
 ## v1.3.1 の変更
 

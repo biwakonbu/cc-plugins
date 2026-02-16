@@ -14,6 +14,7 @@ claude plugin install git-actions@cc-plugins
 |---------|------|
 | `/git-actions:commit-push` | コミット & プッシュを一括実行 |
 | `/git-actions:merge-to-main` | カレントブランチを main にマージしてプッシュ |
+| `/git-actions:resolve-conflicts` | マージコンフリクトを分析し解消を支援 |
 
 ## スキル
 
@@ -22,6 +23,7 @@ claude plugin install git-actions@cc-plugins
 | `git-commit` | コミットワークフロー（状態確認、変更分析、メッセージ生成、実行） |
 | `git-push` | プッシュワークフロー（安全性チェック、プッシュ実行） |
 | `git-merge` | マージワークフロー（feature ブランチを main にマージ） |
+| `git-resolve-conflicts` | コンフリクト解消支援（分析・解消案生成・ユーザー承認後適用） |
 | `git-conventions` | 共通規則（安全規則、機密ファイル、禁止事項） |
 
 ## 使用例
@@ -32,6 +34,9 @@ claude plugin install git-actions@cc-plugins
 
 # main へマージ
 /git-actions:merge-to-main
+
+# コンフリクト解消
+/git-actions:resolve-conflicts
 ```
 
 ## 機能
@@ -79,6 +84,14 @@ main/develop ブランチで commit/push を実行する場合:
     │
     └─→ git-push スキル
           ├─→ 安全性チェック、プッシュ実行
+          └─→ git-conventions (共通規則)
+
+/git-actions:resolve-conflicts
+    │
+    └─→ git-resolve-conflicts スキル
+          ├─→ コンフリクト検出・分析
+          ├─→ 解消案生成・ユーザー確認
+          ├─→ 適用・結果報告
           └─→ git-conventions (共通規則)
 ```
 
