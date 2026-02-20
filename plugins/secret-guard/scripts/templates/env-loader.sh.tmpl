@@ -1,0 +1,49 @@
+#!/bin/bash
+# シークレット読み込みスクリプト（AI からはアクセス不可）
+# このスクリプトをカスタマイズして使用してください
+#
+# 使用方法:
+#   source ./env-loader.sh
+#   または
+#   ./env-loader.sh && echo "読み込み完了"
+
+set -euo pipefail
+
+# .env ファイルのパス（必要に応じて変更）
+ENV_FILE="${ENV_FILE:-.env}"
+
+# .env ファイルから環境変数を読み込み
+if [ -f "$ENV_FILE" ]; then
+    set -a
+    # shellcheck disable=SC1090
+    source "$ENV_FILE"
+    set +a
+    echo "環境変数を ${ENV_FILE} から読み込みました"
+else
+    echo "ERROR: ${ENV_FILE} ファイルが見つかりません" >&2
+    exit 1
+fi
+
+# 検証: 必須変数の存在チェック
+# プロジェクトに合わせて変更してください
+REQUIRED_VARS=(
+    "DATABASE_URL"
+    "API_KEY"
+)
+
+MISSING_VARS=()
+for var in "${REQUIRED_VARS[@]}"; do
+    if [ -z "${!var:-}" ]; then
+        MISSING_VARS+=("$var")
+    fi
+done
+
+if [ ${#MISSING_VARS[@]} -gt 0 ]; then
+    echo "ERROR: 以下の必須変数が未設定です:" >&2
+    for var in "${MISSING_VARS[@]}"; do
+        echo "  - $var" >&2
+    done
+    exit 1
+fi
+
+echo "全ての必須環境変数が設定されています"

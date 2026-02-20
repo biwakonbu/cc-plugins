@@ -12,6 +12,13 @@ OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プ
 - 主要コマンドとフラグ
 - 設定方法（config.yaml / 環境変数）
 - AGENTS.md（プロジェクトドキュメント）
+- Plan モード
+- マルチエージェント協調
+- メモリ管理システム
+- Steer モード
+- パーソナリティ設定
+
+対応バージョン: Codex CLI v0.104.0
 
 ## ディレクトリ構造
 
@@ -48,7 +55,8 @@ codex-cli-spec/
 - 「承認モード」「approval mode」
 - 「AGENTS.md」
 - コマンド名（`--model`、`--approval-mode` など）
-- プロバイダー名（`ollama`、`openrouter` など）
+- 「Plan モード」「メモリ」「パーソナリティ」
+- 「マルチエージェント」「Steer モード」
 
 ## 前提条件
 
@@ -58,42 +66,46 @@ codex-cli-spec/
 npm install -g @openai/codex
 ```
 
-## 最新の変更（v1.4.0）
+## v2.0.0 の変更
 
-### モデル情報を GPT-5.3-Codex に更新
+### SKILL.md 全面改訂
 
-**SKILL.md の更新内容:**
-- デフォルトモデルを `gpt-5.3-codex` に変更
-- 旧モデル（`gpt-5.2`、`gpt-5.1-codex-mini`、`gpt-5.1-codex-max`）を削除
-- モデルテーブルを `gpt-5.3-codex` のみに整理
-- ベストプラクティス、設定例、FAQ のモデル参照を一括更新
+**モデル情報:**
+- `gpt-5.3-codex` を唯一の推奨モデルとして維持
+- 他モデルは利用価値なしと明記
 
-**README.md の更新内容:**
-- デフォルトモデル表記を `gpt-5.3-codex` に変更
+**新セクション追加:**
+- Plan モード（v0.94.0 デフォルト有効化）: `/plan`、推論 effort medium、Shift+Tab サイクル
+- マルチエージェント協調（v0.90.0+）: Sub-agent 最大 6、Explorer ロール、カスタマイズ可能ロール（v0.102.0）
+- メモリ管理システム（v0.97.0+）: `/m_update`、`/m_drop`、シークレットサニタイザー
+- JavaScript REPL（v0.100.0、実験的）: `js_repl` ツール
+- パーソナリティ設定（v0.94.0 Stable）: デフォルト Pragmatic（v0.98.0）
+- Steer モード（v0.98.0 Stable）: Enter 即送信、Tab フォローアップキュー
+- 認証更新: ChatGPT プラン、Device-code auth、`codex app`
 
-## 変更履歴（v1.3.0）
+**新スラッシュコマンド追加:**
+- `/plan`, `/permissions`, `/skill`, `/apps`
+- `/personality`, `/debug-config`, `/statusline`
+- `/m_update`, `/m_drop`, `/grant-read-access`
 
-### context: fork の追加
-`codex-cli-knowledge` スキルに `context: fork` を設定。
-大規模な知識コンテンツがサブエージェント化され、メインコンテキストを保護。
+**承認モード更新:**
+- Smart approvals デフォルト有効化（v0.93.0）
+- `on-failure` 非推奨化（v0.102.0）
+- 「Allow and remember」セッションスコープ承認
 
-## 変更履歴（v1.2.0）
+**サンドボックス更新:**
+- Linux Bubblewrap（bwrap）
+- Windows サンドボックス
+- SOCKS5 プロキシ、構造化ネットワーク承認
 
-### SKILL.md の更新内容
+**破壊的変更:**
+- `approval_policy: on-failure` 非推奨
+- `get_memory` ツール削除
+- Steer モードで Enter 動作変更
+- Git 操作の安全性強化
 
-**デフォルトモデルを GPT-5.2 に更新（v1.4.0 で GPT-5.3 に移行済み）**:
-- `gpt-5.2-codex` をデフォルトモデルに設定
-- `gpt-5.2` を汎用タスク用モデルとして追加
-- モデル体系を整理（codex / codex-mini / codex-max）
-
-**推論レベルの使い分けを明確化**:
-- `medium`: 通常のコーディングタスク
-- `high`: 設計、方針検討、評価、デバッグ
-- `xhigh`: 最高の思考が必要な場合（codex-max のみ）
-
-**ベストプラクティスの更新**:
-- ユースケース別の推奨モデルと推論レベルを更新
-- 汎用タスク（非コーディング）の案内を追加
+**CLI バージョン情報:**
+- 最新: v0.104.0（2026-02-18）
 
 ## ドキュメント維持規則
 

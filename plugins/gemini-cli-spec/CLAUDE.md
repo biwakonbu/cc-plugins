@@ -11,6 +11,11 @@ Gemini CLI の仕様と使い方を完璧に理解するための知識プラグ
 - 組み込みツールの詳細
 - CLI フラグとオプション
 - 拡張機能システム
+- フックシステム
+- サンドボックス機能
+- MCP 管理者制御
+
+対応バージョン: Gemini CLI v0.29.0
 
 ## ディレクトリ構造
 
@@ -51,8 +56,9 @@ gemini-cli-spec/
 - 「Gemini CLI」
 - 「gemini」
 - 「モデル選択」
-- `/model`、`/settings` などのコマンド名
+- `/model`、`/settings`、`/plan`、`/rewind` などのコマンド名
 - ツール名（`google_web_search`、`web_fetch` など）
+- 「フック」「サンドボックス」「MCP」
 
 ## 前提条件
 
@@ -67,6 +73,30 @@ npm install -g @google/gemini-cli
 ```bash
 brew install gemini-cli
 ```
+
+## v2.0.0 の変更
+
+### SKILL.md 全面改訂
+
+**モデル情報の更新:**
+- `gemini-3.1-pro-preview` を唯一の推奨モデルとして記載
+- Auto オプション・旧モデルを削除
+- Gemini 3 デフォルト化（v0.29.0）を記載
+
+**新セクション追加:**
+- フックシステム（v0.26.0+）: PreToolUse/PostToolUse、settings.json 設定、変更承認フロー
+- サンドボックス強化: macOS Seatbelt、Docker/Podman、ポリシーエンジン
+- MCP 管理者制御（v0.29.0）: 許可リスト、ツールフィルタリング
+- 拡張機能マーケットプレイス（v0.29.0）: 探索 UI、レジストリクライアント
+- 破壊的変更: Node.js 20 必須、非対話モード ask_user 削除
+
+**新スラッシュコマンド追加:**
+- `/plan`（v0.29.0）
+- `/rewind`（v0.26.0+）
+- `/prompt-suggest`（v0.28.0）
+
+**CLI バージョン情報:**
+- 最新: v0.29.0（2026-02-17）
 
 ## ドキュメント維持規則
 

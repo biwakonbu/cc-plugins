@@ -1,0 +1,12 @@
+{
+    "name": "secret-guard",
+    "description": "AI によるシークレットファイルへのアクセスをブロックし、機密情報の漏洩を防止するセキュリティプラグイン",
+    "version": "1.1.0",
+    "author": {
+        "name": "Ryo Higasigawa"
+    },
+    "license": "MIT",
+    "keywords": ["security", "secrets", "guard", "gitignore", "credentials", "protection"],
+    "commands": "./commands/",
+    "skills": "./skills/"
+}

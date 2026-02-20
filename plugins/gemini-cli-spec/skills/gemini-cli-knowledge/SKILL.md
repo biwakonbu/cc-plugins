@@ -1,6 +1,6 @@
 ---
 name: gemini-cli-knowledge
-description: Gemini CLI の仕様と使い方に関する知識を提供。モデル選択、スラッシュコマンド、組み込みツール、拡張機能について回答。Use when user asks about Gemini CLI, gemini command, model selection, /model, /settings, google_web_search, web_fetch, run_shell_command, or Gemini extensions. Also use when user says Gemini CLI について, gemini の使い方, モデル選択.
+description: Gemini CLI の仕様と使い方に関する知識を提供。モデル選択、スラッシュコマンド、組み込みツール、拡張機能、フックシステム、サンドボックス、MCP 管理者制御について回答。Use when user asks about Gemini CLI, gemini command, model selection, /model, /settings, /plan, /rewind, google_web_search, web_fetch, run_shell_command, sandbox, hooks, or Gemini extensions. Also use when user says Gemini CLI について, gemini の使い方, モデル選択.
 context: fork
 ---
 
@@ -8,47 +8,35 @@ context: fork
 
 Gemini CLI の仕様と使い方に関する包括的な知識を提供するスキル。
 
+**最新バージョン**: v0.29.0（2026-02-17）
+
+---
+
 ## 利用可能なモデル
 
-### Auto オプション（推奨）
+### 推奨モデル
 
-| モデル | 説明 |
-|--------|------|
-| Auto (Gemini 3) | システムがタスクに最適な Gemini 3 モデルを自動選択 |
-| Auto (Gemini 2.5) | システムがタスクに最適な Gemini 2.5 モデルを自動選択 |
+| モデル | 説明 | 推奨度 |
+|--------|------|--------|
+| `gemini-3.1-pro-preview` | 最新の推論能力、創造性、コーディング性能 | **最推奨** |
 
-### 手動選択モデル
-
-| モデル | 特徴 | 用途 |
-|--------|------|------|
-| gemini-3-pro-preview | 高度な推論、創造性 | 複雑なタスク、深い分析 |
-| gemini-3-flash-preview | 高速レスポンス | シンプルなタスク、クイック応答 |
-| gemini-2.5-pro | Pro の安定版 | 本番環境での複雑なタスク |
-| gemini-2.5-flash | Flash の安定版 | 本番環境での高速処理 |
-
-### モデル選択のベストプラクティス
-
-- **Auto 推奨**: ほとんどのユーザーにとってバランスの取れた選択肢
-- **Pro 選択時**: より高度な推論と創造性が必要な複雑なタスク向け
-- **Flash 選択時**: 高速な結果が必要なシンプルなタスク向け
+**重要**: 上記以外のモデルは指示されない限り利用価値なし。常に `gemini-3.1-pro-preview` を使用すること。
 
 ### モデル変更方法
 
-```
+```bash
 # セッション中に変更
 /model
 
 # 起動時に指定
-gemini --model gemini-3-pro-preview
+gemini --model gemini-3.1-pro-preview
 ```
 
 **注意**: `/model` コマンドはサブエージェントのモデルを上書きしない。
 
-### Gemini 3 プレビュー有効化
+### Gemini 3 デフォルト化（v0.29.0）
 
-Gemini 3 プレビューモデルを使用するには:
-1. `/settings` コマンドを実行
-2. **Preview Features** を有効化
+v0.29.0 以降、Gemini 3 がデフォルトモデルとなった。プレビュー機能の有効化は不要。
 
 ---
 
@@ -62,6 +50,14 @@ Gemini 3 プレビューモデルを使用するには:
 | `/chat resume <tag>` | 保存した会話を再開 |
 | `/chat list` | 保存済みタグの一覧表示 |
 | `/compress` | チャット文脈全体を要約に置き換えてトークン節約 |
+
+### 計画・ナビゲーション
+
+| コマンド | 説明 | バージョン |
+|----------|------|-----------|
+| `/plan` | プランモード。実装前に計画を策定 | v0.29.0+ |
+| `/rewind` | 会話を任意のポイントまで巻き戻し | v0.26.0+ |
+| `/prompt-suggest` | 次のプロンプトを提案 | v0.28.0+ |
 
 ### 表示・設定
 
@@ -149,7 +145,7 @@ Google Search 経由で Web 検索を実行。
 
 **使用例:**
 ```
-google_web_search(query="AI 最新ニュース 2025")
+google_web_search(query="AI 最新ニュース 2026")
 ```
 
 ### メモリツール
@@ -181,6 +177,7 @@ save_memory(fact="My preferred programming language is Python.")
 |--------|------|
 | `--yolo` | ツール実行の許可プロンプトをスキップ（自動実行） |
 | `--model <model>` | 起動時に使用モデルを指定 |
+| `-s`, `--sandbox` | サンドボックスモードを指定 |
 
 **使用例:**
 ```bash
@@ -188,8 +185,137 @@ save_memory(fact="My preferred programming language is Python.")
 gemini --yolo "ファイル一覧を表示して"
 
 # モデル指定で起動
-gemini --model gemini-3-pro-preview
+gemini --model gemini-3.1-pro-preview
+
+# サンドボックスモードで起動
+gemini -s docker
 ```
+
+---
+
+## フックシステム（v0.26.0+）
+
+### 概要
+
+Gemini CLI のライフサイクル全体で自動実行されるユーザー定義シェルコマンド。LLM に依存せず確定的な制御を提供。
+
+### イベント
+
+| イベント | トリガー |
+|---------|---------|
+| PreToolUse | ツール実行前 |
+| PostToolUse | ツール実行成功後 |
+
+### 設定方法
+
+**settings.json で設定（3つのレベル）:**
+
+| レベル | ファイル | 優先度 |
+|--------|---------|--------|
+| システム | `/etc/gemini/settings.json` | 最高 |
+| ユーザー | `~/.gemini/settings.json` | 中 |
+| プロジェクト | `.gemini/settings.json` | 最低 |
+
+**設定例:**
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "run_shell_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "validate-command.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### フック変更時の安全対策
+
+- フック設定の変更時は警告が表示される
+- ユーザーの承認が必要（セキュリティ保護）
+- 拡張機能内にバンドルされたフックも同様
+
+---
+
+## サンドボックス機能
+
+### macOS Seatbelt（sandbox-exec）
+
+- Apple Seatbelt でプロセスをラップ
+- 読み取り専用ジェイルで実行
+- ワークスペースと一時ディレクトリのみ書き込み可能
+- ネットワークは完全ブロック
+
+### Docker / Podman
+
+```bash
+# Docker サンドボックスで起動
+gemini -s docker
+
+# Podman サンドボックスで起動
+gemini -s podman
+```
+
+- コンテナ内でツールを実行
+- ホストファイルシステムから隔離
+- ネットワークアクセス制限
+
+### ポリシーエンジン（実験的）
+
+- カスタムポリシーファイルでサンドボックスの動作を定義
+- ツールごとのアクセス制御
+- ファイルパス・ネットワークの許可リスト
+
+### サンドボックス設定方法
+
+```bash
+# CLI フラグ
+gemini -s docker
+gemini --sandbox seatbelt
+
+# 環境変数
+export GEMINI_SANDBOX=docker
+
+# settings.json
+{
+  "sandbox": {
+    "type": "docker"
+  }
+}
+```
+
+---
+
+## MCP 管理者制御（v0.29.0）
+
+### 許可リスト定義
+
+システム設定で許可する MCP サーバーを定義可能:
+
+```json
+{
+  "mcp": {
+    "allowedServers": ["server1", "server2"],
+    "toolFilters": {
+      "server1": {
+        "allow": ["tool1", "tool2"],
+        "deny": ["dangerous_tool"]
+      }
+    }
+  }
+}
+```
+
+### ツールフィルタリング
+
+- サーバーごとに許可・拒否するツールを指定
+- システム設定が最優先（ユーザー・プロジェクト設定より上位）
 
 ---
 
@@ -250,6 +376,19 @@ gemini extensions enable <name>
 gemini extensions disable <name>
 ```
 
+### 拡張機能マーケットプレイス（v0.29.0）
+
+- 探索 UI でインストール可能な拡張機能を検索
+- レジストリクライアントで公開・配布
+
+```bash
+# マーケットプレイスを探索
+gemini extensions explore
+
+# マーケットプレイスからインストール
+gemini extensions install <publisher>/<name>
+```
+
 ---
 
 ## メモリシステム（GEMINI.md）
@@ -296,10 +435,34 @@ vim ~/.gemini/GEMINI.md
 
 ---
 
+## 破壊的変更
+
+### Node.js 20 必須（v0.7.0）
+
+- Node.js 18 以下はサポート終了
+- Node.js 20 以上が必須
+
+### settings.json 形式更新
+
+- 一部設定キーの名前変更
+- 旧形式は非推奨だが後方互換性あり
+
+### 一部 CLI 引数の非推奨化
+
+- 旧フラグは将来のバージョンで削除予定
+- 警告メッセージが表示される
+
+### 非対話モードから ask_user 削除（v0.29.0）
+
+- 非対話モード（`-q`）では `ask_user` ツールが利用不可に
+- CI/CD パイプラインでの意図しない停止を防止
+
+---
+
 ## インストール方法
 
 ```bash
-# npm
+# npm（Node.js 20+ 必須）
 npm install -g @google/gemini-cli
 
 # Homebrew
@@ -315,7 +478,11 @@ brew install gemini-cli
 ```
 /model
 ```
-または起動時に `--model` フラグ。
+または起動時に `--model gemini-3.1-pro-preview` フラグ。
+
+### Q: 推奨モデルは？
+
+`gemini-3.1-pro-preview` を使用すること。他のモデルは利用価値なし。
 
 ### Q: 会話を保存するには？
 
@@ -337,4 +504,22 @@ brew install gemini-cli
 
 ```bash
 gemini --yolo "コマンド"
+```
+
+### Q: サンドボックスを使うには？
+
+```bash
+gemini -s docker
+```
+
+### Q: 会話を巻き戻すには？
+
+```
+/rewind
+```
+
+### Q: プランモードを使うには？
+
+```
+/plan
 ```
