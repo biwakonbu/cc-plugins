@@ -47,9 +47,31 @@ Gemini API の画像生成モデルを使用して、テキストプロンプト
 
 ## 前提条件
 
-- Gemini CLI がインストールされていること
-- API キーが設定済みであること
-- gemini-3-pro-image-preview モデルへのアクセス権限
+### Gemini CLI のインストール
+
+```bash
+npm install -g @google/gemini-cli
+# または
+brew install gemini-cli
+```
+
+### 認証設定（いずれかの方法）
+
+**方法 1: Google OAuth（推奨）**
+
+`gemini` コマンドを初回実行するとブラウザが開き、Google アカウントでログインする。追加の設定不要。
+
+**方法 2: API キー**
+
+[Google AI Studio](https://aistudio.google.com/) で API キーを取得し、環境変数に設定:
+
+```bash
+export GEMINI_API_KEY="your-api-key"
+```
+
+### その他
+
+- gemini-3-pro-image-preview モデルへのアクセス権限が必要
 
 ## ディレクトリ構造
 

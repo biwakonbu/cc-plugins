@@ -66,7 +66,7 @@ gemini --yolo --model gemini-3-pro-image-preview "Edit this image: {編集指示
 ## 注意事項
 
 - Gemini CLI がインストールされている必要がある
-- API キーが設定されている必要がある
+- Gemini CLI の認証が完了している必要がある（Google OAuth または GEMINI_API_KEY 環境変数）
 - 生成された画像には SynthID 透かしが埋め込まれる
 - 不適切なコンテンツの生成は拒否される
 

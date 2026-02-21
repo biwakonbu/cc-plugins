@@ -62,5 +62,5 @@ gemini --yolo --model gemini-3-pro-image-preview "Generate an image [with {aspec
 ## 注意事項
 
 - Gemini CLI がインストールされていること
-- API キーが設定されていること
+- Gemini CLI の認証が完了していること（Google OAuth または GEMINI_API_KEY 環境変数）
 - 不適切なコンテンツの生成は拒否される
