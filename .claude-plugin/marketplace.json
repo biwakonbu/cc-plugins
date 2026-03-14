@@ -93,6 +93,11 @@
       "name": "secret-guard",
       "source": "./plugins/secret-guard",
       "description": "AI によるシークレットファイルへのアクセスをブロックし、機密情報の漏洩を防止するセキュリティプラグイン"
+    },
+    {
+      "name": "gemini-api-spec",
+      "source": "./plugins/gemini-api-spec",
+      "description": "Gemini API の最新モデル・機能・価格に関する包括的な知識プラグイン。テキスト生成、画像生成、音声・TTS、動画生成、価格・レート制限について回答。"
     }
   ]
 }
