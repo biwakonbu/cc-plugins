@@ -22,7 +22,7 @@ cc-plugins/
 | cf-terraforming-spec | 0.2.0 | Cloudflare cf-terraforming CLI の仕様と使い方に関する知識を提供。既存の Cloudflare リソースを Terraform にインポートする方法、HCL 設定の生成、インポートブロックの使用などについて回答。 |
 | claude-code-spec | 2.0.0 | Claude Code CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | cloudflare-knowledge | 1.1.0 | Cloudflare のサービス、Wrangler CLI、Workers/Pages 開発、Terraform 管理、セキュリティ機能に関する包括的な知識プラグイン |
-| codex-cli-spec | 2.0.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
+| codex-cli-spec | 2.1.0 | OpenAI Codex CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | cursor-cli-spec | 1.2.0 | Cursor IDE および cursor-agent CLI の仕様と使い方を完璧に理解するための知識プラグイン |
 | gemini-api-spec | 1.0.0 | Gemini API の最新モデル・機能・価格に関する包括的な知識プラグイン。テキスト生成、画像生成、音声・TTS、動画生成、価格・レート制限について回答。 |
 | gemini-cli-spec | 2.0.0 | Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン |

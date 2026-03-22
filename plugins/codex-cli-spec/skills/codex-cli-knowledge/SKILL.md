@@ -95,11 +95,11 @@ macOS デスクトップアプリを起動。
 
 ## 利用可能なモデル
 
-**注意**: `gpt-5.3-codex` のみを使用すること。他のモデルは利用価値なし。
+**注意**: `gpt-5.4-codex` のみを使用すること。他のモデルは利用価値なし。
 
 | モデル | 用途 | 推論レベル |
 |--------|------|------------|
-| `gpt-5.3-codex` | コーディング専用（デフォルト・唯一推奨） | low, medium, high, xhigh |
+| `gpt-5.4-codex` | コーディング専用（デフォルト・唯一推奨） | low, medium, high, xhigh |
 
 ### 推論レベル（Reasoning Effort）
 
@@ -116,16 +116,16 @@ macOS デスクトップアプリを起動。
 
 | ユースケース | 推奨モデル | 推論レベル |
 |-------------|-----------|------------|
-| 通常のコーディング | `gpt-5.3-codex` | medium |
-| 設計・方針検討・評価 | `gpt-5.3-codex` | high |
-| 最高の思考が必要な場合 | `gpt-5.3-codex` | xhigh |
-| 簡単な修正・フォーマット | `gpt-5.3-codex` | low |
+| 通常のコーディング | `gpt-5.4-codex` | medium |
+| 設計・方針検討・評価 | `gpt-5.4-codex` | high |
+| 最高の思考が必要な場合 | `gpt-5.4-codex` | xhigh |
+| 簡単な修正・フォーマット | `gpt-5.4-codex` | low |
 
 ### モデル変更方法
 
 ```bash
 # コマンドラインで指定
-codex --model gpt-5.3-codex "タスクを実行"
+codex --model gpt-5.4-codex "タスクを実行"
 
 # インタラクティブモードで変更
 /model
@@ -495,7 +495,7 @@ export CODEX_DISABLE_PROJECT_DOC=1
 
 | パラメータ | 型 | デフォルト | 説明 |
 |-----------|-----|-----------|------|
-| `model` | string | `gpt-5.3-codex` | 使用するモデル |
+| `model` | string | `gpt-5.4-codex` | 使用するモデル |
 | `approvalMode` | string | `suggest` | 承認モード |
 | `fullAutoErrorMode` | string | `ask-user` | Full Auto 時のエラー処理 |
 | `notify` | boolean | `true` | デスクトップ通知 |
@@ -503,7 +503,7 @@ export CODEX_DISABLE_PROJECT_DOC=1
 ### 設定例（YAML）
 
 ```yaml
-model: gpt-5.3-codex
+model: gpt-5.4-codex
 approvalMode: suggest
 fullAutoErrorMode: ask-user
 notify: true
@@ -607,7 +607,7 @@ Codex CLI は Git 操作において安全性を重視:
 ### Q: モデルを変更するには？
 
 ```bash
-codex --model gpt-5.3-codex "タスク"
+codex --model gpt-5.4-codex "タスク"
 ```
 
 または `/model` コマンドで選択。
