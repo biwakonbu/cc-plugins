@@ -71,12 +71,21 @@ codex-cli-spec/
 npm install -g @openai/codex
 ```
 
+## v3.1.0 の変更
+
+### モデル参照の公式ドキュメント準拠
+
+- `gpt-5.4-codex` → `gpt-5.4` に修正（公式ドキュメントに `gpt-5.4-codex` は不在）
+- 許可モデルリスト (`allowed-models.conf`) を追加
+- モデル参照リンターによる自動検証を導入
+- 今後のモデル更新は OpenAI Models ドキュメント (https://platform.openai.com/docs/models) を参照すること
+
 ## v3.0.0 の変更
 
 ### SKILL.md 全面改訂（v0.104.0 → v0.116.0 対応）
 
 **モデル情報:**
-- `gpt-5.4-codex` を標準推奨モデルとして維持
+- `gpt-5.4` を標準推奨モデルとして維持
 - `gpt-5.4-mini` をサブエージェント用モデルとして追加
 
 **新セクション追加:**
@@ -134,7 +143,7 @@ npm install -g @openai/codex
 
 ### モデル更新
 
-- `gpt-5.3-codex` → `gpt-5.4-codex` に標準モデルを更新
+- `gpt-5.3-codex` → `gpt-5.4` に標準モデルを更新
 - GPT-5.2 以下のモデル情報は削除済み（v2.0.0 で対応済み）
 
 ## v2.0.0 の変更

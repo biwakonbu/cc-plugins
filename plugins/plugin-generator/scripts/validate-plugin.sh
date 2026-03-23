@@ -391,6 +391,24 @@ else
     info "hooks ディレクトリなし（スキップ）"
 fi
 
+# --- モデル参照検証 ---
+echo ""
+echo "--- model references ---"
+
+# スクリプトのディレクトリからリポジトリルートを推定
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+MODEL_LINT_SCRIPT="$REPO_ROOT/.claude/scripts/lint-model-refs.sh"
+ALLOWED_MODELS_FILE="$TARGET_PATH/.claude-plugin/allowed-models.conf"
+
+if [[ -f "$ALLOWED_MODELS_FILE" && -f "$MODEL_LINT_SCRIPT" ]]; then
+    if ! bash "$MODEL_LINT_SCRIPT" "$TARGET_PATH"; then
+        ERRORS=$((ERRORS + 1))
+    fi
+else
+    info "allowed-models.conf なし（モデル参照検証スキップ）"
+fi
+
 # --- 結果サマリー ---
 echo ""
 echo "═══════════════════════════════════════════════════════════"
