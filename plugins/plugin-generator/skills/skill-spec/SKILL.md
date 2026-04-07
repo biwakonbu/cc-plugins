@@ -16,6 +16,19 @@ Claude Code プラグインの skill 仕様知識を提供する。
 
 **重要**: 実装前に必ず公式ドキュメント（英語版）を確認し、最新の仕様に従ってください。
 
+## Multi-tool compatibility (v1.5.0+)
+
+4 ツール (Claude Code / Codex CLI / Cursor / Copilot CLI) 共通認識のため、
+SKILL.md 作成時は以下を厳守する:
+
+- `name`: kebab-case 識別子 (必須)
+- `description`: 1 行目を `Use when <発動条件>` で始める。これにより Cursor/Codex/Copilot
+  が自然言語で発動判定できる
+- Claude Code 固有フィールド (`context: fork`, `user-invocable`) は skills のみで使える。
+  agents/commands に付けるとリンターがエラーを返す
+- skills では `model` フィールドは使用不可 (`tools` も不可、`allowed-tools` を使う)
+- プラグイン側では `AGENTS.md` にこの skill を列挙すること
+
 ## 公式ドキュメント
 
 - [Skills](https://code.claude.com/docs/en/skills)

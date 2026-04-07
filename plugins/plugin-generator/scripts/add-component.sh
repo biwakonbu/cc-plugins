@@ -201,6 +201,17 @@ case "$TYPE" in
 esac
 
 echo ""
+if [[ -f "$CURRENT_DIR/AGENTS.md" ]]; then
+    echo ""
+    echo "Note: AGENTS.md を更新してこの $TYPE を列挙してください (4 ツール共通認識のため)"
+else
+    echo ""
+    echo "Note: このプラグインに AGENTS.md がありません。以下で生成できます:"
+    echo "  cp $TEMPLATE_DIR/agents-md.tmpl ./AGENTS.md"
+    echo "  その後、skills/agents/commands を列挙してください"
+fi
+
+echo ""
 echo "═══════════════════════════════════════════════════════════"
 echo "Done!"
 echo "═══════════════════════════════════════════════════════════"

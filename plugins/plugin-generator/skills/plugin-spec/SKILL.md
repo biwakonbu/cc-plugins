@@ -23,6 +23,25 @@ Claude Code プラグインの全仕様知識を統合して提供する。
 - [Plugins](https://code.claude.com/docs/en/plugins)
 - [Plugins Reference](https://code.claude.com/docs/en/plugins-reference)
 
+## Multi-tool compatibility (v1.5.0+)
+
+cc-plugins のプラグインは Claude Code / Codex CLI / Cursor / Copilot CLI の
+4 ツールで共通認識できる構造を採る。詳細は `.claude/rules/plugin-development.md`
+の "Multi-tool compatibility" セクションを参照。主要ポイント:
+
+- **共通フロントマター**: `name` (kebab-case)、`description` (1 行目を `Use when ...` で開始)
+- **AGENTS.md**: プラグインに skills/agents/commands があれば必ずルートに配置。
+  Codex CLI / Cursor / Copilot CLI が読み込む入口となり、Claude Code ネイティブ定義へ参照を貼る
+- **.cursor/rules/plugin.mdc** (任意): Cursor 向けの参照ファイル
+- **.github/copilot-instructions.md**: リポジトリルートに 1 ファイルのみ
+- **Claude Code 固有フィールド**の配置ルール:
+  - `context: fork`, `user-invocable` → skills のみ
+  - `allowed-tools` → skills / commands
+  - `model` → agents / commands (skills には不可)
+  - `tools` → agents (commands/skills は allowed-tools)
+- バリデーション: `.claude/scripts/lint-multi-tool-compat.sh`
+- テンプレート: `plugins/plugin-generator/templates/{agents-md,cursor-rules.mdc}.tmpl`
+
 ---
 
 ## 個別仕様スキル

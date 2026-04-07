@@ -598,6 +598,86 @@ claude --debug
 - 機密設定は `.local.json` に分離
 - 入力をサニタイズしてセキュリティ確保
 
+## Multi-tool compatibility (v1.5.0+)
+
+cc-plugins の各プラグインは **Claude Code / Codex CLI / Cursor / GitHub Copilot CLI** の
+4 ツールで共通認識できる構造を採る。Claude Code をソースオブトゥルースとし、
+他ツールは薄いエントリファイル (`AGENTS.md` 等) 経由でネイティブ構造を参照する。
+
+### ツール別認識マトリクス
+
+| 要素 | Claude Code | Codex CLI | Cursor | Copilot CLI |
+|---|---|---|---|---|
+| `skills/*/SKILL.md` | ✅ ネイティブ | ❌ | ❌ | ❌ |
+| `agents/*.md` | ✅ ネイティブ | ❌ (独自 TOML) | ❌ | ❌ |
+| `commands/*.md` | ✅ ネイティブ | ❌ | △ (.cursor/commands) | ❌ |
+| `hooks/hooks.json` | ✅ ネイティブ | ✅ (v0.114.0+ 独自形式) | △ 実験的 | ❌ |
+| `AGENTS.md` | △ (imports) | ✅ ネイティブ | ✅ ネイティブ | ✅ (試験) |
+| `.cursor/rules/*.mdc` | ❌ | ❌ | ✅ ネイティブ | ❌ |
+| `.github/copilot-instructions.md` | ❌ | ❌ | ❌ | ✅ ネイティブ |
+| YAML frontmatter の未知フィールド | 無視 | 無視 | 無視 | 無視 |
+
+### 共通フロントマター規約 (core subset)
+
+SKILL.md / agents/*.md / commands/*.md の全てで次を満たす:
+
+- **`name`** (必須、commands 除く): kebab-case 識別子
+- **`description`** (必須): 1 行目を `Use when <発動条件>` で始める
+  (Cursor/Codex/Copilot が自然言語で発動判定するため)
+- `description` が複数行になる場合は YAML block scalar (`|`) を使う
+
+Claude Code 固有フィールド (`context`, `user-invocable`, `allowed-tools`) は
+他ツールが無視するため温存して構わない。ただし配置ルールは厳守:
+
+| フィールド | 有効な場所 | 備考 |
+|---|---|---|
+| `context: fork` | skill のみ | agent/command に付けてはならない |
+| `user-invocable` | skill のみ | |
+| `allowed-tools` | skill / command | agent は `tools` を使う |
+| `model` | agent / command | skill では使用不可 |
+| `tools` | agent | |
+
+### AGENTS.md 規約
+
+プラグインに skills/agents/commands のいずれかがある場合、
+**プラグインルートに `AGENTS.md` を必ず置く**。内容は 4 ツール共通の入口ドキュメントとして、
+提供するスキル・エージェント・コマンド・フックを列挙する:
+
+```markdown
+# <plugin-name>
+
+<1 行説明>
+
+## Skills
+- **<skill>** — Use when <条件>. 詳細: `skills/<skill>/SKILL.md`
+
+## Agents
+- **<agent>** — Use when <条件>. 詳細: `agents/<agent>.md`
+
+## Commands
+- **/<plugin>:<cmd>** — <説明>. 詳細: `commands/<cmd>.md`
+
+## Hooks
+- **<event>**: <説明> (`hooks/hooks.json`)
+```
+
+### ツール固有エントリファイル (任意)
+
+- **`.cursor/rules/plugin.mdc`** — Cursor 対応が必要なプラグインのみ作成。
+  frontmatter (`description` / `globs` / `alwaysApply`) 付きで `AGENTS.md` を参照指示する。
+- **リポジトリルート `.github/copilot-instructions.md`** — Copilot CLI 向け。
+  プラグインごとではなく**リポジトリルートに 1 ファイルのみ**。
+
+### バリデーション
+
+`.claude/scripts/lint-multi-tool-compat.sh` が上記規約を検証する。
+`.claude/hooks/lint-plugins-hook.sh` から `git commit` 時に自動実行される。
+初期は warning 中心 (AGENTS.md 不在は warning) で既存プラグインを壊さない。
+
+`plugin-generator` v1.5.0+ はこの規約に従ったテンプレートを提供し、
+`/plugin-generator:create` で新規プラグイン作成時に `AGENTS.md` と
+`.cursor/rules/plugin.mdc` を同時生成する。
+
 ## マーケットプレイス
 
 ### marketplace.json

@@ -166,6 +166,26 @@ plugin-generator/
 - plugin.json の変更（バージョン含む）
 - 設計方針や動作の変更
 
+### v1.5.0 の変更 (Multi-tool compatibility)
+
+**4 ツール共通認識対応**: Claude Code / Codex CLI / Cursor / GitHub Copilot CLI が
+同じプラグインを共通認識できるよう、規約・テンプレート・リンターを整備。
+
+- `templates/agents-md.tmpl` — AGENTS.md 雛形を新規追加
+- `templates/cursor-rules.mdc.tmpl` — `.cursor/rules/plugin.mdc` 雛形を新規追加
+- `templates/skill.md.tmpl` / `agent.md.tmpl` / `command.md.tmpl` —
+  description 1 行目を `Use when <条件>` で始める規約に合わせて更新
+- `scripts/generate-plugin.sh` — AGENTS.md と .cursor/rules/plugin.mdc を同時生成
+- `scripts/add-component.sh` — コンポーネント追加時に AGENTS.md 更新を案内
+- `skills/plugin-spec/SKILL.md` / `skills/skill-spec/SKILL.md` —
+  Multi-tool compatibility セクションを追加
+
+**関連ファイル (リポジトリ側)**:
+- `.claude/scripts/lint-multi-tool-compat.sh` — 新バリデーションリンター
+- `.claude/hooks/lint-plugins-hook.sh` — 新リンター呼び出しを追加
+- `.github/copilot-instructions.md` — Copilot CLI 向けリポジトリ全体の指示
+- `.claude/rules/plugin-development.md` — Multi-tool compatibility セクション追加
+
 ### v1.4.0 の変更
 
 **Opus 4.6 モデル ID の更新:**

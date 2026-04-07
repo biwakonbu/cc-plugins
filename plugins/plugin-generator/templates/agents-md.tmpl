@@ -1,0 +1,39 @@
+# {{PLUGIN_NAME}}
+
+{{DESCRIPTION}}
+
+このファイルは Claude Code / Codex CLI / Cursor / GitHub Copilot CLI の
+4 ツールが共通で参照する、プラグインの入口ドキュメントです。
+詳細な定義は各ファイルの YAML frontmatter と Markdown 本体を参照してください。
+
+## Skills
+
+<!-- プラグインが提供するスキルを列挙。発動条件を Use when で始める。 -->
+<!-- 例:
+- **example-skill** — Use when the user asks about example topics. 詳細: `skills/example-skill/SKILL.md`
+-->
+
+## Agents
+
+<!-- サブエージェントを列挙。
+- **example-agent** — Use when delegation to a specialist is needed. 詳細: `agents/example-agent.md`
+-->
+
+## Commands
+
+<!-- スラッシュコマンドを列挙。
+- **/{{PLUGIN_NAME}}:example** — example コマンドの概要. 詳細: `commands/example.md`
+-->
+
+## Hooks
+
+<!-- フックを列挙 (設定していれば)。
+- **PostToolUse**: 編集後にフォーマッタを実行 (`hooks/hooks.json`)
+-->
+
+## Multi-tool Compatibility
+
+- Claude Code: `skills/` `agents/` `commands/` `hooks/` をネイティブ発見
+- Codex CLI: このファイルを AGENTS.md として自動読み込み
+- Cursor: `.cursor/rules/plugin.mdc` 経由で参照 (任意)
+- Copilot CLI: リポジトリルートの `.github/copilot-instructions.md` 経由で参照

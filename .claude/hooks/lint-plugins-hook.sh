@@ -48,6 +48,7 @@ echo ""
 
 ERRORS=0
 VALIDATE_SCRIPT="$MARKETPLACE_ROOT/plugins/plugin-generator/scripts/validate-plugin.sh"
+MULTITOOL_LINT="$MARKETPLACE_ROOT/.claude/scripts/lint-multi-tool-compat.sh"
 
 # validate-plugin.sh が存在するか確認
 if [[ ! -f "$VALIDATE_SCRIPT" ]]; then
@@ -68,6 +69,13 @@ for PLUGIN_NAME in $CHANGED_PLUGINS; do
 
     if ! "$VALIDATE_SCRIPT" "$PLUGIN_PATH"; then
         ERRORS=$((ERRORS + 1))
+    fi
+
+    # 4 ツール共通認識リント (warning のみでは止めない)
+    if [[ -f "$MULTITOOL_LINT" ]]; then
+        if ! bash "$MULTITOOL_LINT" "$PLUGIN_PATH"; then
+            ERRORS=$((ERRORS + 1))
+        fi
     fi
 
     echo ""

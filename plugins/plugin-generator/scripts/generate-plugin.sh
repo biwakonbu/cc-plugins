@@ -98,6 +98,7 @@ expand_template() {
         -e "s/{{AUTHOR_NAME}}/$AUTHOR_NAME/g" \
         -e "s/{{DATE}}/$DATE/g" \
         -e "s/{{VERSION}}/$VERSION/g" \
+        -e "s|{{DESCRIPTION}}||g" \
         "$src" > "$dst"
 
     echo "  Created: ${dst#$MARKETPLACE_ROOT/}"
@@ -109,6 +110,15 @@ echo "Generating files..."
 expand_template "$TEMPLATE_DIR/base/plugin.json.tmpl" "$TARGET_DIR/.claude-plugin/plugin.json"
 expand_template "$TEMPLATE_DIR/base/CLAUDE.md.tmpl" "$TARGET_DIR/CLAUDE.md"
 expand_template "$TEMPLATE_DIR/base/hello.md.tmpl" "$TARGET_DIR/commands/hello.md"
+
+# 4 ツール共通認識ファイル (AGENTS.md / .cursor/rules/plugin.mdc)
+if [[ -f "$TEMPLATE_DIR/agents-md.tmpl" ]]; then
+    expand_template "$TEMPLATE_DIR/agents-md.tmpl" "$TARGET_DIR/AGENTS.md"
+fi
+if [[ -f "$TEMPLATE_DIR/cursor-rules.mdc.tmpl" ]]; then
+    mkdir -p "$TARGET_DIR/.cursor/rules"
+    expand_template "$TEMPLATE_DIR/cursor-rules.mdc.tmpl" "$TARGET_DIR/.cursor/rules/plugin.mdc"
+fi
 
 # marketplace.json 更新
 echo ""
@@ -133,6 +143,8 @@ echo ""
 echo "Generated files:"
 echo "  - .claude-plugin/plugin.json"
 echo "  - CLAUDE.md"
+echo "  - AGENTS.md                 (Codex/Copilot/Cursor 共通入口)"
+echo "  - .cursor/rules/plugin.mdc  (Cursor 用参照)"
 echo "  - commands/hello.md"
 echo ""
 echo "Next steps:"
