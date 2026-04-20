@@ -89,3 +89,15 @@ cloudflare-knowledge/
 - Cloudflare の新機能リリース時にスキル内容を更新
 - バージョン更新時は plugin.json の version も更新
 - 公式ドキュメントの URL が変更された場合は参照リンクを修正
+
+## v1.1.1 の変更
+
+**5 ツール共通認識の標準化対応:**
+- `AGENTS.md` を新規追加（Claude Code / Codex CLI / Cursor / Copilot CLI / OpenCode の入口ドキュメント）
+- skills / agents / commands の `description` 1 行目を `Use when ...` で始まる形式に統一
+  - Cursor / Codex / Copilot / OpenCode での発動判定精度を向上
+- 既存の説明文は語順入れ替えにより先頭に移動。日本語説明は末尾に再配置し情報量は保持
+
+**関連:**
+- 仕様: `.claude/rules/plugin-development.md`
+- リンター: `.claude/scripts/lint-multi-tool-compat.sh`

@@ -1,6 +1,6 @@
 ---
 name: unified-researcher
-description: 複数検索エンジンを活用した包括的リサーチエージェント。Gemini、Codex、WebSearch を並列実行し、結果を統合して高精度な調査を実行。
+description: Use when user needs comprehensive research combining multiple search engines (Gemini, Codex, WebSearch) for high-accuracy investigation. 複数検索エンジンを活用した包括的リサーチエージェントで、Gemini、Codex、WebSearch を並列実行し結果を統合して高精度な調査を実行する。
 tools: Bash, Read, Write, Glob, WebSearch
 model: inherit
 skills: unified-search

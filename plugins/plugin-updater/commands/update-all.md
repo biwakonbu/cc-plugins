@@ -1,5 +1,5 @@
 ---
-description: 全マーケットプレイスとインストール済みプラグインを更新する
+description: Use when user wants to update all plugin marketplaces and installed plugins at once. 全マーケットプレイスとインストール済みプラグインを更新する。
 allowed-tools: Bash, Read
 ---
 

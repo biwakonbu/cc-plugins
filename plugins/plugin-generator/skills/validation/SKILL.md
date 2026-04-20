@@ -1,6 +1,6 @@
 ---
 name: plugin-validation
-description: Claude Code プラグインの構造とメタデータを検証する。plugin.json の必須フィールド、各コンポーネントのフロントマター、パス整合性、JSON 構文をチェック。Use when validating plugin structure, checking plugin correctness, linting plugin files, or verifying plugin format.
+description: Use when validating plugin structure, checking plugin correctness, linting plugin files, or verifying plugin format. Claude Code プラグインの構造とメタデータを検証し、plugin.json の必須フィールド、各コンポーネントのフロントマター、パス整合性、JSON 構文をチェックする。
 allowed-tools: Bash, Read, Glob, Grep
 ---
 

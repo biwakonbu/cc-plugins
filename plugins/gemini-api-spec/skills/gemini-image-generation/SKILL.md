@@ -1,6 +1,6 @@
 ---
 name: gemini-image-generation
-description: Gemini 画像生成モデル（Nano Banana 2 / Pro）の選択ガイド、解像度・アスペクト比・価格比較、SDK 使用法を提供。Use when user asks about Gemini image generation, Nano Banana, image models, image resolution, aspect ratio, or image editing. Also use when user says 画像生成モデル, Nano Banana, 画像モデル選択, 解像度, アスペクト比.
+description: Use when user asks about Gemini image generation, Nano Banana, image models, image resolution, aspect ratio, or image editing. Also use when user says 画像生成モデル, Nano Banana, 画像モデル選択, 解像度, アスペクト比. Gemini 画像生成モデル（Nano Banana 2 / Pro）の選択ガイド、解像度・アスペクト比・価格比較、SDK 使用法を提供する。
 context: fork
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: file-path-matcher
-description: 任意のファイルパスが .claude/rules/ の paths 条件に該当するかを判定する。ファイル操作前の確認、paths 条件のテスト、rules 適用範囲の確認に使用。Determines if a file path matches any paths conditions in .claude/rules/. Use when checking if a file is covered by rules, testing path patterns, verifying rules coverage, or when the user asks about rule applicability.
+description: Use when checking if a file is covered by rules, testing path patterns, verifying rules coverage, or when the user asks about rule applicability. 任意のファイルパスが .claude/rules/ の paths 条件に該当するかを判定し、ファイル操作前の確認、paths 条件のテスト、rules 適用範囲の確認に使う。Determines if a file path matches any paths conditions in .claude/rules/.
 allowed-tools: Read, Glob, Grep, Bash
 ---
 

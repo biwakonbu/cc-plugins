@@ -1,5 +1,5 @@
 ---
-description: 新しい Claude Code プラグインを生成する
+description: Use when user wants to scaffold a new Claude Code plugin. 新しい Claude Code プラグインを生成する。
 allowed-tools: Bash, Read, Write, Glob
 ---
 

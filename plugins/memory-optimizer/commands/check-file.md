@@ -1,7 +1,7 @@
 ---
 allowed-tools: Read, Glob, Grep, Bash
 argument-hint: <filepath>
-description: 指定されたファイルパスがどの .claude/rules/ に該当するかを即座に確認
+description: Use when user wants to check which .claude/rules/ applies to a specific file path. 指定されたファイルパスがどの .claude/rules/ に該当するかを即座に確認する。
 ---
 
 # Check File Rules Coverage

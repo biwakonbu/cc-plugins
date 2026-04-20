@@ -1,5 +1,5 @@
 ---
-description: Gemini CLI を使用して Web 検索を実行する。Use when user explicitly wants to search with Gemini.
+description: Use when user explicitly wants to search with Gemini. Gemini CLI を使用して Web 検索を実行する。
 allowed-tools: Bash
 argument-hint: [search query]
 ---

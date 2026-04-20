@@ -1,6 +1,6 @@
 ---
 name: git-commit
-description: Git コミットワークフローの実行。変更のステージング、コミットメッセージ生成、コミット実行を行う。Use when user wants to commit changes, create a commit, or stage and commit files.
+description: Use when user wants to commit changes, create a commit, or stage and commit files. Git コミットワークフローを実行し、変更のステージング、コミットメッセージ生成、コミット実行を行う。
 allowed-tools: Bash, Read, Grep, Glob
 ---
 

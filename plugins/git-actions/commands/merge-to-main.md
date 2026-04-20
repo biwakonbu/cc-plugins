@@ -1,5 +1,5 @@
 ---
-description: カレントブランチを main にマージしてプッシュする
+description: Use when user wants to merge the current branch to main and push the result. カレントブランチを main にマージしてプッシュする。
 ---
 
 # Git Merge to Main

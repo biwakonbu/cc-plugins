@@ -1,5 +1,5 @@
 ---
-description: 変更をコミットし、リモートリポジトリにプッシュする
+description: Use when user wants to commit changes and push them to the remote repository. 変更をコミットし、リモートリポジトリにプッシュする。
 ---
 
 # Git Commit & Push

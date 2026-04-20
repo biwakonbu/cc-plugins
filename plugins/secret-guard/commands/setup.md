@@ -1,5 +1,5 @@
 ---
-description: シークレット操作用のテンプレートスクリプトを生成
+description: Use when user wants to generate template scripts for safe secret operations. シークレット操作用のテンプレートスクリプトを生成する。
 allowed-tools: Bash, Read, Write, Glob, AskUserQuestion
 argument-hint: [script-type]
 ---

@@ -1,6 +1,6 @@
 ---
 name: migration-guide
-description: CLAUDE.md から rules フォルダへの移行ガイド。分離すべき条件、移行手順、ステップバイステップの説明を提供。Use when user wants to migrate content from CLAUDE.md to rules, split memory, or reorganize memory structure. Also use when user says 分離したい, 移行したい, リファクタリング, 整理したい.
+description: Use when user wants to migrate content from CLAUDE.md to rules, split memory, or reorganize memory structure. Also use when user says 分離したい, 移行したい, リファクタリング, 整理したい. CLAUDE.md から rules フォルダへの移行ガイドで、分離すべき条件、移行手順、ステップバイステップの説明を提供する。
 context: fork
 user-invocable: false
 ---

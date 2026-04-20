@@ -1,6 +1,6 @@
 ---
 name: image-generation
-description: Gemini Nano Banana Pro を使用した画像生成。テキストから画像、解像度・アスペクト比指定、参照画像を使った編集に対応。Use when user asks to generate images, create pictures, make illustrations, or edit images with AI. Also use when user says 画像生成, 画像を作って, イラスト作成, 絵を描いて, 画像編集.
+description: Use when user asks to generate images, create pictures, make illustrations, or edit images with AI. Also use when user says 画像生成, 画像を作って, イラスト作成, 絵を描いて, 画像編集. Gemini Nano Banana Pro を使用した画像生成で、テキストから画像、解像度・アスペクト比指定、参照画像を使った編集に対応する。
 allowed-tools: Bash
 ---
 

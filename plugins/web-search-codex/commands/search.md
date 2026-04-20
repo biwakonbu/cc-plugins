@@ -1,5 +1,5 @@
 ---
-description: Codex CLI 環境で Gemini CLI を使用して Web 検索を実行する。Use when user explicitly wants to search within Codex CLI.
+description: Use when user explicitly wants to search the web within Codex CLI. Codex CLI 環境で Gemini CLI を使用して Web 検索を実行する。
 allowed-tools: Bash
 argument-hint: [search query]
 ---

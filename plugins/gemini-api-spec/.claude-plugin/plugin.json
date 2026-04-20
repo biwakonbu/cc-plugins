@@ -1,7 +1,7 @@
 {
   "name": "gemini-api-spec",
   "description": "Gemini API の最新モデル・機能・価格に関する包括的な知識プラグイン。テキスト生成、画像生成、音声・TTS、動画生成、価格・レート制限について回答。",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Ryo Higasigawa"
   },

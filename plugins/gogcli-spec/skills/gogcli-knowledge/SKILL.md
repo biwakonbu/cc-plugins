@@ -1,6 +1,6 @@
 ---
 name: gogcli-knowledge
-description: Google Suite CLI (gogcli/gog) の仕様と使い方に関する知識を提供。Gmail、Calendar、Drive、Contacts、Tasks、Sheets、Docs、Chat、Classroom、People、Groups、Keep の操作について回答。Use when user asks about gogcli, gog CLI, Google CLI, Gmail CLI, Google Calendar CLI, Google Drive CLI, or Google Workspace CLI. Also use when user says gogcli について, Google CLI について, gog コマンド, Gmail 操作, カレンダー操作, ドライブ操作.
+description: Use when user asks about gogcli, gog CLI, Google CLI, Gmail CLI, Google Calendar CLI, Google Drive CLI, or Google Workspace CLI. Also use when user says gogcli について, Google CLI について, gog コマンド, Gmail 操作, カレンダー操作, ドライブ操作. Google Suite CLI (gogcli/gog) の仕様と使い方に関する知識を提供し、Gmail、Calendar、Drive、Contacts、Tasks、Sheets、Docs、Chat、Classroom、People、Groups、Keep の操作について回答する。
 context: fork
 ---
 

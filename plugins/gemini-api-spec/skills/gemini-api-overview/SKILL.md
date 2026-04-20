@@ -1,6 +1,6 @@
 ---
 name: gemini-api-overview
-description: Gemini API の全体概要、モデルファミリー一覧、用途別推奨モデル早見表、SDK 基本使用法を提供。Use when user asks about Gemini API overview, model selection, which Gemini model to use, Gemini model comparison, or SDK setup. Also use when user says Gemini API について, モデル選択, どのモデルを使うべき, Gemini SDK.
+description: Use when user asks about Gemini API overview, model selection, which Gemini model to use, Gemini model comparison, or SDK setup. Also use when user says Gemini API について, モデル選択, どのモデルを使うべき, Gemini SDK. Gemini API の全体概要、モデルファミリー一覧、用途別推奨モデル早見表、SDK 基本使用法を提供する。
 context: fork
 ---
 

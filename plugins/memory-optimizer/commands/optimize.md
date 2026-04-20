@@ -1,5 +1,5 @@
 ---
-description: メモリ構成の最適化提案を生成
+description: Use when user wants to generate concrete optimization suggestions for the memory configuration. メモリ構成の最適化提案を生成する。
 allowed-tools: Read, Glob, Grep, Write, Bash(wc:*), Bash(ls:*), Bash(mkdir:*)
 ---
 

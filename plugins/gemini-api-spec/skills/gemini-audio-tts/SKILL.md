@@ -1,6 +1,6 @@
 ---
 name: gemini-audio-tts
-description: Gemini 音声モデル、TTS（Text-to-Speech）、Live API の構成・使用法を提供。コスト優先とパフォーマンス優先の両軸で推奨。Use when user asks about Gemini TTS, text-to-speech, audio generation, Live API, voice synthesis, speech, or audio models. Also use when user says TTS, 音声合成, テキスト読み上げ, Live API, 音声モデル, 音声生成.
+description: Use when user asks about Gemini TTS, text-to-speech, audio generation, Live API, voice synthesis, speech, or audio models. Also use when user says TTS, 音声合成, テキスト読み上げ, Live API, 音声モデル, 音声生成. Gemini 音声モデル、TTS（Text-to-Speech）、Live API の構成・使用法を提供し、コスト優先とパフォーマンス優先の両軸で推奨する。
 context: fork
 ---
 

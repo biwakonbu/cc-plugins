@@ -1,6 +1,6 @@
 ---
 name: gemini-video-generation
-description: Veo 3.1 動画生成モデルの機能、解像度、アスペクト比、ネイティブオーディオ、価格を提供。Use when user asks about Gemini video generation, Veo, video model, video creation, or video editing. Also use when user says 動画生成, Veo, ビデオ生成, 動画モデル, 動画作成.
+description: Use when user asks about Gemini video generation, Veo, video model, video creation, or video editing. Also use when user says 動画生成, Veo, ビデオ生成, 動画モデル, 動画作成. Veo 3.1 動画生成モデルの機能、解像度、アスペクト比、ネイティブオーディオ、価格を提供する。
 context: fork
 ---
 

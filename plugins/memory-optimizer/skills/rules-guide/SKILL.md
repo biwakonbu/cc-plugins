@@ -1,6 +1,6 @@
 ---
 name: rules-guide
-description: .claude/rules フォルダの活用ガイド。paths 条件の書き方、ディレクトリ構成、ルール分離のベストプラクティスを提供。Use when user asks about rules folder, paths condition, rule files, or modular memory. Also use when user says rules フォルダ, paths 条件, ルール分離, モジュール化.
+description: Use when user asks about rules folder, paths condition, rule files, or modular memory. Also use when user says rules フォルダ, paths 条件, ルール分離, モジュール化. .claude/rules フォルダの活用ガイドで、paths 条件の書き方、ディレクトリ構成、ルール分離のベストプラクティスを提供する。
 context: fork
 ---
 

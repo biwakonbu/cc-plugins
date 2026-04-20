@@ -1,6 +1,6 @@
 ---
 name: git-resolve-conflicts
-description: Git コンフリクト解消の支援。コンフリクトを分析し、解消案を生成・提示して、ユーザー承認後に適用する。Use when merge conflicts occur, when git merge fails with conflicts, or when user needs help resolving git conflicts.
+description: Use when merge conflicts occur, when git merge fails with conflicts, or when user needs help resolving git conflicts. Git コンフリクト解消を支援し、コンフリクトを分析して解消案を生成・提示し、ユーザー承認後に適用する。
 allowed-tools: Bash, Read, Grep, Glob, Edit, AskUserQuestion
 ---
 

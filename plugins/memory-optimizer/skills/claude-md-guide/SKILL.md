@@ -1,6 +1,6 @@
 ---
 name: claude-md-guide
-description: CLAUDE.md の記載ガイド。何を書くべきか、推奨サイズ、避けるべき内容を提供。Use when user asks about CLAUDE.md, what to write in CLAUDE.md, memory configuration, or project instructions. Also use when user says CLAUDE.md の書き方, メモリ設定, 何を書くべき, プロジェクト指示.
+description: Use when user asks about CLAUDE.md, what to write in CLAUDE.md, memory configuration, or project instructions. Also use when user says CLAUDE.md の書き方, メモリ設定, 何を書くべき, プロジェクト指示. CLAUDE.md の記載ガイドで、何を書くべきか、推奨サイズ、避けるべき内容を提供する。
 context: fork
 ---
 

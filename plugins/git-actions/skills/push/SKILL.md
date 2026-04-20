@@ -1,6 +1,6 @@
 ---
 name: git-push
-description: Git プッシュワークフローの実行。現在のブランチをリモートリポジトリに安全にプッシュする。Use when user wants to push commits, push to remote, or sync with remote repository.
+description: Use when user wants to push commits, push to remote, or sync with remote repository. Git プッシュワークフローを実行し、現在のブランチをリモートリポジトリに安全にプッシュする。
 allowed-tools: Bash, Read, Grep, Glob
 ---
 

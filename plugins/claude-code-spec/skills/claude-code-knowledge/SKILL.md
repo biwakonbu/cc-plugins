@@ -1,6 +1,6 @@
 ---
 name: claude-code-knowledge
-description: Claude Code CLI の仕様と使い方に関する知識を提供。プラグイン開発、スキル、スラッシュコマンド、サブエージェント、フック、LSP、MCP、権限設定、セッション管理、エージェントチーム、バックグラウンドエージェント、Git Worktree、セッションテレポート、effort制御、構造化出力、リモートセッションについて回答。Use when user asks about Claude Code, plugins, skills, slash commands, subagents, hooks, LSP, MCP, permissions, sessions, plan mode, agent teams, background agents, worktree, teleport, effort, structured output, --bare, or --console. Also use when user says Claude Code について, プラグイン開発, スキル定義, フック設定, 権限設定.
+description: Use when user asks about Claude Code, plugins, skills, slash commands, subagents, hooks, LSP, MCP, permissions, sessions, plan mode, agent teams, background agents, worktree, teleport, effort, structured output, --bare, or --console. Also use when user says Claude Code について, プラグイン開発, スキル定義, フック設定, 権限設定. Claude Code CLI の仕様と使い方に関する知識を提供し、プラグイン開発、スキル、スラッシュコマンド、サブエージェント、フック、LSP、MCP、権限設定、セッション管理、エージェントチーム、バックグラウンドエージェント、Git Worktree、セッションテレポート、effort 制御、構造化出力、リモートセッションについて回答する。
 context: fork
 ---
 

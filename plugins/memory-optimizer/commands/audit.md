@@ -1,5 +1,5 @@
 ---
-description: 現在のメモリ構成を監査し、最適化ポイントをレポート
+description: Use when user wants to audit the current memory configuration and report optimization points. 現在のメモリ構成を監査し、最適化ポイントをレポートする。
 allowed-tools: Read, Glob, Grep, Bash(wc:*), Bash(ls:*)
 ---
 

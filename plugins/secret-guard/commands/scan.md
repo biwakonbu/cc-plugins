@@ -1,5 +1,5 @@
 ---
-description: プロジェクトのシークレット保護状況をスキャンしレポート
+description: Use when user wants to scan and report the project's secret protection status. プロジェクトのシークレット保護状況をスキャンしレポートする。
 allowed-tools: Bash, Read, Glob, Grep, Write, Edit, AskUserQuestion
 argument-hint: [--fix]
 ---

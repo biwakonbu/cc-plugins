@@ -1,6 +1,6 @@
 ---
 name: best-practices
-description: メモリ管理のベストプラクティス集。推奨パターン、アンチパターン、実践的なヒントを提供。Use when user asks about best practices, recommended patterns, memory tips, or how to write good memory. Also use when user says ベストプラクティス, 推奨, コツ, ヒント, 良い書き方.
+description: Use when user asks about best practices, recommended patterns, memory tips, or how to write good memory. Also use when user says ベストプラクティス, 推奨, コツ, ヒント, 良い書き方. メモリ管理のベストプラクティス集で、推奨パターン、アンチパターン、実践的なヒントを提供する。
 context: fork
 ---
 

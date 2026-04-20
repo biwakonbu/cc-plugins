@@ -1,6 +1,6 @@
 ---
 name: memory-audit
-description: メモリ構成の監査と分析。現在のメモリ状態を評価し、最適化ポイントを特定。Use when user wants to audit memory, check memory status, analyze memory configuration, or evaluate memory efficiency. Also use when user says 監査, チェック, 分析, 評価, 現状確認.
+description: Use when user wants to audit memory, check memory status, analyze memory configuration, or evaluate memory efficiency. Also use when user says 監査, チェック, 分析, 評価, 現状確認. メモリ構成の監査と分析を行い、現在のメモリ状態を評価し、最適化ポイントを特定する。
 ---
 
 # Memory Audit スキル

@@ -1,5 +1,5 @@
 ---
-description: 既存プラグインに新しい skill を追加する
+description: Use when user wants to add a new skill to an existing plugin. 既存プラグインに新しい skill を追加する。
 argument-hint: [skill-name]
 ---
 

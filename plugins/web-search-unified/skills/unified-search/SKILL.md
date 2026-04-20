@@ -1,6 +1,6 @@
 ---
 name: unified-search
-description: Gemini CLI、Codex CLI、WebSearch を並列実行して結果を統合。複数ソースからの徹底調査に最適。
+description: Use when user needs deep/cross-source web research, comparison analysis, or highest-accuracy search results. Gemini CLI, Codex CLI, Claude WebSearch を並列実行し URL 重複排除・信頼度スコアリング・鮮度フィルタで結果を統合する。
 allowed-tools: Bash, WebSearch
 context: fork
 ---

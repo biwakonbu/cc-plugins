@@ -1,6 +1,6 @@
 ---
 name: skill-spec
-description: Claude Code プラグインの skill 仕様知識。スキルの正しい形式、フロントマター、description のベストプラクティスを提供。Use when creating, updating, or maintaining skills, understanding skill structure, or implementing SKILL.md files. Also use when user says スキル, SKILL.md, skills.
+description: Use when creating, updating, or maintaining skills, understanding skill structure, or implementing SKILL.md files. Also use when user says スキル, SKILL.md, skills. Claude Code プラグインの skill 仕様知識で、スキルの正しい形式、フロントマター、description のベストプラクティスを提供する。
 context: fork
 user-invocable: false
 allowed-tools: Read, Grep, Glob
@@ -49,9 +49,17 @@ SKILL.md 作成時は以下を厳守する:
 skills/{skill-name}/SKILL.md
 ```
 
-- ディレクトリ名がスキル名になる
 - kebab-case を使用（例: `my-skill/SKILL.md`）
 - ファイル名は必ず `SKILL.md`（大文字）
+
+### name とディレクトリ名の関係
+
+- `name` はスキル識別子（Claude Code 上、スキルを一意に識別するのは `name` でありディレクトリ名ではない）
+- **原則**: `name` とディレクトリ名は一致させる
+- **例外（プラグイン内プレフィックス許容）**: `commit`, `push`, `merge`, `validation` のように汎用的で他プラグインと衝突しうる名前の場合、プラグイン名由来の prefix を付けて一意化してよい
+  - `skills/commit/` → `name: git-commit`（git-actions プラグイン）
+  - `skills/validation/` → `name: plugin-validation`（plugin-generator プラグイン）
+- prefix を使う場合は当該プラグインの `CLAUDE.md` / `AGENTS.md` に対応表を明記
 
 ---
 
@@ -140,6 +148,22 @@ allowed-tools: Read, Grep, Glob
 ```
 
 **重要**: フロントマターは必ず1行目から `---` で開始（空行不可）
+
+### 本文構造の 2 パターン
+
+| パターン | 用途 | 必須セクション |
+|---|---|---|
+| **アクションスキル** | 手順実行型（commit, scan, deploy 等） | `## Instructions` + `## Examples` |
+| **知識 / リファレンススキル** | 発動時にドメイン知識をロードする型 | 独自見出し可（概要 / API / ベストプラクティス 等） |
+
+知識スキル例外を採用する場合、以下をすべて満たすこと:
+
+- `description` が "Use when user asks about ..." 等の知識提供トリガーを含む
+- `context: fork` または `user-invocable: false` を設定
+- `allowed-tools` は Read / Grep / Glob 中心で書き換え系ツールを含めない
+- 本文冒頭で「知識提供型スキルである」ことを明示
+
+**代表例**: `cloudflare-knowledge/*`, `*-cli-spec/*-cli-knowledge`, `gemini-api-spec/*`, `agent-browser-spec/*`, `web-search-unified/unified-search` 等
 
 ---
 

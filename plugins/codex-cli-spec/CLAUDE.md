@@ -164,3 +164,15 @@ npm install -g @openai/codex
 - README.md: ユーザー向け情報
 - CLAUDE.md: 設計方針と内部構造、バージョン更新内容
 - plugin.json: バージョン番号
+
+## v3.1.1 の変更
+
+**5 ツール共通認識の標準化対応:**
+- `AGENTS.md` を新規追加（Claude Code / Codex CLI / Cursor / Copilot CLI / OpenCode の入口ドキュメント）
+- skills / agents / commands の `description` 1 行目を `Use when ...` で始まる形式に統一
+  - Cursor / Codex / Copilot / OpenCode での発動判定精度を向上
+- 既存の説明文は語順入れ替えにより先頭に移動。日本語説明は末尾に再配置し情報量は保持
+
+**関連:**
+- 仕様: `.claude/rules/plugin-development.md`
+- リンター: `.claude/scripts/lint-multi-tool-compat.sh`

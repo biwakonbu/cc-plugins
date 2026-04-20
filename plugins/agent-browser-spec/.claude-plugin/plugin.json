@@ -1,7 +1,7 @@
 {
   "name": "agent-browser-spec",
   "description": "agent-browser CLI の仕様と使い方に関する知識を提供。ヘッドレスブラウザ自動化、スナップショット、セレクター、セッション管理、ネットワーク制御について回答。",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "cc-plugins"
   },

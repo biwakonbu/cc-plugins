@@ -1,6 +1,6 @@
 ---
 name: gemini-cli-knowledge
-description: Gemini CLI の仕様と使い方に関する知識を提供。モデル選択、スラッシュコマンド、組み込みツール、拡張機能、フックシステム、サンドボックス、MCP 管理者制御について回答。Use when user asks about Gemini CLI, gemini command, model selection, /model, /settings, /plan, /rewind, google_web_search, web_fetch, run_shell_command, sandbox, hooks, or Gemini extensions. Also use when user says Gemini CLI について, gemini の使い方, モデル選択.
+description: Use when user asks about Gemini CLI, gemini command, model selection, /model, /settings, /plan, /rewind, google_web_search, web_fetch, run_shell_command, sandbox, hooks, or Gemini extensions. Also use when user says Gemini CLI について, gemini の使い方, モデル選択. Gemini CLI の仕様と使い方に関する知識を提供し、モデル選択、スラッシュコマンド、組み込みツール、拡張機能、フックシステム、サンドボックス、MCP 管理者制御について回答する。
 context: fork
 ---
 

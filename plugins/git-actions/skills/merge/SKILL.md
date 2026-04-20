@@ -1,6 +1,6 @@
 ---
 name: git-merge
-description: Git マージワークフローの実行。feature ブランチを main にマージしてプッシュする。Use when user wants to merge to main, integrate changes to main branch, or complete a feature branch.
+description: Use when user wants to merge to main, integrate changes to main branch, or complete a feature branch. Git マージワークフローを実行し、feature ブランチを main にマージしてプッシュする。
 allowed-tools: Bash, Read, Grep, Glob
 ---
 

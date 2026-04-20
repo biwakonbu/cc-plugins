@@ -1,7 +1,7 @@
 {
   "name": "gemini-cli-spec",
   "description": "Gemini CLI の仕様と使い方を完璧に理解するための知識プラグイン",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": {
     "name": "Ryo Higasigawa"
   },

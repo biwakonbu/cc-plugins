@@ -1,6 +1,6 @@
 ---
 name: gemini-api-pricing
-description: Gemini API 全モデルの価格表、レート制限、無料枠、コンテキストキャッシュ価格を提供。Use when user asks about Gemini pricing, cost, rate limits, free tier, API pricing, token cost, or billing. Also use when user says Gemini 価格, 料金, レート制限, 無料枠, コスト, 課金, トークン単価.
+description: Use when user asks about Gemini pricing, cost, rate limits, free tier, API pricing, token cost, or billing. Also use when user says Gemini 価格, 料金, レート制限, 無料枠, コスト, 課金, トークン単価. Gemini API 全モデルの価格表、レート制限、無料枠、コンテキストキャッシュ価格を提供する。
 context: fork
 ---
 

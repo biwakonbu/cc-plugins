@@ -1,6 +1,6 @@
 ---
 name: gemini-text-models
-description: Gemini テキスト生成モデル（3.1 Pro / Flash / Flash Lite）の詳細比較、推論モード、コンテキストウィンドウ、移行ガイドを提供。Use when user asks about Gemini text models, Flash vs Pro, Flash Lite, thinking mode, reasoning, context window, or model migration. Also use when user says テキストモデル, Flash と Pro の違い, 推論モード, thinking モード, コンテキストウィンドウ.
+description: Use when user asks about Gemini text models, Flash vs Pro, Flash Lite, thinking mode, reasoning, context window, or model migration. Also use when user says テキストモデル, Flash と Pro の違い, 推論モード, thinking モード, コンテキストウィンドウ. Gemini テキスト生成モデル（3.1 Pro / Flash / Flash Lite）の詳細比較、推論モード、コンテキストウィンドウ、移行ガイドを提供する。
 context: fork
 ---
 

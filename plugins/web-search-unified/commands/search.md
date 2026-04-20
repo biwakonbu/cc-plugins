@@ -1,6 +1,6 @@
 ---
 name: search
-description: 統合 Web 検索を実行（Gemini + Codex + WebSearch 並列）
+description: Use when user wants a unified web search that runs Gemini, Codex, and WebSearch in parallel. 統合 Web 検索を実行する（Gemini + Codex + WebSearch 並列）。
 allowed-tools: Bash, WebSearch
 ---
 

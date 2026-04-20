@@ -1,6 +1,6 @@
 ---
 name: gemini-researcher
-description: 複雑な調査・リサーチタスクを担当。複数の検索を組み合わせた深い調査、比較分析、レポート作成が必要な場合に使用。Use when user needs comprehensive research, comparison analysis, or multi-step investigation. Also use for 比較調査, 詳細調査, レポート作成.
+description: Use when user needs comprehensive research, comparison analysis, or multi-step investigation. Also use for 比較調査, 詳細調査, レポート作成. 複雑な調査・リサーチタスクを担当し、複数の検索を組み合わせた深い調査、比較分析、レポート作成が必要な場合に使用する。
 tools: Bash, Read, Write, Glob
 model: inherit
 skills: web-search

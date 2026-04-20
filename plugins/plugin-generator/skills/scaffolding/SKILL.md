@@ -1,6 +1,6 @@
 ---
 name: scaffolding
-description: Claude Code プラグインのスキャフォールディング。新規プラグインのディレクトリ構造生成、テンプレート展開、marketplace.json への登録を実行。Use when user wants to create a new plugin, scaffold a plugin, or generate plugin structure.
+description: Use when user wants to create a new plugin, scaffold a plugin, or generate plugin structure. Claude Code プラグインのスキャフォールディングを実行し、新規プラグインのディレクトリ構造生成、テンプレート展開、marketplace.json への登録を行う。
 allowed-tools: Bash, Read, Write, Glob
 ---
 

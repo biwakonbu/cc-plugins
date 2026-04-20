@@ -1,7 +1,7 @@
 ---
 allowed-tools: Bash
 argument-hint: <prompt> [--aspect 16:9] [--resolution 2K]
-description: Nano Banana Pro で画像を生成する
+description: Use when user wants to generate an image with Nano Banana Pro from a text prompt. Nano Banana Pro で画像を生成する。
 ---
 
 # Image Generation Command

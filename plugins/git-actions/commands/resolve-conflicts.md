@@ -1,5 +1,5 @@
 ---
-description: マージコンフリクトを分析し解消を支援する
+description: Use when user wants help analyzing and resolving git merge conflicts. マージコンフリクトを分析し解消を支援する。
 ---
 
 # Resolve Conflicts

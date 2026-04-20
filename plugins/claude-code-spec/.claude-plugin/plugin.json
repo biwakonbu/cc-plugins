@@ -1,7 +1,7 @@
 {
   "name": "claude-code-spec",
   "description": "Claude Code CLI の仕様と使い方を完璧に理解するための知識プラグイン",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "author": {
     "name": "Ryo Higasigawa"
   },

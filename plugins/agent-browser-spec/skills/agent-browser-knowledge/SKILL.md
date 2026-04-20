@@ -1,6 +1,6 @@
 ---
 name: agent-browser-knowledge
-description: agent-browser CLI の仕様と使い方に関する知識を提供。ヘッドレスブラウザ自動化、スナップショット、セレクター、セッション管理、ネットワーク制御について回答。Use when user asks about agent-browser, browser automation, snapshots, selectors, sessions, or web scraping. Also use when user says agent-browser について, ブラウザ自動化, スナップショット, セレクター, セッション管理.
+description: Use when user asks about agent-browser, browser automation, snapshots, selectors, sessions, or web scraping. Also use when user says agent-browser について, ブラウザ自動化, スナップショット, セレクター, セッション管理. agent-browser CLI の仕様と使い方に関する知識を提供し、ヘッドレスブラウザ自動化、スナップショット、セレクター、セッション管理、ネットワーク制御について回答する。
 context: fork
 ---
 

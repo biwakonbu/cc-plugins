@@ -1,6 +1,6 @@
 ---
 name: codex-cli-knowledge
-description: OpenAI Codex CLI の仕様と使い方に関する知識を提供。モデル選択、推論レベル、承認モード、サンドボックス、組み込みツール、スラッシュコマンド、Plan モード、マルチエージェント協調、メモリ管理、Steer モード、パーソナリティ設定、プラグインシステム、MCP 連携、フックエンジン、カスタムエージェントについて回答。Use when user asks about Codex CLI, codex command, approval mode, sandbox, AGENTS.md, codex configuration, /model, /review, /compact, /plan, /personality, /collab, /agent, apply_patch, reasoning level, multi-agent, plugin system, MCP server, hook engine, or memory management. Also use when user says Codex CLI について, codex の使い方, 承認モード, 推論レベル.
+description: Use when user asks about Codex CLI, codex command, approval mode, sandbox, AGENTS.md, codex configuration, /model, /review, /compact, /plan, /personality, /collab, /agent, apply_patch, reasoning level, multi-agent, plugin system, MCP server, hook engine, or memory management. Also use when user says Codex CLI について, codex の使い方, 承認モード, 推論レベル. OpenAI Codex CLI の仕様と使い方に関する知識を提供し、モデル選択、推論レベル、承認モード、サンドボックス、組み込みツール、スラッシュコマンド、Plan モード、マルチエージェント協調、メモリ管理、Steer モード、パーソナリティ設定、プラグインシステム、MCP 連携、フックエンジン、カスタムエージェントについて回答する。
 context: fork
 ---
 

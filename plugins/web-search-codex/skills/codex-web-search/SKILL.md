@@ -1,6 +1,6 @@
 ---
 name: codex-web-search
-description: Codex CLI 環境内で Gemini CLI を使用した Web 検索を実行。技術情報、最新ニュース、一般的なリサーチに対応。Use when user asks to search the web, look up information, find recent news, or research a topic within Codex CLI. Also use when user says 調べて, 検索して, 最新情報, ニュース, リサーチ.
+description: Use when user asks to search the web, look up information, find recent news, or research a topic within Codex CLI. Also use when user says 調べて, 検索して, 最新情報, ニュース, リサーチ. Codex CLI 環境内で Gemini CLI を使用した Web 検索を実行し、技術情報、最新ニュース、一般的なリサーチに対応する。
 allowed-tools: Bash
 context: fork
 ---
