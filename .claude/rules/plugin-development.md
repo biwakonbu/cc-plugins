@@ -598,24 +598,24 @@ claude --debug
 - 機密設定は `.local.json` に分離
 - 入力をサニタイズしてセキュリティ確保
 
-## Multi-tool compatibility (v1.5.0+)
+## Multi-tool compatibility (v1.5.0+, OpenCode は v1.6.0+)
 
-cc-plugins の各プラグインは **Claude Code / Codex CLI / Cursor / GitHub Copilot CLI** の
-4 ツールで共通認識できる構造を採る。Claude Code をソースオブトゥルースとし、
+cc-plugins の各プラグインは **Claude Code / Codex CLI / Cursor / GitHub Copilot CLI / OpenCode** の
+5 ツールで共通認識できる構造を採る。Claude Code をソースオブトゥルースとし、
 他ツールは薄いエントリファイル (`AGENTS.md` 等) 経由でネイティブ構造を参照する。
 
 ### ツール別認識マトリクス
 
-| 要素 | Claude Code | Codex CLI | Cursor | Copilot CLI |
-|---|---|---|---|---|
-| `skills/*/SKILL.md` | ✅ ネイティブ | ❌ | ❌ | ❌ |
-| `agents/*.md` | ✅ ネイティブ | ❌ (独自 TOML) | ❌ | ❌ |
-| `commands/*.md` | ✅ ネイティブ | ❌ | △ (.cursor/commands) | ❌ |
-| `hooks/hooks.json` | ✅ ネイティブ | ✅ (v0.114.0+ 独自形式) | △ 実験的 | ❌ |
-| `AGENTS.md` | △ (imports) | ✅ ネイティブ | ✅ ネイティブ | ✅ (試験) |
-| `.cursor/rules/*.mdc` | ❌ | ❌ | ✅ ネイティブ | ❌ |
-| `.github/copilot-instructions.md` | ❌ | ❌ | ❌ | ✅ ネイティブ |
-| YAML frontmatter の未知フィールド | 無視 | 無視 | 無視 | 無視 |
+| 要素 | Claude Code | Codex CLI | Cursor | Copilot CLI | OpenCode |
+|---|---|---|---|---|---|
+| `skills/*/SKILL.md` | ✅ ネイティブ | ❌ | ❌ | ❌ | ❌ |
+| `agents/*.md` | ✅ ネイティブ | ❌ (独自 TOML) | ❌ | ❌ | ❌ (独自形式) |
+| `commands/*.md` | ✅ ネイティブ | ❌ | △ (.cursor/commands) | ❌ | △ (.opencode/command) |
+| `hooks/hooks.json` | ✅ ネイティブ | ✅ (v0.114.0+ 独自形式) | △ 実験的 | ❌ | ❌ |
+| `AGENTS.md` | △ (imports) | ✅ ネイティブ | ✅ ネイティブ | ✅ (試験) | ✅ ネイティブ |
+| `.cursor/rules/*.mdc` | ❌ | ❌ | ✅ ネイティブ | ❌ | ❌ |
+| `.github/copilot-instructions.md` | ❌ | ❌ | ❌ | ✅ ネイティブ | ❌ |
+| YAML frontmatter の未知フィールド | 無視 | 無視 | 無視 | 無視 | 無視 |
 
 ### 共通フロントマター規約 (core subset)
 
@@ -623,7 +623,7 @@ SKILL.md / agents/*.md / commands/*.md の全てで次を満たす:
 
 - **`name`** (必須、commands 除く): kebab-case 識別子
 - **`description`** (必須): 1 行目を `Use when <発動条件>` で始める
-  (Cursor/Codex/Copilot が自然言語で発動判定するため)
+  (Cursor / Codex / Copilot / OpenCode が自然言語で発動判定するため)
 - `description` が複数行になる場合は YAML block scalar (`|`) を使う
 
 Claude Code 固有フィールド (`context`, `user-invocable`, `allowed-tools`) は
@@ -640,7 +640,7 @@ Claude Code 固有フィールド (`context`, `user-invocable`, `allowed-tools`)
 ### AGENTS.md 規約
 
 プラグインに skills/agents/commands のいずれかがある場合、
-**プラグインルートに `AGENTS.md` を必ず置く**。内容は 4 ツール共通の入口ドキュメントとして、
+**プラグインルートに `AGENTS.md` を必ず置く**。内容は 5 ツール共通の入口ドキュメントとして、
 提供するスキル・エージェント・コマンド・フックを列挙する:
 
 ```markdown

@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: Claude Code プラグインの skill を作成・メンテナンスする専用エージェント。新規スキルの追加、既存スキルの更新・修正を担当。Use when creating, updating, modifying, or maintaining skills. Also use when user says スキル作成, スキル更新, スキル修正.
+description: Use when creating, updating, modifying, or maintaining skills in a Claude Code plugin. Also use when user says スキル作成, スキル更新, スキル修正. 新規スキルの追加、既存スキルの更新・修正を担当する専用エージェント。
 tools: Read, Glob, Grep, Bash, Write, Edit
 model: inherit
 skills: skill-spec
@@ -60,7 +60,7 @@ mkdir -p skills/{skill-name}
 ```markdown
 ---
 name: {skill-name}
-description: {スキルの説明}。Use when {いつ使うか}。
+description: Use when {発動条件}. {スキルの説明}。
 allowed-tools: Read, Grep, Glob
 ---
 
@@ -149,7 +149,23 @@ cat skills/{skill-name}/SKILL.md
 2. plugin.json の version を更新することを推奨
 ```
 
-### 4. バージョン更新の推奨
+### 4. AGENTS.md 更新 (5 ツール共通認識)
+
+新規作成・既存更新のどちらでも、プラグインルートの `AGENTS.md` を同期する:
+
+1. `AGENTS.md` が存在する場合
+   - Read で読み込み → `## Skills` セクションに以下の行を追加
+     `- **{skill-name}** — Use when {発動条件}. 詳細: \`skills/{skill-name}/SKILL.md\``
+   - 既に同名行があれば description を更新 (Edit で差分適用)
+   - `## Skills` セクション自体が無ければセクションごと追記
+2. `AGENTS.md` が存在しない場合
+   - `${CLAUDE_PLUGIN_ROOT}/templates/agents-md.tmpl` を雛形に新規作成
+   - プラグイン名・1 行説明・現存する skills/agents/commands を列挙して埋める
+
+理由: Claude Code / Codex CLI / Cursor / GitHub Copilot CLI / OpenCode の 5 ツールが
+AGENTS.md を共通入口として参照するため、SKILL.md 単体では他ツールから発見されない。
+
+### 5. バージョン更新の推奨
 
 スキルの作成・更新後は、plugin.json の version を更新することを推奨:
 
@@ -218,5 +234,6 @@ plugin.json 更新:
 
 - skills では `model` 指定は使用できません
 - モデル指定が必要な場合は agents を使用してください
-- description は必ず「Use when ...」を含めてください
+- **description の 1 行目は必ず `Use when <発動条件>` で始めること** (Claude Code / Codex CLI / Cursor / Copilot CLI / OpenCode の 5 ツールが自然言語マッチで発動判定するため)
+- 作成・更新後は必ず `AGENTS.md` の `## Skills` セクションを同期すること
 - 更新モードでは既存の設定を維持し、要求部分のみを変更

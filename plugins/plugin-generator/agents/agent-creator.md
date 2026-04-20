@@ -1,6 +1,6 @@
 ---
 name: agent-creator
-description: Claude Code プラグインの agent を作成・メンテナンスする専用エージェント。新規サブエージェントの追加、既存エージェントの更新・修正を担当。Use when creating, updating, modifying, or maintaining agents. Also use when user says エージェント作成, エージェント更新, エージェント修正.
+description: Use when creating, updating, modifying, or maintaining agents in a Claude Code plugin. Also use when user says エージェント作成, エージェント更新, エージェント修正. 新規サブエージェントの追加、既存エージェントの更新・修正を担当する専用エージェント。
 tools: Read, Glob, Grep, Bash, Write, Edit
 model: inherit
 skills: agent-spec
@@ -60,7 +60,7 @@ mkdir -p agents
 ```markdown
 ---
 name: {agent-name}
-description: {エージェントの説明}。{いつ呼ばれるか}。
+description: Use when {発動条件}. {エージェントの説明}。
 tools: Read, Glob, Grep, Bash
 model: inherit
 ---
@@ -149,7 +149,22 @@ cat agents/{agent-name}.md
 2. plugin.json の version を更新することを推奨
 ```
 
-### 4. バージョン更新の推奨
+### 4. AGENTS.md 更新 (5 ツール共通認識)
+
+新規作成・既存更新のどちらでも、プラグインルートの `AGENTS.md` を同期する:
+
+1. `AGENTS.md` が存在する場合
+   - Read で読み込み → `## Agents` セクションに以下の行を追加/更新
+     `- **{agent-name}** — Use when {発動条件}. 詳細: \`agents/{agent-name}.md\``
+   - `## Agents` セクション自体が無ければセクションごと追記
+2. `AGENTS.md` が存在しない場合
+   - `${CLAUDE_PLUGIN_ROOT}/templates/agents-md.tmpl` を雛形に新規作成
+
+理由: Claude Code / Codex CLI / Cursor / GitHub Copilot CLI / OpenCode の 5 ツールが
+AGENTS.md を共通入口として参照する。単体 `agents/*.md` は Claude Code 専用フォーマットのため、
+他ツールから発見されるには AGENTS.md での列挙が必須。
+
+### 5. バージョン更新の推奨
 
 エージェントの作成・更新後は、plugin.json の version を更新することを推奨:
 
@@ -236,4 +251,6 @@ plugin.json 更新:
 - agents では model は短縮名（haiku, opus, inherit）を使用
 - skills を使用する場合は明示的に指定が必要
 - sonnet は現在推奨されません（haiku または opus を使用）
+- **description の 1 行目は必ず `Use when <発動条件>` で始めること** (Claude Code / Codex CLI / Cursor / Copilot CLI / OpenCode の 5 ツールが自然言語マッチで発動判定するため)
+- 作成・更新後は必ず `AGENTS.md` の `## Agents` セクションを同期すること
 - 更新モードでは既存の設定を維持し、要求部分のみを変更

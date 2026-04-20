@@ -200,16 +200,74 @@ case "$TYPE" in
         ;;
 esac
 
-echo ""
-if [[ -f "$CURRENT_DIR/AGENTS.md" ]]; then
-    echo ""
-    echo "Note: AGENTS.md を更新してこの $TYPE を列挙してください (4 ツール共通認識のため)"
-else
-    echo ""
-    echo "Note: このプラグインに AGENTS.md がありません。以下で生成できます:"
-    echo "  cp $TEMPLATE_DIR/agents-md.tmpl ./AGENTS.md"
-    echo "  その後、skills/agents/commands を列挙してください"
-fi
+# AGENTS.md 自動同期 (5 ツール共通認識)
+AGENTS_MD="$CURRENT_DIR/AGENTS.md"
+
+# hook は AGENTS.md への列挙対象外 (セクションが別管理)
+case "$TYPE" in
+    command|skill|agent)
+        # AGENTS.md が無ければテンプレートから作成
+        if [[ ! -f "$AGENTS_MD" ]]; then
+            PLUGIN_DESC=""
+            if command -v jq &> /dev/null; then
+                PLUGIN_DESC=$(jq -r '.description // ""' "$CURRENT_DIR/.claude-plugin/plugin.json")
+            fi
+            sed -e "s/{{PLUGIN_NAME}}/$PLUGIN_NAME/g" \
+                -e "s|{{DESCRIPTION}}|${PLUGIN_DESC:-プラグインの 1 行説明をここに記述}|g" \
+                "$TEMPLATE_DIR/agents-md.tmpl" > "$AGENTS_MD"
+            echo "Created: AGENTS.md (5 ツール共通入口)"
+        fi
+
+        # セクション名と追記行を決定
+        case "$TYPE" in
+            skill)
+                SECTION="## Skills"
+                ENTRY="- **$NAME** — Use when <発動条件>. 詳細: \`skills/$NAME/SKILL.md\`"
+                ;;
+            agent)
+                SECTION="## Agents"
+                ENTRY="- **$NAME** — Use when <発動条件>. 詳細: \`agents/$NAME.md\`"
+                ;;
+            command)
+                SECTION="## Commands"
+                ENTRY="- **/$PLUGIN_NAME:$NAME** — <コマンドの概要>. 詳細: \`commands/$NAME.md\`"
+                ;;
+        esac
+
+        # 既に同名行があればスキップ (重複防止)
+        if grep -F "$NAME" "$AGENTS_MD" | grep -qE "(skills/$NAME/SKILL\.md|agents/$NAME\.md|commands/$NAME\.md)"; then
+            echo "AGENTS.md: $TYPE '$NAME' は既に列挙されています (スキップ)"
+        elif grep -qF "$SECTION" "$AGENTS_MD"; then
+            # 既存セクションヘッダの直後に挿入 (コメントブロックを跨がない)
+            awk -v section="$SECTION" -v entry="$ENTRY" '
+                BEGIN { inserted = 0 }
+                {
+                    print
+                    if (!inserted && $0 == section) {
+                        print ""
+                        print entry
+                        inserted = 1
+                    }
+                }
+            ' "$AGENTS_MD" > "$AGENTS_MD.tmp" && mv "$AGENTS_MD.tmp" "$AGENTS_MD"
+            echo "AGENTS.md: $SECTION に '$NAME' を追記"
+        else
+            # セクション自体が無い → 末尾に追加
+            {
+                echo ""
+                echo "$SECTION"
+                echo ""
+                echo "$ENTRY"
+            } >> "$AGENTS_MD"
+            echo "AGENTS.md: $SECTION セクションを新設して '$NAME' を追記"
+        fi
+        ;;
+    hook)
+        if [[ -f "$AGENTS_MD" ]]; then
+            echo "Note: AGENTS.md の ## Hooks セクションを手動で更新してください"
+        fi
+        ;;
+esac
 
 echo ""
 echo "═══════════════════════════════════════════════════════════"

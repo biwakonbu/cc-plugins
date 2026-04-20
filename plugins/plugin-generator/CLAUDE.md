@@ -166,6 +166,30 @@ plugin-generator/
 - plugin.json の変更（バージョン含む）
 - 設計方針や動作の変更
 
+### v1.6.0 の変更 (OpenCode 対応 + AGENTS.md 自動同期)
+
+**5 ツール対応化**: Claude Code / Codex CLI / Cursor / GitHub Copilot CLI に
+**OpenCode (opencode.ai)** を追加し、5 ツールで共通認識可能な構造に拡張。
+OpenCode は AGENTS.md をネイティブ読み込みするため、AGENTS.md 整備で対応完了。
+
+**AGENTS.md の自動生成・自動同期**:
+- `scripts/add-component.sh` — skill/agent/command 追加時に AGENTS.md を自動生成・更新
+  (該当セクション `## Skills` / `## Agents` / `## Commands` に 1 行を自動追記)
+- `agents/skill-creator.md` / `agent-creator.md` / `command-creator.md` —
+  実行フローに「AGENTS.md 更新ステップ」を追加。エージェント経由の作成でも同期される
+
+**インラインテンプレート標準化**:
+- `agents/skill-creator.md` / `agent-creator.md` / `command-creator.md` のインラインテンプレートを
+  `description: Use when <条件>. <説明>` 形式に統一。これまで説明文が先に来ていた箇所を修正
+- 各エージェントの「注意事項」に 5 ツール発動判定のための description 規約を明記
+
+**関連ファイル (リポジトリ側)**:
+- `.claude/rules/plugin-development.md` — Multi-tool マトリクスに OpenCode 列追加
+- `.claude/scripts/lint-multi-tool-compat.sh` — AGENTS.md カバレッジ検証を追加
+  (skills/agents/commands が AGENTS.md で列挙されているかを warning でチェック)
+- `templates/agents-md.tmpl` — Multi-tool Compatibility セクションに OpenCode 行追加
+- `skills/plugin-spec/SKILL.md` / `skill-spec/SKILL.md` — OpenCode を含む 5 ツール表記に更新
+
 ### v1.5.0 の変更 (Multi-tool compatibility)
 
 **4 ツール共通認識対応**: Claude Code / Codex CLI / Cursor / GitHub Copilot CLI が

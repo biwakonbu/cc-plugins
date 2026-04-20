@@ -1,6 +1,6 @@
 ---
 name: command-creator
-description: Claude Code プラグインの command を作成・メンテナンスする専用エージェント。新規スラッシュコマンドの追加、既存コマンドの更新・修正を担当。Use when creating, updating, modifying, or maintaining commands. Also use when user says コマンド作成, コマンド更新, コマンド修正.
+description: Use when creating, updating, modifying, or maintaining slash commands in a Claude Code plugin. Also use when user says コマンド作成, コマンド更新, コマンド修正. 新規スラッシュコマンドの追加、既存コマンドの更新・修正を担当する専用エージェント。
 tools: Read, Glob, Grep, Bash, Write, Edit
 model: inherit
 skills: command-spec
@@ -59,7 +59,8 @@ mkdir -p commands
 
 ```markdown
 ---
-description: {コマンドの説明}
+description: Use when {発動条件}. {コマンドの説明}
+argument-hint: [引数のヒント]
 ---
 
 # {コマンド名}
@@ -130,7 +131,21 @@ cat commands/{command-name}.md
 3. plugin.json の version を更新することを推奨
 ```
 
-### 4. バージョン更新の推奨
+### 4. AGENTS.md 更新 (5 ツール共通認識)
+
+新規作成・既存更新のどちらでも、プラグインルートの `AGENTS.md` を同期する:
+
+1. `AGENTS.md` が存在する場合
+   - Read で読み込み → `## Commands` セクションに以下の行を追加/更新
+     `- **/{plugin-name}:{command-name}** — {コマンドの説明}. 詳細: \`commands/{command-name}.md\``
+   - `## Commands` セクション自体が無ければセクションごと追記
+2. `AGENTS.md` が存在しない場合
+   - `${CLAUDE_PLUGIN_ROOT}/templates/agents-md.tmpl` を雛形に新規作成
+
+理由: Claude Code / Codex CLI / Cursor / GitHub Copilot CLI / OpenCode の 5 ツールが
+AGENTS.md を共通入口として参照する。
+
+### 5. バージョン更新の推奨
 
 コマンドの作成・更新後は、plugin.json の version を更新することを推奨:
 
@@ -214,4 +229,6 @@ cat commands/{command-name}.md
 
 - commands では model 指定時はフルモデル ID を使用
 - sonnet は現在推奨されません（haiku または opus を使用）
+- **description の 1 行目は必ず `Use when <発動条件>` で始めること** (Claude Code / Codex CLI / Cursor / Copilot CLI / OpenCode の 5 ツールが自然言語マッチで発動判定するため)
+- 作成・更新後は必ず `AGENTS.md` の `## Commands` セクションを同期すること
 - 更新モードでは既存の設定を維持し、要求部分のみを変更

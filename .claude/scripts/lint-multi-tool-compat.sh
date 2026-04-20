@@ -1,8 +1,8 @@
 #!/bin/bash
 # lint-multi-tool-compat.sh
 #
-# cc-plugins のプラグインが Claude Code / Codex CLI / Cursor / Copilot CLI の
-# 4 ツールで共通認識可能な形式になっているかを検証する。
+# cc-plugins のプラグインが Claude Code / Codex CLI / Cursor / Copilot CLI / OpenCode の
+# 5 ツールで共通認識可能な形式になっているかを検証する。
 #
 # 検証項目:
 # 1. SKILL.md / agents/*.md / commands/*.md フロントマターの共通規約
@@ -170,7 +170,7 @@ if [[ -d "$TARGET/commands" ]]; then
     done < <(find "$TARGET/commands" -maxdepth 1 -name '*.md' -type f 2>/dev/null)
 fi
 
-# AGENTS.md 推奨 + 参照パス検証
+# AGENTS.md 推奨 + 参照パス検証 + カバレッジ検証
 if [[ -d "$TARGET/skills" || -d "$TARGET/agents" || -d "$TARGET/commands" ]]; then
     if [[ -f "$TARGET/AGENTS.md" ]]; then
         ok "AGENTS.md exists"
@@ -179,12 +179,48 @@ if [[ -d "$TARGET/skills" || -d "$TARGET/agents" || -d "$TARGET/commands" ]]; th
             [[ -z "$ref" ]] && continue
             # 先頭 / や http は無視
             [[ "$ref" == /* || "$ref" == http* ]] && continue
+            # プラグイン内の相対パス (skills/agents/commands/hooks) のみ検証対象
+            # .github/... や .cursor/... はリポジトリルート配置のため検証スキップ
+            case "$ref" in
+                skills/*|agents/*|commands/*|hooks/*) ;;
+                *) continue ;;
+            esac
             if [[ ! -e "$TARGET/$ref" ]]; then
                 warn "AGENTS.md: 参照先が存在しません: $ref"
             fi
         done < <(grep -oE '`[^`]+\.md`' "$TARGET/AGENTS.md" 2>/dev/null | tr -d '`')
+
+        # カバレッジ: 各 skill/agent/command が AGENTS.md で列挙されているか
+        AGENTS_CONTENT=$(cat "$TARGET/AGENTS.md")
+        if [[ -d "$TARGET/skills" ]]; then
+            while IFS= read -r f; do
+                [[ -z "$f" ]] && continue
+                rel="skills/$(basename "$(dirname "$f")")/SKILL.md"
+                if ! echo "$AGENTS_CONTENT" | grep -qF "$rel"; then
+                    warn "AGENTS.md: $rel が列挙されていません (5 ツール発見性のため追加を推奨)"
+                fi
+            done < <(find "$TARGET/skills" -name SKILL.md -type f 2>/dev/null)
+        fi
+        if [[ -d "$TARGET/agents" ]]; then
+            while IFS= read -r f; do
+                [[ -z "$f" ]] && continue
+                rel="agents/${f#$TARGET/agents/}"
+                if ! echo "$AGENTS_CONTENT" | grep -qF "$rel"; then
+                    warn "AGENTS.md: $rel が列挙されていません (5 ツール発見性のため追加を推奨)"
+                fi
+            done < <(find "$TARGET/agents" -name '*.md' -type f 2>/dev/null)
+        fi
+        if [[ -d "$TARGET/commands" ]]; then
+            while IFS= read -r f; do
+                [[ -z "$f" ]] && continue
+                rel="commands/$(basename "$f")"
+                if ! echo "$AGENTS_CONTENT" | grep -qF "$rel"; then
+                    warn "AGENTS.md: $rel が列挙されていません (5 ツール発見性のため追加を推奨)"
+                fi
+            done < <(find "$TARGET/commands" -maxdepth 1 -name '*.md' -type f 2>/dev/null)
+        fi
     else
-        warn "AGENTS.md がありません (4 ツール共通認識のため作成を推奨)"
+        warn "AGENTS.md がありません (5 ツール共通認識のため作成を推奨)"
     fi
 fi
 
